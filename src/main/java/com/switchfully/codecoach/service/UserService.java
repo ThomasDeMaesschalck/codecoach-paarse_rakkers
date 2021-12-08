@@ -2,13 +2,16 @@ package com.switchfully.codecoach.service;
 import com.switchfully.codecoach.api.dto.UserDTO;
 import com.switchfully.codecoach.api.mappers.CoachInfoMapper;
 import com.switchfully.codecoach.api.mappers.UserMapper;
+import com.switchfully.codecoach.domain.Topic;
 import com.switchfully.codecoach.domain.User;
+import com.switchfully.codecoach.domain.UserRole;
 import com.switchfully.codecoach.exception.UserNotFoundException;
 import com.switchfully.codecoach.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;

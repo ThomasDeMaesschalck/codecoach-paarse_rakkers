@@ -1,7 +1,9 @@
 package com.switchfully.codecoach.api;
 
 import com.switchfully.codecoach.api.dto.UserDTO;
+import com.switchfully.codecoach.domain.UserRole;
 import com.switchfully.codecoach.service.UserService;
+import com.switchfully.codecoach.domain.Topic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
