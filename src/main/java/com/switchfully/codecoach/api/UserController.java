@@ -33,8 +33,11 @@ public class UserController {
     @GetMapping (produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     //@PreAuthorize("hasAnyRole()")
-    public List<UserDTO> getAllUsers() {
-        return userService.getAllUsers();
+    public List<UserDTO> getAllUsers(@RequestParam(required = false) Topic.TopicName topic,
+                                     @RequestParam(required = false) UserRole role
+                                     ) {
+        logger.info("Getting all users");
+        return userService.getAllUsers(topic, role);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

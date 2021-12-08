@@ -1,4 +1,6 @@
 package com.switchfully.codecoach.service;
+
+import com.switchfully.codecoach.api.UserController;
 import com.switchfully.codecoach.api.dto.UserDTO;
 import com.switchfully.codecoach.api.mappers.CoachInfoMapper;
 import com.switchfully.codecoach.api.mappers.UserMapper;
@@ -7,6 +9,8 @@ import com.switchfully.codecoach.domain.User;
 import com.switchfully.codecoach.domain.UserRole;
 import com.switchfully.codecoach.exception.UserNotFoundException;
 import com.switchfully.codecoach.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +28,8 @@ public class UserService {
     private final UserRepository userRepository;
     private final CoachInfoMapper coachInfoMapper;
 
+    private final Logger logger = LoggerFactory.getLogger(UserService.class);
+
     @Autowired
     public UserService(UserMapper userMapper, UserRepository userRepository, CoachInfoMapper coachInfoMapper) {
         this.userMapper = userMapper;
@@ -32,7 +38,7 @@ public class UserService {
     }
 
     public UserDTO registerUser(UserDTO dto) {
-       return  userMapper.toDTO(userRepository.save(userMapper.toEntity(dto)));
+        return userMapper.toDTO(userRepository.save(userMapper.toEntity(dto)));
     }
 
 
