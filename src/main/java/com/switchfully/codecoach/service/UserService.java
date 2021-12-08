@@ -1,5 +1,6 @@
 package com.switchfully.codecoach.service;
-
+import com.switchfully.codecoach.api.dto.UserDTO;
+import com.switchfully.codecoach.api.mappers.CoachInfoMapper;
 import com.switchfully.codecoach.api.mappers.UserMapper;
 import com.switchfully.codecoach.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +16,13 @@ public class UserService {
 
     private final UserMapper userMapper;
     private final UserRepository userRepository;
-
+    private final CoachInfoMapper coachInfoMapper;
 
     @Autowired
-    public UserService(UserMapper userMapper, UserRepository userRepository) {
+    public UserService(UserMapper userMapper, UserRepository userRepository, CoachInfoMapper coachInfoMapper) {
         this.userMapper = userMapper;
         this.userRepository = userRepository;
+        this.coachInfoMapper = coachInfoMapper;
     }
 
     public UserDTO registerUser(UserDTO dto) {
