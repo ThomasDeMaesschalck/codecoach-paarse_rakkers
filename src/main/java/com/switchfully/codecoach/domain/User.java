@@ -1,6 +1,7 @@
 package com.switchfully.codecoach.domain;
 
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.print.attribute.standard.MediaSize;
@@ -41,7 +42,7 @@ public class User {
     @Column(name = "role")
     private UserRole userRole;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "coach_info_id")
     private CoachInfo coachInfo;
 
