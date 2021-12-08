@@ -41,7 +41,7 @@ public class Session {
     @Column(name = "status")
     private SessionStatus status;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "coach_feedback")
     private CoachFeedback coachFeedback;
 

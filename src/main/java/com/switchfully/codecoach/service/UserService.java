@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,5 +38,16 @@ public class UserService {
                 .stream()
                 .map(userMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    public void assertUserExists(String userId) {
+            if (!userRepository.existsById(UUID.fromString(userId)))
+                throw new UserNotFoundException(userId);
+
+    }
+
+    public User getSpecificUserById(String userId) {
+        assertUserExists(userId);
+        return userRepository.findById(UUID.fromString(userId)).get();
     }
 }
