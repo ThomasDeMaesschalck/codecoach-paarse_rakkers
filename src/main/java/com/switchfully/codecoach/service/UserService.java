@@ -2,6 +2,8 @@ package com.switchfully.codecoach.service;
 import com.switchfully.codecoach.api.dto.UserDTO;
 import com.switchfully.codecoach.api.mappers.CoachInfoMapper;
 import com.switchfully.codecoach.api.mappers.UserMapper;
+import com.switchfully.codecoach.domain.User;
+import com.switchfully.codecoach.exception.UserNotFoundException;
 import com.switchfully.codecoach.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
