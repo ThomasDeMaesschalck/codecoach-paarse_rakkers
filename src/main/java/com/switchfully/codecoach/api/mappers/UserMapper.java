@@ -3,16 +3,19 @@ package com.switchfully.codecoach.api.mappers;
 import com.switchfully.codecoach.api.dto.UserDTO;
 import com.switchfully.codecoach.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {
 
     private final CoachInfoMapper coachInfoMapper;
+    //private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     public UserMapper(CoachInfoMapper coachInfoMapper) {
         this.coachInfoMapper = coachInfoMapper;
+        //this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
     public User toEntity(UserDTO userDTO){
@@ -24,7 +27,7 @@ public class UserMapper {
                 .userRole(userDTO.getUserRole())
                 .pictureURL(userDTO.getPictureURL())
                 .password(userDTO.getPassword())
-                .coachInfo(coachInfoMapper.toEntity(userDTO.getCoachInfo()))
+                .coachInfo(userDTO.getCoachInfo() == null ? null : coachInfoMapper.toEntity(userDTO.getCoachInfo()))
                 .build();
     }
 
@@ -38,7 +41,7 @@ public class UserMapper {
                 .pictureURL(user.getPictureURL())
                 .companyTeam(user.getCompanyTeam())
                 .userRole(user.getUserRole())
-                .coachInfo(coachInfoMapper.toDTO(user.getCoachInfo()))
+                .coachInfo(user.getCoachInfo() == null ? null : coachInfoMapper.toDTO(user.getCoachInfo()))
                 .build();
     }
 

@@ -9,8 +9,44 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-/*
 @Entity
-@Table(name = "session")*/
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+
+@Table(name = "session")
 public class Session {
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private UUID id;
+    @OneToOne
+    @JoinColumn(name = "coachee_id")
+    private User coachee;
+    @OneToOne
+    @JoinColumn(name = "coach_id")
+    private User coach;
+
+    @Column(name = "moment")
+    private LocalDateTime moment;
+
+    @Column(name = "face_to_face")
+    private boolean faceToFace;
+
+    @Column(name = "remarks")
+    private String remarks;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private SessionStatus status;
+
+    @OneToOne
+    @JoinColumn(name = "coach_feedback")
+    private CoachFeedback coachFeedback;
+
+    @OneToOne
+    @JoinColumn(name = "coach_feedback")
+    private CoacheeFeedback coacheeFeedback;
+
 }
