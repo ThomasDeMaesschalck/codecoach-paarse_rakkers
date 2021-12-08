@@ -1,4 +1,4 @@
 package com.switchfully.codecoach.domain;
 
-public enum UserRole {
-}
+public enum UserRole {COACHEE, COACH, ADMIN};
+
