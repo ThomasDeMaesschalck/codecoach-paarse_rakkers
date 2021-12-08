@@ -44,4 +44,13 @@ public class UserController {
         return userService.registerUser(userDTO);
     }
 
+    @GetMapping (produces = MediaType.APPLICATION_JSON_VALUE, path = "/users/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    //@PreAuthorize("hasAnyRole()")
+    public UserDTO getSpecificUser(@PathVariable String id) {
+        logger.info("Getting user with id " + id);
+        return userService.getUserDTO(id);
+    }
+
+
 }
