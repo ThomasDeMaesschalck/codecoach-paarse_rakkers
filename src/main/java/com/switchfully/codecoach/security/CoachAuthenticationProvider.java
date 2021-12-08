@@ -1,4 +1,4 @@
 package com.switchfully.codecoach.security;
 
-public class AuthenticationEntryPoint {
+public class CoachAuthenticationProvider {
 }

@@ -28,7 +28,6 @@ public class CoachInfoMapper {
 
     public CoachInfoDTO toDTO(CoachInfo coachInfo){
         return CoachInfoDTO.builder()
-                .id(coachInfo.getId())
                 .introduction(coachInfo.getIntroduction())
                 .availability(coachInfo.getAvailability())
                 .topics((coachInfo.getTopics().stream().map(topicMapper::toDTO).collect(Collectors.toList())))

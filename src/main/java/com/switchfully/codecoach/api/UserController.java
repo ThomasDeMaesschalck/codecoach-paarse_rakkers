@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
+
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -29,7 +30,7 @@ public class UserController {
 
     @GetMapping (produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-  //  @PreAuthorize("hasAnyRole()")
+    //@PreAuthorize("hasAnyRole()")
     public List<UserDTO> getAllUsers() {
         return userService.getAllUsers();
     }
@@ -38,7 +39,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     //@PreAuthorize("hasAnyRole()")
-    public UserDTO registerUser(@RequestBody UserDTO userDTO) {
+    public UserDTO registerUser(@Valid @RequestBody UserDTO userDTO) {
         logger.info("Registering new user");
         return userService.registerUser(userDTO);
     }
