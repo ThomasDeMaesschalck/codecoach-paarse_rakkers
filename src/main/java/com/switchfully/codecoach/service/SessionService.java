@@ -4,7 +4,7 @@ import com.switchfully.codecoach.api.dto.SessionDTO;
 import com.switchfully.codecoach.api.mappers.SessionMapper;
 import com.switchfully.codecoach.domain.Session;
 import com.switchfully.codecoach.domain.User;
-import com.switchfully.codecoach.exception.UserNotFoundException;
+import com.switchfully.codecoach.exception.SessionNotFoundException;
 import com.switchfully.codecoach.repository.SessionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,7 +55,7 @@ public class SessionService {
     public void assertSessionExists(String sessionId) {
         if (!sessionRepository.existsById(UUID.fromString(sessionId))) {
             logger.error("Session with id " + sessionId + "not found");
-            throw new UserNotFoundException(sessionId);
+            throw new SessionNotFoundException(sessionId);
         }
     }
 

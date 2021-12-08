@@ -1,6 +1,5 @@
 package com.switchfully.codecoach.service;
 
-import com.switchfully.codecoach.api.UserController;
 import com.switchfully.codecoach.api.dto.UserDTO;
 import com.switchfully.codecoach.api.mappers.CoachInfoMapper;
 import com.switchfully.codecoach.api.mappers.UserMapper;
@@ -9,13 +8,14 @@ import com.switchfully.codecoach.domain.User;
 import com.switchfully.codecoach.domain.UserRole;
 import com.switchfully.codecoach.exception.UserNotFoundException;
 import com.switchfully.codecoach.repository.UserRepository;
+import com.switchfully.codecoach.repository.specifications.UserSpecification;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -27,63 +27,30 @@ public class UserService {
     private final UserMapper userMapper;
     private final UserRepository userRepository;
     private final CoachInfoMapper coachInfoMapper;
+    private final UserSpecification userSpecification;
 
     private final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
-    public UserService(UserMapper userMapper, UserRepository userRepository, CoachInfoMapper coachInfoMapper) {
+    public UserService(UserMapper userMapper, UserRepository userRepository,
+                       CoachInfoMapper coachInfoMapper, UserSpecification userSpecification) {
         this.userMapper = userMapper;
         this.userRepository = userRepository;
         this.coachInfoMapper = coachInfoMapper;
+        this.userSpecification = userSpecification;
     }
 
     public UserDTO registerUser(UserDTO dto) {
         return userMapper.toDTO(userRepository.save(userMapper.toEntity(dto)));
     }
 
-
     public List<UserDTO> getAllUsers(Topic.TopicName topic, UserRole role) {
+        Specification<User> queryFilter = userSpecification.getUsers(topic, role);
 
-        if (topic == null && role != null) {
-            if (role == UserRole.COACHEE) {
-                return userRepository.findAllByUserRole(role)
-                        .stream().map(userMapper::toDTO)
-                        .collect(Collectors.toList());
-            } else {
-                return userRepository.findAllByUserRoleOrUserRole(UserRole.ADMIN, UserRole.COACH)
-                        .stream().map(userMapper::toDTO)
-                        .collect(Collectors.toList());
-            }
-        }
-        if (topic != null && role != null) {
-            List<User> foundUsers = new ArrayList<>();
-            if (role == UserRole.COACHEE) {
-                foundUsers.addAll(userRepository.findAllByUserRole(role));
-            } else {
-                foundUsers.addAll(userRepository.findAllByUserRoleOrUserRole(UserRole.ADMIN, UserRole.COACH));
-            }
-            return foundUsers.stream()
-                    .filter(user -> user.getCoachInfo().getTopics().stream()
-                            .map(Topic::getTopicname)
-                            .collect(Collectors.toList())
-                            .contains(topic))
-                    .map(userMapper::toDTO)
-                    .collect(Collectors.toList());
-        }
-        if (topic != null) {
-            return userRepository.findAll().stream()
-                    .filter(user -> user.getCoachInfo().getTopics().stream()
-                            .map(Topic::getTopicname)
-                            .collect(Collectors.toList())
-                            .contains(topic))
-                    .map(userMapper::toDTO)
-                    .collect(Collectors.toList());
-        }
-        return userRepository.findAll()
+        return userRepository.findAll(queryFilter)
                 .stream()
                 .map(userMapper::toDTO)
                 .collect(Collectors.toList());
-
     }
 
     public void assertUserExists(String userId) {
