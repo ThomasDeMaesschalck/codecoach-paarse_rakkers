@@ -33,17 +33,59 @@ public class UserService {
     }
 
 
-    public List<UserDTO> getAllUsers() {
+    public List<UserDTO> getAllUsers(Topic.TopicName topic, UserRole role) {
+
+        if (topic == null && role != null) {
+            if (role == UserRole.COACHEE) {
+                return userRepository.findAllByUserRole(role)
+                        .stream().map(userMapper::toDTO)
+                        .collect(Collectors.toList());
+            } else {
+                return userRepository.findAllByUserRoleOrUserRole(UserRole.ADMIN, UserRole.COACH)
+                        .stream().map(userMapper::toDTO)
+                        .collect(Collectors.toList());
+            }
+        }
+        if (topic != null && role != null) {
+            List<User> foundUsers = new ArrayList<>();
+            if (role == UserRole.COACHEE) {
+                foundUsers.addAll(userRepository.findAllByUserRole(role));
+            } else {
+                foundUsers.addAll(userRepository.findAllByUserRoleOrUserRole(UserRole.ADMIN, UserRole.COACH));
+            }
+            return foundUsers.stream()
+                    .filter(user -> user.getCoachInfo().getTopics().stream()
+                            .map(Topic::getTopicname)
+                            .collect(Collectors.toList())
+                            .contains(topic))
+                    .map(userMapper::toDTO)
+                    .collect(Collectors.toList());
+        }
+        if (topic != null) {
+            return userRepository.findAll().stream()
+                    .filter(user -> user.getCoachInfo().getTopics().stream()
+                            .map(Topic::getTopicname)
+                            .collect(Collectors.toList())
+                            .contains(topic))
+                    .map(userMapper::toDTO)
+                    .collect(Collectors.toList());
+        }
         return userRepository.findAll()
                 .stream()
                 .map(userMapper::toDTO)
                 .collect(Collectors.toList());
+
     }
 
     public void assertUserExists(String userId) {
-            if (!userRepository.existsById(UUID.fromString(userId)))
-                throw new UserNotFoundException(userId);
+        if (!userRepository.existsById(UUID.fromString(userId))) {
+            logger.error("User with id " + userId + "not found");
+            throw new UserNotFoundException(userId);
+        }
+    }
 
+    public UserDTO getUserDTO(String userId) {
+        return userMapper.toDTO(getSpecificUserById(userId));
     }
 
     public User getSpecificUserById(String userId) {

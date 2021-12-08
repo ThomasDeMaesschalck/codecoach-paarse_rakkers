@@ -45,4 +45,12 @@ public class SessionController {
         logger.info("Getting all sessions");
         return sessionService.getAllSessions();
     }
+
+    @GetMapping (produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    //@PreAuthorize("hasAnyRole()")
+    public SessionDTO getSpecificSession(@PathVariable String id) {
+        logger.info("Getting session with id " + id);
+        return sessionService.getSession(id);
+    }
 }

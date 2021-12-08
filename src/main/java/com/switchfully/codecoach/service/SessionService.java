@@ -2,6 +2,7 @@ package com.switchfully.codecoach.service;
 
 import com.switchfully.codecoach.api.dto.SessionDTO;
 import com.switchfully.codecoach.api.mappers.SessionMapper;
+import com.switchfully.codecoach.domain.Session;
 import com.switchfully.codecoach.domain.User;
 import com.switchfully.codecoach.repository.SessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,16 @@ public class SessionService {
                 .collect(Collectors.toList());
     }
 
+    public SessionDTO getSession(String sessionId) {
+        assertSessionExists(sessionId);
+        return sessionMapper.toDTO(sessionRepository.findById(UUID.fromString(sessionId)).get());
+    }
+
+    public void assertSessionExists(String sessionId) {
+        if (!sessionRepository.existsById(UUID.fromString(sessionId))) {
+            logger.error("Session with id " + sessionId + "not found");
+            throw new UserNotFoundException(sessionId);
+        }
+    }
 
 }
