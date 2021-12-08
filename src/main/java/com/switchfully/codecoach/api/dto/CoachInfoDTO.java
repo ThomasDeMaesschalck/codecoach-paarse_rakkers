@@ -1,5 +1,16 @@
 package com.switchfully.codecoach.api.dto;
 
+import lombok.Builder;
+import lombok.Data;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.List;
+import java.util.UUID;
+
+@Builder
+@Data
 public class CoachInfoDTO {
 
 
