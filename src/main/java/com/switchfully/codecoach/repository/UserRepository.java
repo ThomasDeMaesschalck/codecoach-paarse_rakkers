@@ -14,4 +14,6 @@ public interface UserRepository extends JpaRepository<User, UUID>,
         JpaSpecificationExecutor<User> {
 
     List<User> findAll(Specification<User> specification);
+
+    Boolean existsByEmail(String email);
 }

@@ -10,10 +10,13 @@ import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Builder
 @Data
 public class SessionDTO {
+
+    private UUID id;
 
     @NotBlank(message = "Coachee can not be blank") @NotNull(message = "Coachee can not be null.")
     private String coacheeId;

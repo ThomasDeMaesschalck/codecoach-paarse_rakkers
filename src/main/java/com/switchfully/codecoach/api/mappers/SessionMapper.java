@@ -33,6 +33,7 @@ public class SessionMapper {
 
     public SessionDTO toDTO(Session session){
         return SessionDTO.builder()
+                .id(session.getId())
                 .coachId(session.getCoach().getId().toString())
                 .coacheeId(session.getCoachee().getId().toString())
                 .faceToFace(session.isFaceToFace())

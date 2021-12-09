@@ -6,6 +6,7 @@ import com.switchfully.codecoach.api.mappers.UserMapper;
 import com.switchfully.codecoach.domain.Topic;
 import com.switchfully.codecoach.domain.User;
 import com.switchfully.codecoach.domain.UserRole;
+import com.switchfully.codecoach.exception.EmailNotUniqueException;
 import com.switchfully.codecoach.exception.UserNotFoundException;
 import com.switchfully.codecoach.repository.UserRepository;
 import com.switchfully.codecoach.repository.specifications.UserSpecification;
@@ -67,5 +68,12 @@ public class UserService {
     public User getSpecificUserById(String userId) {
         assertUserExists(userId);
         return userRepository.findById(UUID.fromString(userId)).get();
+    }
+
+    public void assertEmailIsNotADuplicate(String email) {
+        if (userRepository.existsByEmail(email)) {
+            logger.error("User with email " + email + " already exists");
+            throw new EmailNotUniqueException(email);
+        }
     }
 }
