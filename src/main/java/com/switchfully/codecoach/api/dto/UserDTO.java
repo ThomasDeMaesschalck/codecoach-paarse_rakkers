@@ -22,6 +22,8 @@ public class UserDTO {
     private String email;
     @NotBlank(message = "Password name cannot be blank") @NotNull(message = "Password name cannot be null")
     @Size(min = 8, message="Password has to be longer than 8 characters")
+    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$",
+            message = "Password must have 8 characters, and contain at least one uppercase letter, one lowercase letter and one number.")
     private String password;
 
     private String pictureURL;
