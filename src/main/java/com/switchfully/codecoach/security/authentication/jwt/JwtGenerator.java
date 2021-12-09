@@ -1,6 +1,6 @@
 package com.switchfully.codecoach.security.authentication.jwt;
 
-import com.switchfully.codecoach.security.authentication.user.Authority;
+import com.switchfully.codecoach.domain.UserRole;
 import com.switchfully.codecoach.security.authentication.user.api.Account;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
