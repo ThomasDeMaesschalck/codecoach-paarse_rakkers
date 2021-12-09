@@ -63,7 +63,7 @@ public class JwtGenerator {
 
         List<String> authoritiesInToken = parsedToken.getBody().get("rol", ArrayList.class);
         var authorities = authoritiesInToken.stream()
-                .map(Authority::valueOf)
+                .map(UserRole::valueOf)
                 .collect(Collectors.toList());
 
         return new UsernamePasswordAuthenticationToken(username, null, authorities);

@@ -11,6 +11,9 @@ import com.switchfully.codecoach.exception.UnauthorizedUserException;
 import com.switchfully.codecoach.exception.UserNotFoundException;
 import com.switchfully.codecoach.repository.UserRepository;
 import com.switchfully.codecoach.repository.specifications.UserSpecification;
+import com.switchfully.codecoach.security.authentication.user.api.Account;
+import com.switchfully.codecoach.security.authentication.user.api.AccountService;
+import com.switchfully.codecoach.security.authentication.user.api.CreateSecuredUserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +23,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class UserService {
+public class UserService implements AccountService {
 
     private final UserMapper userMapper;
     private final UserRepository userRepository;
@@ -87,5 +91,20 @@ public class UserService {
             logger.error("User with id " + user.getId() + "does not have role: " + userRole);
             throw new UnauthorizedUserException(userRole);
         }
+    }
+
+    @Override
+    public Optional<? extends Account> findByEmail(String userName) {
+        return userRepository.findByEmail(userName);
+    }
+
+    @Override
+    public Account createAccount(CreateSecuredUserDto createSecuredUserDto) {
+        return null;
+    }
+
+    @Override
+    public boolean existsByEmail(String email) {
+       return userRepository.existsByEmail(email);
     }
 }

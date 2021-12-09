@@ -1,6 +1,8 @@
 package com.switchfully.codecoach.security;
 
 
+import com.switchfully.codecoach.security.authentication.jwt.JwtAuthenticationFilter;
+import com.switchfully.codecoach.security.authentication.jwt.JwtAuthorizationFilter;
 import com.switchfully.codecoach.security.authentication.jwt.JwtGenerator;
 import com.switchfully.codecoach.security.authentication.user.SecuredUserService;
 import com.switchfully.codecoach.security.authentication.user.api.AccountService;
@@ -20,7 +22,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-@Profile("production")
+@Profile({"development", "production"})
 @EnableWebSecurity(debug=false)
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {

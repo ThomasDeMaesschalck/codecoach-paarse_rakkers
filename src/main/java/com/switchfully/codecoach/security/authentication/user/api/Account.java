@@ -1,6 +1,6 @@
 package com.switchfully.codecoach.security.authentication.user.api;
 
-import com.switchfully.codecoach.security.authentication.user.Authority;
+import com.switchfully.codecoach.domain.UserRole;
 
 import java.util.List;
 import java.util.UUID;
@@ -13,7 +13,7 @@ public interface Account {
     String getPassword();
     void setPassword(String encode);
 
-    List<Authority> getAuthorities();
+    List<UserRole> getAuthorities();
 
     boolean isAccountEnabled();
     void enableAccount();

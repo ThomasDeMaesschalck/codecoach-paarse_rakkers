@@ -1,4 +1,24 @@
 package com.switchfully.codecoach.domain;
 
-public enum UserRole {COACHEE, COACH, ADMIN};
+import org.springframework.security.core.GrantedAuthority;
+
+public enum UserRole implements GrantedAuthority {
+    COACHEE("COACHEE"), COACH("COACH"), ADMIN("ADMIN");
+
+    private final String authority;
+
+    UserRole(String authority) {
+        this.authority = authority;
+    }
+
+    @Override
+    public String getAuthority() {
+        return authority;
+    }
+
+    @Override
+    public String toString() {
+        return authority;
+    }
+};
 

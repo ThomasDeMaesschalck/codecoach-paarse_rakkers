@@ -21,9 +21,11 @@ public class Session {
     @GeneratedValue
     @Column(name = "id")
     private UUID id;
+
     @OneToOne
     @JoinColumn(name = "coachee_id")
     private User coachee;
+
     @OneToOne
     @JoinColumn(name = "coach_id")
     private User coach;

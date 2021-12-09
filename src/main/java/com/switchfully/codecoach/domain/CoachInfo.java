@@ -22,7 +22,6 @@ public class CoachInfo {
     @Column(name = "id")
     private UUID id;
 
-
     @Column(name = "introduction")
     private String introduction;
 

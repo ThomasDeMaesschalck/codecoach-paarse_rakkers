@@ -1,15 +1,18 @@
 package com.switchfully.codecoach.security.authentication.user;
 
-import com.switchfully.codecoach.security.authentication.user.accountverification.AccountVerificationService;
+import com.switchfully.codecoach.domain.UserRole;
+import com.switchfully.codecoach.security.authentication.SecuredUser;
+
 import com.switchfully.codecoach.security.authentication.user.api.*;
-import com.switchfully.codecoach.security.authentication.user.exception.AccountNotFoundException;
-import com.switchfully.codecoach.security.authentication.user.password.reset.PasswordResetService;
+
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -45,7 +48,7 @@ public class SecuredUserService implements UserDetailsService {
         return new SecuredUser(account.getEmail(), account.getPassword(), authorities, account.isAccountEnabled());
     }
 
-    private Collection<Authority> determineGrantedAuthorities(Account account) {
+    private Collection<UserRole> determineGrantedAuthorities(Account account) {
         return new ArrayList<>(account.getAuthorities());
     }
 

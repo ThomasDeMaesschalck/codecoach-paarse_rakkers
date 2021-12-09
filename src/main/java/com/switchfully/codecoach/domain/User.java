@@ -1,11 +1,13 @@
 package com.switchfully.codecoach.domain;
 
+import com.switchfully.codecoach.security.authentication.user.api.Account;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -14,7 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Account {
 
     @Id
     @GeneratedValue
@@ -47,4 +49,18 @@ public class User {
     @JoinColumn(name = "coach_info_id")
     private CoachInfo coachInfo;
 
+    @Override
+    public List<UserRole> getAuthorities() {
+        return List.of(userRole);
+    }
+
+    @Override
+    public boolean isAccountEnabled() {
+        return false;
+    }
+
+    @Override
+    public void enableAccount() {
+
+    }
 }
