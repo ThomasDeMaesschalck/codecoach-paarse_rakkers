@@ -7,6 +7,7 @@ import com.switchfully.codecoach.domain.Topic;
 import com.switchfully.codecoach.domain.User;
 import com.switchfully.codecoach.domain.UserRole;
 import com.switchfully.codecoach.exception.EmailNotUniqueException;
+import com.switchfully.codecoach.exception.UnauthorizedUserException;
 import com.switchfully.codecoach.exception.UserNotFoundException;
 import com.switchfully.codecoach.repository.UserRepository;
 import com.switchfully.codecoach.repository.specifications.UserSpecification;
@@ -76,6 +77,15 @@ public class UserService {
         if (userRepository.existsByEmail(email)) {
             logger.error("User with email " + email + " already exists");
             throw new EmailNotUniqueException(email);
+        }
+    }
+
+    public void assertUserHasRoles(User user, UserRole... userRole) {
+        List<UserRole> roles = Arrays.asList(userRole);
+
+        if (!roles.contains(user.getUserRole())) {
+            logger.error("User with id " + user.getId() + "does not have role: " + userRole);
+            throw new UnauthorizedUserException(userRole);
         }
     }
 }

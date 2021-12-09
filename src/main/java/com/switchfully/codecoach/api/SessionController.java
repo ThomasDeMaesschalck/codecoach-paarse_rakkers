@@ -2,6 +2,7 @@ package com.switchfully.codecoach.api;
 
 import com.switchfully.codecoach.api.dto.SessionDTO;
 import com.switchfully.codecoach.api.dto.UserDTO;
+import com.switchfully.codecoach.domain.SessionStatus;
 import com.switchfully.codecoach.service.SessionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +12,9 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 //@CrossOrigin
@@ -41,9 +44,9 @@ public class SessionController {
     @GetMapping (produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     //@PreAuthorize("hasAnyRole()")
-    public List<SessionDTO> getAllSessions() {
+    public List<SessionDTO> getAllSessions(@RequestParam(required = false) String coachId) {
         logger.info("Getting all sessions");
-        return sessionService.getAllSessions();
+        return sessionService.getAllSessions(coachId);
     }
 
     @GetMapping (produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")

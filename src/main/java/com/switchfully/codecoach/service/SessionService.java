@@ -3,7 +3,9 @@ package com.switchfully.codecoach.service;
 import com.switchfully.codecoach.api.dto.SessionDTO;
 import com.switchfully.codecoach.api.mappers.SessionMapper;
 import com.switchfully.codecoach.domain.Session;
+import com.switchfully.codecoach.domain.SessionStatus;
 import com.switchfully.codecoach.domain.User;
+import com.switchfully.codecoach.domain.UserRole;
 import com.switchfully.codecoach.exception.SessionNotFoundException;
 import com.switchfully.codecoach.repository.SessionRepository;
 import org.slf4j.Logger;
@@ -41,7 +43,11 @@ public class SessionService {
         return sessionMapper.toDTO(sessionRepository.save(sessionMapper.toEntity(dto, coach, coachee)));
     }
 
-    public List<SessionDTO> getAllSessions() {
+    public List<SessionDTO> getAllSessions(String coachId) {
+        if (coachId != null) {
+            User coach = userService.getSpecificUserById(coachId);
+            userService.assertUserHasRoles(coach, UserRole.COACH, UserRole.ADMIN);
+        }
         return sessionRepository.findAll().stream()
                 .map(sessionMapper::toDTO)
                 .collect(Collectors.toList());
