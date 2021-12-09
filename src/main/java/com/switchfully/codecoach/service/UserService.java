@@ -42,6 +42,7 @@ public class UserService {
     }
 
     public UserDTO registerUser(UserDTO dto) {
+        assertEmailIsNotADuplicate(dto.getEmail());
         return userMapper.toDTO(userRepository.save(userMapper.toEntity(dto)));
     }
 
