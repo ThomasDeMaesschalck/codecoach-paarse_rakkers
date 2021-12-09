@@ -43,7 +43,7 @@ public class SecuredUserService implements UserDetailsService {
         Account account = accountService.findByEmail(userName)
                 .orElseThrow(() -> new UsernameNotFoundException(userName));
 
-        Collection<Authority> authorities = determineGrantedAuthorities(account);
+        Collection<UserRole> authorities = determineGrantedAuthorities(account);
 
         return new SecuredUser(account.getEmail(), account.getPassword(), authorities, account.isAccountEnabled());
     }
