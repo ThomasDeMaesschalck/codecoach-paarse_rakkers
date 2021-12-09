@@ -1,10 +1,11 @@
 package com.switchfully.codecoach.domain;
 
-import lombok.*;
-import org.hibernate.annotations.Cascade;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.print.attribute.standard.MediaSize;
 import java.util.UUID;
 
 @Data
