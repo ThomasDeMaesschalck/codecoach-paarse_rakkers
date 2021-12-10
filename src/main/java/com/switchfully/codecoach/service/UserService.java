@@ -1,5 +1,6 @@
 package com.switchfully.codecoach.service;
 
+import com.switchfully.codecoach.api.dto.UpdateUserDTO;
 import com.switchfully.codecoach.api.dto.UserDTO;
 import com.switchfully.codecoach.api.mappers.CoachInfoMapper;
 import com.switchfully.codecoach.api.mappers.UserMapper;
@@ -55,7 +56,7 @@ public class UserService implements AccountService {
         return userMapper.toDTO(userRepository.save(user));
     }
 
-    public UserDTO updateUser(UUID userId, UserDTO dto) {
+    public UserDTO updateUser(UUID userId, UpdateUserDTO dto) {
         assertUserExists(userId.toString());
 
         User userFromDB = userRepository.findById(userId).get();
@@ -75,8 +76,7 @@ public class UserService implements AccountService {
             userFromDB.setUserRole(UserRole.COACH);
         }
 
-        return userMapper.toDTO(userRepository.save(userFromDB));
-
+        return userMapper.toDTO(userFromDB);
     }
 
     public List<UserDTO> getAllUsers(Topic.TopicName topic, UserRole role) {

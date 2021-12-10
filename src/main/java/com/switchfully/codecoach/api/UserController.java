@@ -1,5 +1,6 @@
 package com.switchfully.codecoach.api;
 
+import com.switchfully.codecoach.api.dto.UpdateUserDTO;
 import com.switchfully.codecoach.api.dto.UserDTO;
 import com.switchfully.codecoach.domain.UserRole;
 import com.switchfully.codecoach.service.UserService;
@@ -51,12 +52,13 @@ public class UserController {
         return userService.registerUser(userDTO);
     }
 
+    @SecurityRequirement(name = "javainuseapi")
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public UserDTO updateUser(@Valid @RequestBody UserDTO userDTO, @PathVariable String id) {
+    public UserDTO updateUser(@Valid @RequestBody UpdateUserDTO updateUserDTO, @PathVariable String id) {
         logger.info("Updating user with id " + id);
-        return userService.updateUser(UUID.fromString(id), userDTO);
+        return userService.updateUser(UUID.fromString(id), updateUserDTO);
     }
 
     @SecurityRequirement(name = "javainuseapi")
