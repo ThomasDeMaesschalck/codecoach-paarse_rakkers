@@ -52,18 +52,6 @@ public class SecuredUserService implements UserDetailsService {
         return new ArrayList<>(account.getAuthorities());
     }
 
-    public SecuredUserDto registerAccount(CreateSecuredUserDto createSecuredUserDto) {
-        if (emailExists(createSecuredUserDto.getEmail())) {
-            throw new IllegalStateException("Email already exists!");
-        }
-        Account account = accountService.createAccount(createSecuredUserDto);
-        account.setPassword(passwordEncoder.encode(createSecuredUserDto.getPassword()));
-
-        accountVerificationService.sendVerificationEmail(account);
-
-        return accountMapper.toUserDto(account);
-    }
-
     private boolean emailExists(String email) {
         return accountService.existsByEmail(email);
     }
