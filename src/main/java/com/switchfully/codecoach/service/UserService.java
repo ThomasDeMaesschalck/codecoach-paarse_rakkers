@@ -70,7 +70,7 @@ public class UserService implements AccountService {
         userFromDB.setEmail(dto.getEmail());
         userFromDB.setPictureURL(dto.getPictureURL());
 
-        if (dto.getCoachInfo() != null) {
+        if (dto.getUserRole() == UserRole.COACH) {
             userFromDB.setCoachInfo(coachInfoMapper.toEntity(dto.getCoachInfo()));
             userFromDB.setUserRole(UserRole.COACH);
         }
