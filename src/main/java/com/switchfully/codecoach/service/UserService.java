@@ -99,11 +99,6 @@ public class UserService implements AccountService {
     }
 
     @Override
-    public Account createAccount(CreateSecuredUserDto createSecuredUserDto) {
-        return null;
-    }
-
-    @Override
     public boolean existsByEmail(String email) {
        return userRepository.existsByEmail(email);
     }
