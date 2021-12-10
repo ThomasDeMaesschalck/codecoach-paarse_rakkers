@@ -10,12 +10,12 @@ import org.springframework.stereotype.Component;
 public class UserMapper {
 
     private final CoachInfoMapper coachInfoMapper;
-    //private final BCryptPasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     public UserMapper(CoachInfoMapper coachInfoMapper) {
         this.coachInfoMapper = coachInfoMapper;
-        //this.passwordEncoder = new BCryptPasswordEncoder();
+        this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
     public User toEntity(UserDTO userDTO){
