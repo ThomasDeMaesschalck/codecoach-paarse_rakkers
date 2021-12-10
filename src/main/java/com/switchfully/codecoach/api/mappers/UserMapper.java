@@ -4,6 +4,7 @@ import com.switchfully.codecoach.api.dto.UserDTO;
 import com.switchfully.codecoach.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -35,7 +36,6 @@ public class UserMapper {
         return UserDTO.builder()
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
-                .password(user.getPassword())
                 .id(user.getId())
                 .email(user.getEmail())
                 .pictureURL(user.getPictureURL())
