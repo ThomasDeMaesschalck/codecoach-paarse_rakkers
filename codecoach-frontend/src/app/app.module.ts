@@ -12,6 +12,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import {AuthenticationInterceptor} from "./authentication/authentication.interceptor";
+import { UserProfileComponent } from './user/profile/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {AuthenticationInterceptor} from "./authentication/authentication.interce
     HomeComponent,
     LoginComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,6 @@ import {AuthenticationInterceptor} from "./authentication/authentication.interce
     ReactiveFormsModule,
     AppRoutingModule,
     TranslateModule.forRoot({
-      defaultLanguage: 'en',
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
@@ -42,4 +43,8 @@ import {AuthenticationInterceptor} from "./authentication/authentication.interce
   bootstrap: [AppComponent]
 })
 export class AppModule {
+}
+
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
 }

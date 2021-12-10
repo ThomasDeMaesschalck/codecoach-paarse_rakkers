@@ -38,7 +38,8 @@ export class AuthenticationService {
     if (!this.isLoggedIn()) {
       return null;
     }
-    return jwtDecode<JwtPayload>(this.getToken() || '').sub;
+    const tokenDecoded: any = jwtDecode<JwtPayload>(this.getToken() || '');
+    return tokenDecoded.id;
   }
 
   isLoggedIn() {

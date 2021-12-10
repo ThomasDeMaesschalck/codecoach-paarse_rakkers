@@ -1,0 +1,328 @@
+{
+  "menu": {
+    "link": {
+      "about-us": "About us",
+      "admin-overview": "Admin Overview",
+      "apply-to-become-a-coach": "Become a coach?",
+      "bug" : "Bug Report",
+      "coaching-sessions": "My Sessions",
+      "coach-sessions": "As a Coach",
+      "coachee-sessions": "As a Coachee",
+      "coachee-profile-information": "My Profile",
+      "coach-profile-information": "My Coach Profile",
+      "contact": "Contact",
+      "find-a-coach": "Find a Coach",
+      "home": "Home",
+      "language": "Language",
+      "my-profile": "My Profile",
+      "my-coach-profile": "My Coach Profile",
+      "profile": "Profile",
+      "request-profile-change": "Request Profile Change",
+      "switch-language": "Switch Language"
+    },
+    "button": {
+      "sign-in": "Sign in",
+      "register": "Register",
+      "log-out": "Sign out",
+      "FAQ": "Help"
+    },
+    "label": {
+      "logged-in": "{{username}}",
+      "logged-out": "Not logged in"
+    }
+  },
+  "register": {
+    "title": "Register",
+    "label": {
+      "first-name": "First Name",
+      "last-name": "Last Name",
+      "class-year": "Class Year",
+      "email": "Email",
+      "email-placeholder": "(used to sign in)",
+      "password": "Password",
+      "password2": "Password (again)"
+    },
+    "button": {
+      "register": "Register"
+    },
+    "message": {
+      "email-wrong-format": "The provided email address is not valid",
+      "email-in-use": "There is already a user registered with this email address",
+      "password-policy": "please provide a valid password (minimum 8 characters, 1 capital and 1 number)",
+      "password-match": "The provided passwords do not match",
+      "first-name-required": "required",
+      "last-name-required": "required",
+      "class-year-required": "required",
+      "email-required": "required",
+      "password-required": "required",
+      "password2-required": "required"
+    }
+  },
+  "sign-in": {
+    "title": "Sign in",
+    "label": {
+      "email": "Email",
+      "password": "Password"
+    },
+    "button": {
+      "sign-in": "Sign in",
+      "reset-password": "Reset Password"
+    },
+    "message": {
+      "email-unknown": "There is no user registered with this email address",
+      "something-went-wrong": "Something went wrong on our side. Please try again later while we try to fix the problem.",
+      "login-failed": "Wrong combination of email and password"
+    }
+  },
+  "my-profile-menu": {
+    "admin-title": "Profile of",
+    "title": "My Profile",
+    "link": {
+      "profile-information": "Profile Information",
+      "coaching-sessions": "Coaching Sessions",
+      "apply-to-become-a-coach": "Apply to become a Coach"
+    }
+  },
+  "profile-information": {
+    "title": "Profile information",
+    "label": {
+      "first-name": "First Name",
+      "last-name": "Last Name",
+      "email": "Email",
+      "role": "Role",
+      "profile-picture": "Profile Picture",
+      "class": "Class",
+      "class-year": "Class",
+      "coachee": "Coachee",
+      "coach": "Coach",
+      "admin": "Admin"
+    },
+    "message": {
+      "change-email": "Your email address is used to sign-in to the You-Coach application"
+    },
+    "button": {
+      "save": "Save",
+      "cancel": "Cancel"
+    }
+  },
+  "become-a-coach": {
+    "title": "Apply to become a coach",
+    "text": {
+      "become-a-coach":"In order to become a Coach, you need to contact the administrator and explain him why you want to do it, the topic(s) you are going to coach and your current results in each topic.",
+      "under-construction": "This part of the application is currently still under construction. In order to become a coach please send an email to your administrator with the following information:\n\nYour full name\nYour motivation to become a coach\nThe list of topics (topic + grade) on which you would like to coach"
+    },
+    "label": {
+      "mail-content": "Write here why and in which topic you want to become a coach."
+    },
+    "button": {
+      "send-email": "Send Email"
+    },
+    "email-subject": "Apply to become a coach",
+    "email-body": "Write your name, motivation, and topic list"
+  },
+  "my-coach-profile-menu": {
+    "title": "My Coach Profile",
+    "link": {
+      "profile-information": "Profile Information",
+      "coaching-sessions": "Coaching Sessions",
+      "request-profile-change": "Request Profile Change"
+    }
+  },
+  "admin-menu": {
+    "title": "Admin",
+    "link": {
+      "overview": "Admin overview"
+    }
+  },
+  "coach-profile-information": {
+    "title": "Profile information",
+    "label": {
+      "first-name": "First Name",
+      "last-name": "Last Name",
+      "email": "Email",
+      "profile-picture": "Profile Picture"
+    },
+    "button": "Edit profile"
+  },
+  "coach-information": {
+    "title": "Coach information",
+    "label": {
+      "introduction": "Introduction",
+      "availability": "Availability",
+      "xp": "Coach XP"
+    },
+    "button": "Edit informations"
+  },
+  "coaching-topics": {
+    "title": "Coaching topics",
+    "label": {
+      "topic1": "Topic 1",
+      "topic2": "Topic 2",
+      "year": "year"
+    },
+    "button": "Edit Topics"
+  },
+  "request-profile-change": {
+    "title": "Request profile change",
+    "text": {
+      "change-topics": "You can send a request to change your subjects here. Please list the subjects you are enrolled in.",
+      "under-construction": "This part of the application is currently still under construction. In order to request a change to your profile please send an email to your administrator with the following information:\n\nYour full name\nThe list of topics (topic + grade) for which you would like a change"
+    },
+    "label": {
+      "mail-content": "Write here the reason of this change"
+    },
+    "link": {
+      "faq": "Help page"
+    },
+    "button": {
+      "send-email": "Send Request",
+      "sending-email": "Sending Request"
+    },
+    "email-subject": "Request coach profile change",
+    "email-body": "Write your name and the list of topics (topic + grade) for which you would like a change"
+  },
+  "coach-overview": {
+    "message": {
+      "no-coaches-found": "No coaches found"
+    },
+    "label": {
+      "filter-topic": "Filter by Topic",
+      "filter-topic-dropdown": "Choose Topic",
+      "filter-year": "Filter by Year",
+      "filter-year-dropdown": "Choose Year",
+      "search-placeholder": "First name, last name or email"
+    }
+  },
+  "request-session": {
+    "title": "Request a session",
+    "label": {
+      "subject": "On which topic/subject would you like to have a coaching session?",
+      "date": "Date",
+      "time": "Time",
+      "location": "Location",
+      "remarks": "Remarks for the coach"
+    },
+    "message": {
+      "date-past": "The date you've selected is in the past",
+      "field-required": "required"
+    },
+    "button": {
+      "request-session": "Request Session"
+    }
+  },
+  "coaching-sessions": {
+    "title": {
+      "requested": "Requested sessions",
+      "upcoming": "Upcoming sessions",
+      "feedback": "Waiting for feedback",
+      "archive": "Archive"
+    },
+    "label": {
+      "topic": "Topic",
+      "coach": "Coach",
+      "coachee": "Coachee",
+      "where-when": "Where & when",
+      "status": "Status",
+      "action": "Action"
+    },
+    "button": {
+      "detail": "Detail",
+      "finish-session": "Session finished earlier",
+      "provide-feedback": "Provide Feedback",
+      "accept": "Accept",
+      "decline": "Decline",
+      "cancel": "Cancel"
+    }
+  },
+  "session-detail": {
+    "title": {
+      "info": "Session Information",
+      "feedback": "Provide session feedback",
+      "feedback-overview": "Feedback Overview",
+      "feedback-coach": "Feedback provided by coach",
+      "feedback-coachee": "Feedback provided by coachee"
+    },
+    "label": {
+      "coach": "Coach",
+      "coachee": "Coachee",
+      "coach-feedback": "Feedback from the coach",
+      "feedback": "Feedback from the coachee",
+      "subject": "Subject",
+      "date-and-time": "Date and Time",
+      "location": "Location",
+      "remarks": "Remarks",
+      "status": "Status"
+    },
+    "message": {
+      "coach-feedback-provided": "You can keep updating your feedback as long as the coachee hasn't provided feedback.",
+      "coachee-feedback-provided": "You can keep updating your feedback as long as the coach hasn't provided feedback."
+    },
+    "question": {
+      "coachee-on-time": "Was the coachee on time?",
+      "coach-on-time": "Was the coach on time?",
+      "coach-clear-explanation": "Were the explanations given by your Coach clear?",
+      "coach-useful-session": "Was the coaching session useful?",
+      "what-did-you-like": "What did you like in the coaching session?",
+      "how-can-coach-get-better": "How could your Coach get better?",
+      "coach-willing-to-learn": "Was the Coachee willing to learn and make progress?",
+      "coach-well-prepared": "Was the Coachee well prepared for the coaching session?",
+      "how-can-coachee-get-better": "How could your Coachee get better?"
+    },
+    "button": {
+      "detail": "Detail",
+      "finish-session": "Session finished earlier",
+      "provide-feedback": "Send Feedback",
+      "accept": "Accept",
+      "decline": "Decline",
+      "feedback": "Feedback",
+      "cancel": "Cancel Session"
+    }
+  },
+  "admin-overview": {
+    "title": "Admin Overview",
+    "label": {
+      "search-profile": "Search Profile",
+      "first-name": "First Name",
+      "last-name": "Last Name",
+      "class": "Class",
+      "role": "Role",
+      "delete": "Delete Profile"
+    },
+    "button": {
+      "coach": "Coach",
+      "coachee": "Coachee",
+      "admin": "Admin"
+    }
+  },
+  "update-image": {
+    "message": {
+      "file-too-big": "Profile images have a maximum size of 3MB"
+    }
+  },
+  "edit-topic": {
+    "title": "Edit topics",
+    "button": {
+      "cancel": "cancel",
+      "save": "save"
+    },
+    "label": {
+      "new-topic": "new topic"
+    }
+  },
+  "enum": {
+    "role": {
+      "coachee": "coachee",
+      "coach": "coach",
+      "admin": "admin"
+    }
+  },
+  "footer":{
+    "message": "You-Coach is an academic coaching program between students in secondary schools, supervised by the schools started by the "
+  },
+  "REQUESTED": "Session requested",
+  "ACCEPTED": "Session accepted",
+  "WAITING_FOR_FEEDBACK": "Waiting for feedback",
+  "CANCELLED": "Cancelled",
+  "DECLINED": "Declined",
+  "FEEDBACK_PROVIDED": "Feedback provided"
+}

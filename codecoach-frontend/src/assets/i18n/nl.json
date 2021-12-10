@@ -1,0 +1,164 @@
+{
+  "menu": {
+    "button": {
+      "sign-in": "Aanmelden",
+      "register": "Registreren",
+      "log-out": "Afmelden"
+    },
+    "link": {
+      "about-us": "Over ons",
+      "contact": "Contact",
+      "home": "Homepage",
+      "my-profile": "Mijn profiel",
+      "find-a-coach": "Zoek een coach",
+      "my-coach-profile": "Mijn coachprofiel",
+      "language": "Taal"
+    },
+    "label": {
+      "logged-in": "Ingelogd als {{username}}",
+      "logged-out": "Niet ingelogd"
+    }
+  },
+  "register": {
+    "label": {
+      "password2": "Wachtwoord (opnieuw)",
+      "first-name": "Voornaam",
+      "last-name": "Achternaam",
+      "email": "E-mail",
+      "email-placeholder": "(gebruikt om in te loggen)",
+      "password": "Wachtwoord"
+    },
+    "message": {
+      "password-policy": "Geef een geldig wachtwoord op (minimaal 8 tekens, 1 hoofdletter en 1 cijfer)",
+      "email-wrong-format": "Het opgegeven e-mailadres is niet geldig",
+      "email-in-use": "Er is al een gebruiker geregistreerd met dit e-mailadres",
+      "password-match": "De opgegeven wachtwoorden komen niet overeen",
+      "first-name-required": "verplicht",
+      "last-name-required": "verplicht",
+      "email-required": "verplicht",
+      "password-required": "verplicht",
+      "password2-required": "verplicht"
+    },
+    "title": "Registreren",
+    "button": {
+      "register": "Registreren"
+    }
+  },
+  "my-profile-menu": {
+    "link": {
+      "profile-information": "Profiel informatie",
+      "coaching-sessions": "Coachingsessies",
+      "apply-to-become-a-coach": "Meld je aan om Coach te worden"
+    },
+    "title": "Mijn profiel"
+  },
+  "coach-information": {
+    "label": {
+      "introduction": "Introductie",
+      "availability": "Beschikbaarheid"
+    },
+    "title": "Coach informatie"
+  },
+  "request-session": {
+    "label": {
+      "subject": "Over welk onderwerp / onderwerp wil je graag een coaching sessie?",
+      "date": "Datum",
+      "time": "Tijd",
+      "location": "Plaats",
+      "remarks": "Opmerkingen voor de coach"
+    },
+    "title": "Vraag een sessie aan",
+    "message": {
+      "date-past": "De datum die je hebt geselecteerd, ligt in het verleden"
+    },
+    "button": {
+      "request-session": "Sessie aanvragen"
+    }
+  },
+  "profile-information": {
+    "button": {
+      "cancel": "Annuleren",
+      "save": "Opslaan"
+    },
+    "title": "Profiel informatie",
+    "label": {
+      "first-name": "Voornaam",
+      "last-name": "Achternaam",
+      "email": "E-mail",
+      "role": "Rol",
+      "profile-picture": "Profielfoto"
+    },
+    "message": {
+      "change-email": "Uw e-mailadres wordt gebruikt om u aan te melden bij de You-Coach-applicatie"
+    }
+  },
+  "sign-in": {
+    "title": "Log in",
+    "label": {
+      "email": "E-mail",
+      "password": "Wachtwoord"
+    },
+    "button": {
+      "sign-in": "Log in",
+      "reset-password": "Wachtwoord opnieuw instellen"
+    },
+    "message": {
+      "email-unknown": "Er is geen gebruiker geregistreerd met dit e-mailadres",
+      "login-failed": "Verkeerde combinatie van e-mailadres en wachtwoord"
+    }
+  },
+  "become-a-coach": {
+    "title": "Meld je aan om coach te worden",
+    "text": {
+      "under-construction": "Dit deel van de applicatie is momenteel nog in aanbouw. Stuur om een coach te worden een e-mail naar uw beheerder met de volgende informatie:  Je volledige naam Jouw motivatie om coach te worden De lijst met onderwerpen (topic + cijfer) waarover je zou willen coachen"
+    },
+    "button": {
+      "send-email": "E-mail verzenden"
+    },
+    "email-service": "mailto: admin@youcoach.be? subject = Aanmelden om coach &amp; body te worden = Schrijf je naam, motivatie en topiclijst"
+  },
+  "my-coach-profile-menu": {
+    "title": "Mijn coachprofiel",
+    "link": {
+      "profile-information": "profiel informatie",
+      "coaching-sessions": "Coachingsessies",
+      "request-profile-change": "Profielwijziging aanvragen"
+    }
+  },
+  "coach-profile-information": {
+    "title": "Profiel informatie",
+    "label": {
+      "first-name": "Voornaam",
+      "last-name": "Achternaam",
+      "email": "E-mail",
+      "profile-picture": "Profielfoto"
+    }
+  },
+  "request-profile-change": {
+    "title": "Profielwijziging aanvragen",
+    "text": {
+      "under-construction": "Dit deel van de applicatie is momenteel nog in aanbouw. Stuur een e-mail naar uw beheerder met de volgende informatie om een wijziging in uw profiel aan te vragen:  Je volledige naam De lijst met onderwerpen (onderwerp + cijfer) waarvoor u een wijziging wilt"
+    },
+    "button": {
+      "send-email": "E-mail verzenden"
+    },
+    "email-service": "mailto: admin@youcoach.be? subject = Verzoek coachprofiel veranderen &amp; body = Schrijf je naam en de lijst met onderwerpen (topic + cijfer) waarvoor je een verandering wilt"
+  },
+  "coach-overview": {
+    "label": {
+      "filter-topic": "Filteren op onderwerp",
+      "filter-topic-dropdown": "Kies onderwerp",
+      "search-placeholder": "Voornaam, achternaam of e-mailadres",
+      "filter-year": "Filteren op jaar",
+      "filter-year-dropdown": "Kies Jaar"
+    }
+  },
+  "coaching-topics": {
+    "title": "Coaching onderwerpen",
+    "label": {
+      "year": "jaar",
+      "topic1": "Onderwerp 1",
+      "topic2": "Onderwerp 2"
+    }
+  }
+}

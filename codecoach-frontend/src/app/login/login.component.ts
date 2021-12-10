@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   wrongUsernameOrPassword: boolean | undefined;
   userUnknown: boolean | undefined;
   loginForm;
-  title = 'You-Coach | Sign in';
+  title = 'CodeCoach | Sign in';
   jwt: any;
   private redirectUrl: string | undefined;
   private fragment: string | null | undefined;
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
         (_ => {
           this.success = true;
           this.initService.initDropdowns();
-          this.router.navigateByUrl('/hello-world');
+          this.router.navigateByUrl('/user/' + this.authenticationService.getUserId());
         }),
         (fault => {
           console.log('test');
