@@ -51,6 +51,30 @@ public class UserService implements AccountService {
         return userMapper.toDTO(userRepository.save(userMapper.toEntity(dto)));
     }
 
+    public UserDTO updateUser(UUID userId, UserDTO dto) {
+        assertUserExists(userId.toString());
+
+        User userFromDB = userRepository.findById(userId).get();
+
+        if (!userFromDB.getEmail().equals(dto.getEmail())) {
+            assertEmailIsNotADuplicate(dto.getEmail());
+        }
+
+        userFromDB.setFirstName(dto.getFirstName());
+        userFromDB.setLastName(dto.getLastName());
+        userFromDB.setCompanyTeam(dto.getCompanyTeam());
+        userFromDB.setEmail(dto.getEmail());
+        userFromDB.setPictureURL(dto.getPictureURL());
+
+        if (dto.getCoachInfo() != null) {
+            userFromDB.setCoachInfo(coachInfoMapper.toEntity(dto.getCoachInfo()));
+            userFromDB.setUserRole(UserRole.COACH);
+        }
+
+        return userMapper.toDTO(userRepository.save(userFromDB));
+
+    }
+
     public List<UserDTO> getAllUsers(Topic.TopicName topic, UserRole role) {
         Specification<User> queryFilter = userSpecification.getUsers(topic, role);
 
