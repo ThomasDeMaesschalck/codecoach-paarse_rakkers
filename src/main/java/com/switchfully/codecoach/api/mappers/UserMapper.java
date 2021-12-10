@@ -26,7 +26,7 @@ public class UserMapper {
                 .email(userDTO.getEmail())
                 .userRole(userDTO.getUserRole())
                 .pictureURL(userDTO.getPictureURL())
-                .password(userDTO.getPassword())
+                .password(passwordEncoder.encode(userDTO.getPassword()))
                 .coachInfo(userDTO.getCoachInfo() == null ? null : coachInfoMapper.toEntity(userDTO.getCoachInfo()))
                 .build();
     }
