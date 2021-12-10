@@ -13,7 +13,6 @@ import com.switchfully.codecoach.repository.UserRepository;
 import com.switchfully.codecoach.repository.specifications.UserSpecification;
 import com.switchfully.codecoach.security.authentication.user.api.Account;
 import com.switchfully.codecoach.security.authentication.user.api.AccountService;
-import com.switchfully.codecoach.security.authentication.user.api.CreateSecuredUserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,6 +99,6 @@ public class UserService implements AccountService {
 
     @Override
     public boolean existsByEmail(String email) {
-       return userRepository.existsByEmail(email);
+        return userRepository.existsByEmail(email);
     }
 }
