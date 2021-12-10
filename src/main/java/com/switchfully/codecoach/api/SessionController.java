@@ -4,6 +4,7 @@ import com.switchfully.codecoach.api.dto.SessionDTO;
 import com.switchfully.codecoach.api.dto.UserDTO;
 import com.switchfully.codecoach.domain.SessionStatus;
 import com.switchfully.codecoach.service.SessionService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import java.util.UUID;
 @RestController
 //@CrossOrigin
 @RequestMapping("/sessions")
+@SecurityRequirement(name = "javainuseapi")
 public class SessionController {
 
 

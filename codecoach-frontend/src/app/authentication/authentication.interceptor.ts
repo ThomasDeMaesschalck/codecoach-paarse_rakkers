@@ -20,8 +20,10 @@ export class AuthenticationInterceptor implements HttpInterceptor {
         }
       });
     }
-    return next.handle(req).pipe(tap((response: HttpResponse<any>) => {
-        if (response.headers && response.headers.get('Authorization')) {
+    return next.handle(req).pipe(tap((response: HttpEvent<any>) => {
+        // @ts-ignore
+      if (response.headers && response.headers.get('Authorization')) {
+        // @ts-ignore
           this.authenticationService.setJwtToken(response.headers.get('Authorization').replace('Bearer', '').trim());
         }
     }));

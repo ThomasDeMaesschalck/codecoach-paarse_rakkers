@@ -4,6 +4,7 @@ import com.switchfully.codecoach.api.dto.UserDTO;
 import com.switchfully.codecoach.domain.UserRole;
 import com.switchfully.codecoach.service.UserService;
 import com.switchfully.codecoach.domain.Topic;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -29,7 +31,7 @@ public class UserController {
         this.userService = userService;
     }
 
-
+    @SecurityRequirement(name = "javainuseapi")
     @GetMapping (produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     //@PreAuthorize("hasAnyRole()")
@@ -43,12 +45,12 @@ public class UserController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    //@PreAuthorize("hasAnyRole()")
     public UserDTO registerUser(@Valid @RequestBody UserDTO userDTO) {
         logger.info("Registering new user");
         return userService.registerUser(userDTO);
     }
 
+    @SecurityRequirement(name = "javainuseapi")
     @GetMapping (produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     //@PreAuthorize("hasAnyRole()")

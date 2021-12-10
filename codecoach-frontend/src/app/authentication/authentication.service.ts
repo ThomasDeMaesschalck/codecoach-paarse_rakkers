@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {AuthenticationHttpService} from './authentication.http.service';
 import {tap} from 'rxjs/operators';
 import {Subject} from 'rxjs';
-import * as JWT from 'jwt-decode';
+import jwtDecode, { JwtPayload } from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +38,7 @@ export class AuthenticationService {
     if (!this.isLoggedIn()) {
       return null;
     }
-    return JWT(this.getToken()).id;
+    return jwtDecode<JwtPayload>(this.getToken() || '').sub;
   }
 
   isLoggedIn() {
@@ -54,7 +54,7 @@ export class AuthenticationService {
     if (!this.isLoggedIn()) {
       return false;
     }
-    const tokenDecoded: any = JWT(this.getToken());
+    const tokenDecoded: any = jwtDecode<JwtPayload>(this.getToken() || '');
     return tokenDecoded.rol.includes('COACH');
   }
 
@@ -62,7 +62,7 @@ export class AuthenticationService {
     if (!this.isLoggedIn()) {
       return false;
     }
-    const tokenDecoded: any = JWT(this.getToken());
+    const tokenDecoded: any = jwtDecode<JwtPayload>(this.getToken() || '');
     return tokenDecoded.rol.includes('ADMIN');
   }
 

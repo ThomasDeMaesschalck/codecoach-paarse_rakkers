@@ -56,11 +56,10 @@ public class User implements Account {
 
     @Override
     public boolean isAccountEnabled() {
-        return false;
+        return true;
     }
 
     @Override
     public void enableAccount() {
-
     }
 }

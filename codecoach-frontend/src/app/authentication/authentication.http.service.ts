@@ -13,7 +13,7 @@ export class AuthenticationHttpService {
   constructor(private http: HttpClient) {
   }
 
-  login(loginData): Observable<any> {
+  login(loginData: any): Observable<any> {
     return this.http.post<any>(this.url, loginData).pipe(
       catchError(this.handleError('login'))
     );
