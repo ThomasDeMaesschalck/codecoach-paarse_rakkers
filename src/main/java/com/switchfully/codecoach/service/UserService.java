@@ -48,7 +48,11 @@ public class UserService implements AccountService {
 
     public UserDTO registerUser(UserDTO dto) {
         assertEmailIsNotADuplicate(dto.getEmail());
-        return userMapper.toDTO(userRepository.save(userMapper.toEntity(dto)));
+
+        User user = userMapper.toEntity(dto);
+        user.setUserRole(UserRole.COACHEE);
+        user.setCoachInfo(null);
+        return userMapper.toDTO(userRepository.save(user));
     }
 
     public UserDTO updateUser(UUID userId, UserDTO dto) {

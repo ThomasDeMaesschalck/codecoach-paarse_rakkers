@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 //@CrossOrigin
@@ -48,6 +49,14 @@ public class UserController {
     public UserDTO registerUser(@Valid @RequestBody UserDTO userDTO) {
         logger.info("Registering new user");
         return userService.registerUser(userDTO);
+    }
+
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public UserDTO updateUser(@Valid @RequestBody UserDTO userDTO, @PathVariable String id) {
+        logger.info("Updating user with id " + id);
+        return userService.updateUser(UUID.fromString(id), userDTO);
     }
 
     @SecurityRequirement(name = "javainuseapi")
