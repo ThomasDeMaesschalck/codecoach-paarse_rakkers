@@ -44,13 +44,20 @@ public class SessionService {
     }
 
     public List<SessionDTO> getAllSessions(String coachId) {
+
         if (coachId != null) {
             User coach = userService.getSpecificUserById(coachId);
             userService.assertUserHasRoles(coach, UserRole.COACH, UserRole.ADMIN);
+            return sessionRepository.findAllByCoach(coach).stream()
+                    .map(sessionMapper::toDTO)
+                    .collect(Collectors.toList());
         }
-        return sessionRepository.findAll().stream()
-                .map(sessionMapper::toDTO)
-                .collect(Collectors.toList());
+
+        else
+            return sessionRepository.findAll().stream()
+                    .map(sessionMapper::toDTO)
+                    .collect(Collectors.toList());
+
     }
 
     public SessionDTO getSession(String sessionId) {
