@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../user.service";
 import {Router} from "@angular/router";
 import { User } from 'src/app/models/user';
+import {UserRole} from "../../../models/userrole";
+import {AuthenticationService} from "../../../authentication/authentication.service";
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-register',
@@ -11,24 +14,36 @@ import { User } from 'src/app/models/user';
 export class RegisterComponent implements OnInit {
 
   user!: User;
-  feedback: any = {};
+  feedback?: any = {};
+  login: any = {};
 
   constructor(private router: Router,
-              private userService: UserService) {
+              private userService: UserService,
+              private authenticationService: AuthenticationService) {
   }
 
   ngOnInit(): void {
+    this.user = <User>{
+      id: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      address: '',
+      pictureURL: '',
+      companyTeam: ''
+    };
   }
 
   save() {
     this.userService.save(this.user).subscribe(
       userFromBackend => {
+        this.login.username = this.user.email;
+        this.login.password = this.user.password;
         this.user = userFromBackend;
-        this.router.navigate(['users', this.user.id]);
-      },
-      err => {
-        this.feedback = {type: 'warning', message: err};
+        this.authenticationService.login(this.login).subscribe();
+        this.router.navigate(['user', this.user.id]);
       }
-    );
+    )
   }
 }
