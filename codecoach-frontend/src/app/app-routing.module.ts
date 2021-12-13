@@ -6,12 +6,14 @@ import {UserProfileComponent} from "./user/profile/user-profile/user-profile.com
 import {RegisterComponent} from "./user/register/register/register.component";
 import {EditUserProfileComponent} from "./user/profile/edit-user-profile/edit-user-profile.component";
 import {BecomeACoachComponent} from "./coach/become-a-coach/become-a-coach.component";
+import {CoachProfileComponent} from "./coach/coach-profile/coach-profile.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},
   {path: 'user/:userId', component: UserProfileComponent},
+  {path: 'coach/:coachId', component: CoachProfileComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'edit/:userId', component: EditUserProfileComponent},
   {path: 'become-a-coach/:id', component: BecomeACoachComponent}

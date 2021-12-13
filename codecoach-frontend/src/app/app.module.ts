@@ -15,6 +15,7 @@ import {AuthenticationInterceptor} from "./authentication/authentication.interce
 import { UserProfileComponent } from './user/profile/user-profile/user-profile.component';
 import { RegisterComponent } from './user/register/register/register.component';
 import { EditUserProfileComponent } from './user/profile/edit-user-profile/edit-user-profile.component';
+import { CoachProfileComponent } from './coach/coach-profile/coach-profile.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { EditUserProfileComponent } from './user/profile/edit-user-profile/edit-
     HeaderComponent,
     UserProfileComponent,
     RegisterComponent,
-    EditUserProfileComponent
+    EditUserProfileComponent,
+    CoachProfileComponent
   ],
   imports: [
     BrowserModule,
