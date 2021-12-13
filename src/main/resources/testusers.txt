@@ -1,0 +1,3 @@
+username: testuser@angular.com
+password: str9999LLingst
+ROLE: COACHEE
