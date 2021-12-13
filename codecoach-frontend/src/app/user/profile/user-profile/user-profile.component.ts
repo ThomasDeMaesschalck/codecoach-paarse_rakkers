@@ -14,7 +14,7 @@ export class UserProfileComponent implements OnInit {
 
   constructor(private userService : UserService,
               private route: ActivatedRoute,
-              private authenticationService: AuthenticationService) { }
+              public authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.getUser();

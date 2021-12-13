@@ -51,7 +51,7 @@ export class AuthenticationService {
     this.userLoggedInSource.next(false);
   }
 
-  isCoach(): boolean {
+  public isCoach(): boolean {
     if (!this.isLoggedIn()) {
       return false;
     }
@@ -59,7 +59,15 @@ export class AuthenticationService {
     return tokenDecoded.rol.includes('COACH');
   }
 
-  isAdmin(): boolean {
+  public isCoachee(): boolean {
+    if (!this.isLoggedIn()) {
+      return false;
+    }
+    const tokenDecoded: any = jwtDecode<JwtPayload>(this.getToken() || '');
+    return tokenDecoded.rol.includes('COACHEE');
+  }
+
+  public isAdmin(): boolean {
     if (!this.isLoggedIn()) {
       return false;
     }
