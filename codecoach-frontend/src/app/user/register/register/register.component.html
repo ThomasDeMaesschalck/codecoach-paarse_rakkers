@@ -9,38 +9,53 @@
         <div class="content-container-with-padding z-depth-4">
 
           <div class="row">
-            <form class="col s12">
+            <form *ngIf="user" #registerForm="ngForm"  (ngSubmit)="save()" class="col s12">
               <div class="row">
                 <div class="input-field col s6">
-                  <input id="first_name" type="text" class="validate">
+                  <input id="first_name" type="text" name="firstName"
+                         [(ngModel)]="user.firstName" class="validate">
                   <label for="first_name">First Name</label>
                 </div>
                 <div class="input-field col s6">
-                  <input id="last_name" type="text" class="validate">
+                  <input id="last_name" type="text"  name="lastName"
+                         [(ngModel)]="user.lastName" class="validate">
                   <label for="last_name">Last Name</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
                   <label for="email">Email</label>
-                  <input id="email" type="email" class="validate">
+                  <input id="email" type="email"  name="email" [(ngModel)]="user.email" class="validate">
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="password" type="password" class="validate">
+                  <input id="password" type="password"  name="password" [(ngModel)]="user.password" class="validate">
                   <label for="password">Password</label>
                 </div>
               </div>
+
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="passwordVerification" type="password" class="validate">
-                  <label for="passwordVerification">Password (again)</label>
+                  <input id="pictureURL" type="text"  name="pictureURL" [(ngModel)]="user.pictureURL" class="validate">
+                  <label for="pictureURL">Picture (URL)</label>
                 </div>
               </div>
 
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="companyTeam" type="text"  name="companyTeam" [(ngModel)]="user.companyTeam" class="validate">
+                  <label for="companyTeam">Company/team</label>
+                </div>
+              </div>
+
+              <div *ngIf="feedback" class="error-text">{{feedback}}</div>
+
+
+
               <div class="row right-align">
-                <a class="waves-effect waves-light yellow darken-2 btn-large black-text">Register<i class="material-icons right">send</i></a>
+                <button type="submit" class="waves-effect waves-light yellow darken-2 btn-large black-text">Register<i class="material-icons right">send</i></button>
               </div>
             </form>
           </div>
