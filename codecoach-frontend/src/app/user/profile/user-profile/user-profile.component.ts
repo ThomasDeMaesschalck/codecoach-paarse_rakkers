@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../user.service";
 import {User} from "../../../models/user";
 import {ActivatedRoute} from "@angular/router";
+import {AuthenticationService} from "../../../authentication/authentication.service";
 
 @Component({
   selector: 'app-user-profile',
@@ -11,7 +12,9 @@ import {ActivatedRoute} from "@angular/router";
 export class UserProfileComponent implements OnInit {
   user!: User;
 
-  constructor(private userService : UserService, private route: ActivatedRoute) { }
+  constructor(private userService : UserService,
+              private route: ActivatedRoute,
+              private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.getUser();
@@ -26,4 +29,13 @@ export class UserProfileComponent implements OnInit {
   setDefaultPic() {
     this.user.pictureURL = "assets/images/default-profile-pic.png"
   }
+
+  isLoggedInUserProfile(): boolean {
+    return this.user.id === this.authenticationService.getUserId();
+  }
+
+  nobodyIsLoggedIn(): boolean {
+    return !this.authenticationService.isLoggedIn();
+  }
+
 }

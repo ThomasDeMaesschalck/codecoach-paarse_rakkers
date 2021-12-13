@@ -14,6 +14,7 @@ import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/h
 import {AuthenticationInterceptor} from "./authentication/authentication.interceptor";
 import { UserProfileComponent } from './user/profile/user-profile/user-profile.component';
 import { RegisterComponent } from './user/register/register/register.component';
+import { EditUserProfileComponent } from './user/profile/edit-user-profile/edit-user-profile.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { RegisterComponent } from './user/register/register/register.component';
     FooterComponent,
     HeaderComponent,
     UserProfileComponent,
-    RegisterComponent
+    RegisterComponent,
+    EditUserProfileComponent
   ],
   imports: [
     BrowserModule,
