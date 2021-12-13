@@ -43,11 +43,11 @@ export class RegisterComponent implements OnInit {
         this.login.password = this.user.password;
         this.user = userFromBackend;
         this.authenticationService.login(this.login).subscribe();
-        this.router.navigate(['user', this.user.id])
+        setTimeout(() => {
+          this.router.navigate(['user', this.user.id]);
+        }, 500);
       },(errors) => {this.feedback = errors['error']['errors'];
       }
       );
-
-
   }
 }
