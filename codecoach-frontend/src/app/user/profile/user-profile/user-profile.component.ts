@@ -23,4 +23,7 @@ export class UserProfileComponent implements OnInit {
       .subscribe(user => this.user = user);
   }
 
+  setDefaultPic() {
+    this.user.pictureURL = "assets/images/default-profile-pic.png"
+  }
 }
