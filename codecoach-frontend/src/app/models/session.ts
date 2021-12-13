@@ -3,7 +3,7 @@ import {CoacheeFeedback} from "./coacheefeedback";
 
 export interface Session {
 
-  sessionId: string;
+  id: string;
 
   coacheeId: string;
 

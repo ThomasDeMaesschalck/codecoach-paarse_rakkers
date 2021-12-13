@@ -1,10 +1,4 @@
 export interface Topic {
-
-  topicName: TopicName;
+  topicName: string;
   experience: number;
-
-}
-
-export enum TopicName{
-
 }
