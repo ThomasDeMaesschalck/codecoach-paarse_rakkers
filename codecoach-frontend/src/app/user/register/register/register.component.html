@@ -50,7 +50,11 @@
                 </div>
               </div>
 
-              <div *ngIf="feedback" class="error-text">{{feedback}}</div>
+              <div *ngIf="feedback" class="error-text">
+                <div *ngFor="let error of feedback">
+                {{error}}
+                </div>
+              </div>
 
 
 

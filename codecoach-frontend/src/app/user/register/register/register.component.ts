@@ -5,6 +5,7 @@ import { User } from 'src/app/models/user';
 import {UserRole} from "../../../models/userrole";
 import {AuthenticationService} from "../../../authentication/authentication.service";
 import {FormBuilder} from "@angular/forms";
+import {error} from "jquery";
 
 @Component({
   selector: 'app-register',
@@ -37,13 +38,16 @@ export class RegisterComponent implements OnInit {
 
   save() {
     this.userService.save(this.user).subscribe(
-      userFromBackend => {
+      (userFromBackend) => {
         this.login.username = this.user.email;
         this.login.password = this.user.password;
         this.user = userFromBackend;
         this.authenticationService.login(this.login).subscribe();
-        this.router.navigate(['user', this.user.id]);
+        this.router.navigate(['user', this.user.id])
+      },(errors) => {this.feedback = errors['error']['errors'];
       }
-    )
+      );
+
+
   }
 }
