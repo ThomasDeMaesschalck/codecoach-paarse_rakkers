@@ -1,4 +1,5 @@
 import {CoachInfo} from "./coachinfo";
+import {UserRole} from "./userrole";
 
 export interface User {
 
