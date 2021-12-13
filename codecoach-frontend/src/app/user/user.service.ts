@@ -43,4 +43,10 @@ export class UserService {
     return this.http.put<User>(`${this._usersUrl}/${user.id}`, user, this.httpOptions);
   }
 
+  isAdminId(id: string) : boolean {
+    let user!: User;
+    this.getById(id).subscribe(userFromBackend => user = userFromBackend);
+    return user.userRole === UserRole.ADMIN;
+  }
+
 }
