@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../user.service";
 import {Router} from "@angular/router";
 import { User } from 'src/app/models/user';
+import {UserRole} from "../../../models/userrole";
+import {AuthenticationService} from "../../../authentication/authentication.service";
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-register',
@@ -20,6 +23,16 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.user = <User>{
+      id: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      address: '',
+      pictureURL: '',
+      companyTeam: ''
+    };
   }
 
   save() {
