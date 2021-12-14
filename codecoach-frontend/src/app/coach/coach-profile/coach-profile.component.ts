@@ -39,4 +39,5 @@ export class CoachProfileComponent implements OnInit {
     return !this.authenticationService.isLoggedIn();
   }
 
+
 }
