@@ -3,6 +3,7 @@ import {User} from "../../models/user";
 import {UserService} from "../../user/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../../authentication/authentication.service";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-edit-coach',
@@ -17,6 +18,7 @@ export class EditCoachComponent implements OnInit {
   constructor(private userService : UserService,
               private route: ActivatedRoute,
               private router: Router,
+              private location: Location,
               public authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
@@ -53,4 +55,7 @@ export class EditCoachComponent implements OnInit {
     );
   }
 
+  cancel(): void {
+    this.location.back();
+  }
 }
