@@ -21,6 +21,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatSliderModule} from "@angular/material/slider";
 import {MatInputModule} from "@angular/material/input";
+import { EditCoachComponent } from './coach/edit-coach/edit-coach.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {MatInputModule} from "@angular/material/input";
     RegisterComponent,
     EditUserProfileComponent,
     CoachProfileComponent,
-    CoachOverviewComponent
+    CoachOverviewComponent,
+    EditCoachComponent
   ],
   imports: [
     BrowserModule,
