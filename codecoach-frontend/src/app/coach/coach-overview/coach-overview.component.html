@@ -9,28 +9,15 @@
 
           <header>
             <div class="row">
-              <div class="input-field col l3 m6 s12">
-                <select>
-                  <option value="" disabled selected>Choose topic</option>
-                  <option value="1">Biology</option>
-                  <option value="2">Chemistry</option>
-                  <option value="3">Mathematics</option>
+              <div class="select-f col l6 m6 s12">
+
+                <select name="topic" id="topic" class="form-control" [(ngModel)]="topic">
+                  <option *ngFor="let topic of topics" [value]="topic" >{{topic}}</option>
                 </select>
+
                 <label>Filter by Topic</label>
               </div>
-              <div class="input-field col l3 m6 s12">
-                <select multiple>
-                  <option value="" disabled selected>Choose year</option>
-                  <option value="1">year 1</option>
-                  <option value="2">year 2</option>
-                  <option value="3">year 3</option>
-                  <option value="1">year 4</option>
-                  <option value="2">year 5</option>
-                  <option value="3">year 6</option>
-                  <option value="3">year 7</option>
-                </select>
-                <label>Filter by Year</label>
-              </div>
+
               <div class="input-field col l6 m12 s12">
                 <i class="material-icons prefix">search</i>
                 <input id="icon_prefix" type="text" class="validate">

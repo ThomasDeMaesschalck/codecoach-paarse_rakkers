@@ -12,12 +12,14 @@ export class CoachOverviewComponent implements OnInit {
   coaches: User[] = [];
   topic!: string;
   partialSearch!: string;
+  topics!:string[];
 
   constructor(private coachService: CoachService) {
   }
 
   ngOnInit(): void {
     this.getCoaches();
+    this.topics = ['test', 'java'];
   }
 
   getCoaches(): void {
