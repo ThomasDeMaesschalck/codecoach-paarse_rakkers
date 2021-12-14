@@ -119,7 +119,11 @@ public class UserService implements AccountService {
         }
     }
 
-    public UserDTO getUserDTO(String userId) {
+    public UserDTO getUserDTO(String userId, String token) {
+        var authorization = jwtGenerator.convertToken(token.replace("Bearer ", ""));
+        if(!authorization.getAuthorities().contains(UserRole.ADMIN) && !doesAuthorizedUserMatchUserId(authorization, UUID.fromString(userId))) {
+            throw new UnauthorizedUserException("Not authorized");
+        }
         return userMapper.toDTO(getSpecificUserById(userId));
     }
 

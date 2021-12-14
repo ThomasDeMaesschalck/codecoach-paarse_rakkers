@@ -67,9 +67,10 @@ public class UserController {
     @GetMapping (produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     //@PreAuthorize("hasAnyRole()")
-    public UserDTO getSpecificUser(@PathVariable String id) {
+    public UserDTO getSpecificUser(@PathVariable String id,  @RequestHeader (name="Authorization") String token) {
+
         logger.info("Getting user with id " + id);
-        return userService.getUserDTO(id);
+        return userService.getUserDTO(id, token);
     }
 
 
