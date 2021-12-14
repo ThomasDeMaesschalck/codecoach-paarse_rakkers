@@ -34,7 +34,7 @@ export class BecomeACoachComponent implements OnInit {
      (userFromDB) => {
        this.user = userFromDB!;
        this.user.userRole = UserRole.COACH;
-       this.user.coachInfo = {availability: "", introduction: "", topics: []};
+       this.user.coachInfo = {availability: "", introduction: "", topics: [], xp: 0};
 
        this.userService.save(this.user).subscribe(
          (user) => {

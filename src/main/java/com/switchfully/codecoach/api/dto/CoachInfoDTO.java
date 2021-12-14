@@ -18,4 +18,5 @@ public class CoachInfoDTO {
     private String availability;
     @Valid
     private List<TopicDTO> topics;
+    private int xp;
 }

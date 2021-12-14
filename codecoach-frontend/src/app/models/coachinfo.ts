@@ -4,4 +4,5 @@ export interface CoachInfo {
   introduction: string;
   availability: string;
   topics: Topic[];
+  xp: number;
 }
