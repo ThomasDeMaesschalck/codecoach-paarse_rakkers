@@ -12,4 +12,8 @@ public class UnauthorizedUserException extends ResponseStatusException {
         super(HttpStatus.NOT_FOUND, "User does not have role " + role.toString());
     }
 
+    public UnauthorizedUserException(String message) {
+        super(HttpStatus.UNAUTHORIZED, message);
+    }
+
 }

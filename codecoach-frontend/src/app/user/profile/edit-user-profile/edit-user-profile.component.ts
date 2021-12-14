@@ -13,9 +13,8 @@ import {FormBuilder} from "@angular/forms";
 export class EditUserProfileComponent implements OnInit {
 
   user!: User;
- // _loggedInUserIsAdmin?: boolean;
-/*  userFromBackEnd!: User;*/
-  feedback?: any = {};
+  feedback: any[] = [];
+  initialEmail: string = "";
 
   constructor(private authenticationService: AuthenticationService,
               private userService: UserService,
@@ -26,22 +25,13 @@ export class EditUserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
-    /*this.user = <User>{
-      id: this.userFromBackEnd.id,
-      firstName : this.userFromBackEnd.firstName,
-      lastName: this.userFromBackEnd.lastName,
-      email: this.userFromBackEnd.email,
-      pictureURL: this.userFromBackEnd.pictureURL,
-      companyTeam: this.userFromBackEnd.companyTeam,
-    };*/
-   // this._loggedInUserIsAdmin = this.loggedInUserIsAdmin();
   }
 
   getUser() {
     const id = String(this.route.snapshot.paramMap.get('userId'));
-    if (id === this.authenticationService.getUserId()) {
+    if (id === this.authenticationService.getUserId() || this.authenticationService.isAdmin()) {
       this.userService.getById(id)
-        .subscribe(user => this.user = user);
+        .subscribe(user => {this.user = user; this.initialEmail = user.email});
     }
   }
 
@@ -51,6 +41,9 @@ export class EditUserProfileComponent implements OnInit {
 
   onSubmit(): void {
     this.user.coachInfo = undefined;
+    if (this.initialEmail !== this.user.email) {
+      window.alert("Your email is used to log in, are you sure you want to change it?");
+    }
     this.userService.updateUser(this.user).subscribe(userFromBackend => {
       this.user = userFromBackend;
       console.log('message::::', userFromBackend);
@@ -63,7 +56,7 @@ export class EditUserProfileComponent implements OnInit {
     });
   }
 
-/*  loggedInUserIsAdmin() : boolean {
+  loggedInUserIsAdmin() : boolean {
     return this.userService.isAdminId(this.authenticationService.getUserId());
-  }*/
+  }
 }

@@ -56,9 +56,10 @@ public class UserController {
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public UserDTO updateUser(@Valid @RequestBody UpdateUserDTO updateUserDTO, @PathVariable String id) {
+    public UserDTO updateUser(@Valid @RequestBody UpdateUserDTO updateUserDTO, @PathVariable String id,
+                              @RequestHeader (name="Authorization") String token) {
         logger.info("Updating user with id " + id);
-        return userService.updateUser(UUID.fromString(id), updateUserDTO);
+        return userService.updateUser(UUID.fromString(id), updateUserDTO, token);
     }
 
     @SecurityRequirement(name = "javainuseapi")

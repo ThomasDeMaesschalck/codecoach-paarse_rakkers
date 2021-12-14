@@ -12,12 +12,14 @@ import com.switchfully.codecoach.exception.UnauthorizedUserException;
 import com.switchfully.codecoach.exception.UserNotFoundException;
 import com.switchfully.codecoach.repository.UserRepository;
 import com.switchfully.codecoach.repository.specifications.UserSpecification;
+import com.switchfully.codecoach.security.authentication.jwt.JwtGenerator;
 import com.switchfully.codecoach.security.authentication.user.api.Account;
 import com.switchfully.codecoach.security.authentication.user.api.AccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,16 +37,19 @@ public class UserService implements AccountService {
     private final UserRepository userRepository;
     private final CoachInfoMapper coachInfoMapper;
     private final UserSpecification userSpecification;
+    private final JwtGenerator jwtGenerator;
 
     private final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     public UserService(UserMapper userMapper, UserRepository userRepository,
-                       CoachInfoMapper coachInfoMapper, UserSpecification userSpecification) {
+                       CoachInfoMapper coachInfoMapper, UserSpecification userSpecification,
+                       JwtGenerator jwtGenerator) {
         this.userMapper = userMapper;
         this.userRepository = userRepository;
         this.coachInfoMapper = coachInfoMapper;
         this.userSpecification = userSpecification;
+        this.jwtGenerator = jwtGenerator;
     }
 
     public UserDTO registerUser(UserDTO dto) {
@@ -56,20 +61,22 @@ public class UserService implements AccountService {
         return userMapper.toDTO(userRepository.save(user));
     }
 
-    public UserDTO updateUser(UUID userId, UpdateUserDTO dto) {
+    public UserDTO updateUser(UUID userId, UpdateUserDTO dto, String token) {
         assertUserExists(userId.toString());
+        var authorization = jwtGenerator.convertToken(token.replace("Bearer ", ""));
+        assertLoggedInUserHasEditRights(userId, authorization);
 
         User userFromDB = userRepository.findById(userId).get();
 
         if (!userFromDB.getEmail().equals(dto.getEmail())) {
             assertEmailIsNotADuplicate(dto.getEmail());
+            userFromDB.setEmail(dto.getEmail());
         }
 
 
         userFromDB.setFirstName(dto.getFirstName());
         userFromDB.setLastName(dto.getLastName());
         userFromDB.setCompanyTeam(dto.getCompanyTeam());
-        userFromDB.setEmail(dto.getEmail());
         userFromDB.setPictureURL(dto.getPictureURL());
 
         if (dto.getUserRole() == UserRole.COACH) {
@@ -81,6 +88,19 @@ public class UserService implements AccountService {
 
         return userMapper.toDTO(userFromDB);
     }
+
+    private void assertLoggedInUserHasEditRights(UUID userId, UsernamePasswordAuthenticationToken authorization) {
+        if (!authorization.getAuthorities().contains(UserRole.ADMIN) && !doesAuthorizedUserMatchUserId(authorization, userId)) {
+            System.out.println("HERE");
+            throw new UnauthorizedUserException("User has no authorization to edit this");
+        }
+    }
+
+    private boolean doesAuthorizedUserMatchUserId(UsernamePasswordAuthenticationToken authorization, UUID userId) {
+        Optional<User> user = userRepository.findByEmail(authorization.getName());
+        return user.isPresent() && user.get().getId().equals(userId);
+    }
+
 
     public List<UserDTO> getAllUsers(Topic.TopicName topic, UserRole role) {
         Specification<User> queryFilter = userSpecification.getUsers(topic, role);
