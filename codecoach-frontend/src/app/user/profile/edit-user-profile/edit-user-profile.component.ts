@@ -3,7 +3,7 @@ import {AuthenticationService} from "../../../authentication/authentication.serv
 import {UserService} from "../../user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../../../models/user";
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, FormGroup} from "@angular/forms";
 import {UserRole} from "../../../models/userrole";
 
 @Component({
@@ -16,8 +16,8 @@ export class EditUserProfileComponent implements OnInit {
   user!: User;
   feedback: any[] = [];
   initialEmail: string = "";
-  userRoles: string[] = [];
-  selectedRole: string = "";
+  userRoles: UserRole[] = [];
+  editUserForm!: FormGroup;
 
   constructor(private authenticationService: AuthenticationService,
               private userService: UserService,
@@ -40,14 +40,29 @@ export class EditUserProfileComponent implements OnInit {
       this.userService.getById(id)
         .subscribe(user => {
           this.user = user;
-          this.initialEmail = user.email
+          this.initialEmail = user.email;
+          this.editUserForm = this.formBuilder.group({
+            userRole: user.userRole,
+            firstName: user.firstName ,
+            lastName: user.lastName,
+            email: user.email,
+            pictureURL: user.pictureURL,
+            companyTeam: user.companyTeam});
         });
     }
   }
 
   onSubmit(): void {
     this.user.coachInfo = undefined;
+
+    this.user.firstName = this.editUserForm.value['firstName'];
+    this.user.lastName = this.editUserForm.value['lastName'];
+    this.user.email = this.editUserForm.value['email'];
+    this.user.pictureURL = this.editUserForm.value['pictureURL'];
+    this.user.companyTeam = this.editUserForm.value['companyTeam'];
+
     this.setUserRole();
+
     if (this.initialEmail !== this.user.email && !this.authenticationService.isAdmin()) {
       let confirmed = window.confirm("Your email is used to log in, are you sure you want to change it? You will be logged out");
       if (confirmed) {
@@ -78,13 +93,12 @@ export class EditUserProfileComponent implements OnInit {
   }
 
   private setUserRole() {
-
+    if (this.authenticationService.isAdmin()) {
+      console.log(this.user.userRole);
+      this.user.userRole = this.editUserForm.value['userRole'];
+    }
   }
 
-
-  loggedInUserIsAdmin(): boolean {
-    return this.userService.isAdminId(this.authenticationService.getUserId());
-  }
 
   logout() {
     this.authenticationService.logout();
