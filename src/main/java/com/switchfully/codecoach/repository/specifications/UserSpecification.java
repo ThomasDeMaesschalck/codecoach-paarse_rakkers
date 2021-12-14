@@ -12,6 +12,7 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Component
 public class UserSpecification {
@@ -38,9 +39,9 @@ public class UserSpecification {
 
             if (partialSearch != null) {
 
-                Predicate firstName = criteriaBuilder.like(user.get("firstName"), partialSearch+"%");
-                Predicate lastName = criteriaBuilder.like(user.get("lastName"), partialSearch+"%");
-                Predicate email = criteriaBuilder.like(user.get("email"), partialSearch+"%");
+                Predicate firstName = criteriaBuilder.like(criteriaBuilder.lower(user.get("firstName")), partialSearch.toLowerCase(Locale.ROOT)+"%");
+                Predicate lastName = criteriaBuilder.like(criteriaBuilder.lower(user.get("lastName")), partialSearch.toLowerCase(Locale.ROOT)+"%");
+                Predicate email = criteriaBuilder.like(criteriaBuilder.lower(user.get("email")), partialSearch.toLowerCase(Locale.ROOT)+"%");
                 predicates.add(criteriaBuilder.or(firstName, lastName, email));
             }
 
