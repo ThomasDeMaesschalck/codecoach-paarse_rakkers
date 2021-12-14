@@ -58,7 +58,7 @@ export class EditUserProfileComponent implements OnInit {
     });
   }
 
-  loggedInUserIsAdmin() {
-
-  }
+/*  loggedInUserIsAdmin() : boolean {
+    return this.userService.isAdminId(this.authenticationService.getUserId());
+  }*/
 }

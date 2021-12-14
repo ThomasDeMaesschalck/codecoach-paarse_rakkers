@@ -65,6 +65,7 @@ public class UserService implements AccountService {
             assertEmailIsNotADuplicate(dto.getEmail());
         }
 
+
         userFromDB.setFirstName(dto.getFirstName());
         userFromDB.setLastName(dto.getLastName());
         userFromDB.setCompanyTeam(dto.getCompanyTeam());
