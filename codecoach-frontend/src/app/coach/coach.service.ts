@@ -17,7 +17,7 @@ export class CoachService {
   }
 
   getCoaches(topic: string, partialSearch: string): Observable<any> {
-    let params = { 'role': 'COACH', 'partialSearch': '', 'topic': ''};
+    let params = { 'role': 'COACH', 'topic': topic, 'partialSearch': partialSearch};
     return this.http.get<User[]>(this._usersUrl, {params});
   }
 }
