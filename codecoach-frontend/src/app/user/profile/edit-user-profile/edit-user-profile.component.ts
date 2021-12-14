@@ -13,7 +13,8 @@ import {FormBuilder} from "@angular/forms";
 export class EditUserProfileComponent implements OnInit {
 
   user!: User;
-
+ // _loggedInUserIsAdmin?: boolean;
+/*  userFromBackEnd!: User;*/
   feedback?: any = {};
 
   constructor(private authenticationService: AuthenticationService,
@@ -24,12 +25,16 @@ export class EditUserProfileComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.user = <User>{
-      firstName: '',
-      lastName: '',
-      pictureURL: '',
-      companyTeam: ''
-    };
+    this.getUser();
+    /*this.user = <User>{
+      id: this.userFromBackEnd.id,
+      firstName : this.userFromBackEnd.firstName,
+      lastName: this.userFromBackEnd.lastName,
+      email: this.userFromBackEnd.email,
+      pictureURL: this.userFromBackEnd.pictureURL,
+      companyTeam: this.userFromBackEnd.companyTeam,
+    };*/
+   // this._loggedInUserIsAdmin = this.loggedInUserIsAdmin();
   }
 
   getUser() {
@@ -45,7 +50,7 @@ export class EditUserProfileComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.user.id = this.route.snapshot.params['id'];
+    this.user.coachInfo = undefined;
     this.userService.updateUser(this.user).subscribe(userFromBackend => {
       this.user = userFromBackend;
       console.log('message::::', userFromBackend);

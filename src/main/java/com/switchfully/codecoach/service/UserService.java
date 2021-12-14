@@ -73,7 +73,9 @@ public class UserService implements AccountService {
         userFromDB.setPictureURL(dto.getPictureURL());
 
         if (dto.getUserRole() == UserRole.COACH) {
-            userFromDB.setCoachInfo(coachInfoMapper.toEntity(dto.getCoachInfo()));
+            if (dto.getCoachInfo() != null) {
+                userFromDB.setCoachInfo(coachInfoMapper.toEntity(dto.getCoachInfo()));
+            }
             userFromDB.setUserRole(UserRole.COACH);
         }
 
