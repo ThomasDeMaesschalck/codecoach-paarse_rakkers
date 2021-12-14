@@ -11,12 +11,13 @@ export class CoachService {
   private _usersUrl: string;
   private headers = new HttpHeaders().set('Accept', 'application/json');
 
+
   constructor(private http: HttpClient) {
     this._usersUrl = `${environment.backendUrl}/users`;
   }
 
-  getCoaches(): Observable<any> {
-    const params = { 'role': 'COACH' };
+  getCoaches(topic: string, partialSearch: string): Observable<any> {
+    let params = { 'role': 'COACH', 'partialSearch': '', 'topic': ''};
     return this.http.get<User[]>(this._usersUrl, {params});
   }
 }

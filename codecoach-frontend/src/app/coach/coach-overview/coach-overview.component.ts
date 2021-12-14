@@ -10,6 +10,8 @@ import {User} from "../../models/user";
 export class CoachOverviewComponent implements OnInit {
 
   coaches: User[] = [];
+  topic!: string;
+  partialSearch!: string;
 
   constructor(private coachService: CoachService) {
   }
@@ -19,7 +21,7 @@ export class CoachOverviewComponent implements OnInit {
   }
 
   getCoaches(): void {
-    this.coachService.getCoaches()
+    this.coachService.getCoaches(this.topic, this.partialSearch)
       .subscribe(coaches => this.coaches = coaches);
   }
 
