@@ -17,6 +17,9 @@
                 <li><a class="waves-light red lighten-2 white-text" routerLink="/home" *ngIf="authenticationService.isLoggedIn()" (click)="logout()" translate>menu.button.log-out<i class="material-icons">power_settings_new</i></a></li>
               </ul>
             </li>
+
+            <li><a class="waves-light purple darken-2 btn white-text" href="/coach-overview" *ngIf="authenticationService.isLoggedIn()">Find coach <i class="material-icons right">search</i></a></li>
+
             <li><a class="waves-light purple darken-2 btn white-text" href="/login" *ngIf="!authenticationService.isLoggedIn()" translate>menu.button.sign-in<i class="material-icons right">person</i></a></li>
             <li><a class="waves-effect waves-light teal lighten-3 btn white-text" *ngIf="!authenticationService.isLoggedIn()" routerLink="/register">Register<i class="material-icons right">person_add</i></a></li>
 
@@ -31,6 +34,7 @@
               <li><a class="waves-light red lighten-2 white-text" routerLink="/home" *ngIf="authenticationService.isLoggedIn()" (click)="logout()" translate>menu.button.log-out<i class="material-icons white-text left">power_settings_new</i></a></li>
             </ul>
           </li>
+          <li><a class="waves-light purple darken-2 btn white-text" href="/coach-overview" *ngIf="authenticationService.isLoggedIn()">Find coach <i class="material-icons right">search</i></a></li>
           <li><a class="waves-light yellow darken-2 btn black-text" routerLink="/login" *ngIf="!authenticationService.isLoggedIn()" translate>menu.button.sign-in<i class="material-icons right">person</i></a></li>
           <li><a class="waves-effect waves-light teal lighten-3 btn white-text" *ngIf="!authenticationService.isLoggedIn()" routerLink="/register">Register<i class="material-icons right">person_add</i></a></li>
           <li><a class="waves-effect waves-light purple btn white-text" *ngIf="authenticationService.isLoggedIn()" routerLink="/user/{{authenticationService.getUserId()}}">User profile<i class="material-icons right">account_box</i></a></li>

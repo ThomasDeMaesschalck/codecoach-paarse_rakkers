@@ -7,6 +7,7 @@ import {RegisterComponent} from "./user/register/register/register.component";
 import {EditUserProfileComponent} from "./user/profile/edit-user-profile/edit-user-profile.component";
 import {BecomeACoachComponent} from "./coach/become-a-coach/become-a-coach.component";
 import {CoachProfileComponent} from "./coach/coach-profile/coach-profile.component";
+import {CoachOverviewComponent} from "./coach/coach-overview/coach-overview.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path: 'coach/:coachId', component: CoachProfileComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'edit/:userId', component: EditUserProfileComponent},
-  {path: 'become-a-coach/:id', component: BecomeACoachComponent}
+  {path: 'become-a-coach/:id', component: BecomeACoachComponent},
+  {path: 'coach-overview', component: CoachOverviewComponent}
 ];
 
 @NgModule({

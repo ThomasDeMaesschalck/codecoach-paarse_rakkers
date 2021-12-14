@@ -16,6 +16,7 @@ import { UserProfileComponent } from './user/profile/user-profile/user-profile.c
 import { RegisterComponent } from './user/register/register/register.component';
 import { EditUserProfileComponent } from './user/profile/edit-user-profile/edit-user-profile.component';
 import { CoachProfileComponent } from './coach/coach-profile/coach-profile.component';
+import { CoachOverviewComponent } from './coach/coach-overview/coach-overview.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CoachProfileComponent } from './coach/coach-profile/coach-profile.compo
     UserProfileComponent,
     RegisterComponent,
     EditUserProfileComponent,
-    CoachProfileComponent
+    CoachProfileComponent,
+    CoachOverviewComponent
   ],
   imports: [
     BrowserModule,
