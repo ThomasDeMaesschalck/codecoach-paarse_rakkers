@@ -17,6 +17,10 @@ import { RegisterComponent } from './user/register/register/register.component';
 import { EditUserProfileComponent } from './user/profile/edit-user-profile/edit-user-profile.component';
 import { CoachProfileComponent } from './coach/coach-profile/coach-profile.component';
 import { CoachOverviewComponent } from './coach/coach-overview/coach-overview.component';
+import {MatSelectModule} from "@angular/material/select";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatSliderModule} from "@angular/material/slider";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -34,16 +38,20 @@ import { CoachOverviewComponent } from './coach/coach-overview/coach-overview.co
   imports: [
     BrowserModule,
     FormsModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    MatSelectModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    MatSliderModule,
+    MatInputModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}

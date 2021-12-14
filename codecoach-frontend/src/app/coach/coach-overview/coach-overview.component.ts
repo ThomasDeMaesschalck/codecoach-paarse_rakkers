@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CoachService} from "../coach.service";
 import {User} from "../../models/user";
+import {TopicService} from "../topic.service";
 
 @Component({
   selector: 'app-coach-overview',
@@ -14,12 +15,13 @@ export class CoachOverviewComponent implements OnInit {
   partialSearch!: string;
   topics!:string[];
 
-  constructor(private coachService: CoachService) {
+  constructor(private coachService: CoachService,
+              private topicService: TopicService) {
   }
 
   ngOnInit(): void {
     this.getCoaches();
-    this.topics = ['test', 'java'];
+    this.topicService.getTopics().subscribe(topics => this.topics = topics);
   }
 
   getCoaches(): void {
@@ -27,5 +29,5 @@ export class CoachOverviewComponent implements OnInit {
       .subscribe(coaches => this.coaches = coaches);
   }
 
-
 }
+

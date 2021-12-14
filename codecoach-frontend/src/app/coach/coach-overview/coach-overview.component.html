@@ -1,3 +1,4 @@
+
 <main>
 
   <div class="row">
@@ -11,9 +12,11 @@
             <div class="row">
               <div class="select-f col l6 m6 s12">
 
-                <select name="topic" id="topic" class="form-control" [(ngModel)]="topic">
-                  <option *ngFor="let topic of topics" [value]="topic" >{{topic}}</option>
-                </select>
+                <mat-form-field appearance="fill">
+                  <select matNativeControl required>
+                    <option *ngFor="let topic of topics">{{topic}}</option>
+                  </select>
+                </mat-form-field>
 
                 <label>Filter by Topic</label>
               </div>
