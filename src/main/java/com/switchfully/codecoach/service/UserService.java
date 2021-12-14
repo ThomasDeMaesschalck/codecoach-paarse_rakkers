@@ -71,6 +71,7 @@ public class UserService implements AccountService {
         if (!userFromDB.getEmail().equals(dto.getEmail())) {
             assertEmailIsNotADuplicate(dto.getEmail());
             userFromDB.setEmail(dto.getEmail());
+
         }
 
 
