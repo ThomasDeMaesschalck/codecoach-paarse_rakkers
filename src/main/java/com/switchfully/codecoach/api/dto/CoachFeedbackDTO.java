@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 @Builder
 @Data
 public class CoachFeedbackDTO {
+
     @Min(value = 0)
     @Max(value = 10)
     private int clarity;
@@ -20,7 +21,7 @@ public class CoachFeedbackDTO {
     @NotBlank(message = "positives can not be blank")
     @NotNull(message = "positives can not be null.")
     private String positives;
-    @NotBlank(message = "Working Points can not be blank")
-    @NotNull(message = "Working Points can not be null.")
+    @NotBlank(message = "workingPoints can not be blank")
+    @NotNull(message = "workingPoints can not be null.")
     private String workingPoints;
 }
