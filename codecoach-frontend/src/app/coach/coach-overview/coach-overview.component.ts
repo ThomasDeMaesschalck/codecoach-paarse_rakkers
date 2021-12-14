@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {CoachService} from "../coach.service";
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-coach-overview',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoachOverviewComponent implements OnInit {
 
-  constructor() { }
+  coaches: User[] = [];
+
+  constructor(private coachService: CoachService) {
+  }
 
   ngOnInit(): void {
+    this.getCoaches();
   }
+
+  getCoaches(): void {
+    this.coachService.getCoaches()
+      .subscribe(coaches => this.coaches = coaches);
+  }
+
 
 }
