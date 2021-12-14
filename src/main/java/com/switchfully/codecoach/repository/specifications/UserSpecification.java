@@ -16,7 +16,7 @@ import java.util.List;
 @Component
 public class UserSpecification {
 
-    public Specification<User> getUsers(Topic.TopicName topicName, UserRole userRole) {
+    public Specification<User> getUsers(Topic.TopicName topicName, UserRole userRole, String partialSearch) {
         return (user, query, criteriaBuilder) -> {
 
             List<Predicate> predicates = new ArrayList<>();
@@ -34,6 +34,14 @@ public class UserSpecification {
                 } else {
                     predicates.add(criteriaBuilder.equal(user.get("userRole"), userRole));
                 }
+            }
+
+            if (partialSearch != null) {
+
+                Predicate firstName = criteriaBuilder.like(user.get("firstName"), partialSearch+"%");
+                Predicate lastName = criteriaBuilder.like(user.get("lastName"), partialSearch+"%");
+                Predicate email = criteriaBuilder.like(user.get("email"), partialSearch+"%");
+                predicates.add(criteriaBuilder.or(firstName, lastName, email));
             }
 
             return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));

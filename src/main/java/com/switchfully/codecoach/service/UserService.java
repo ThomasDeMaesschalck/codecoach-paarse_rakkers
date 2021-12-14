@@ -102,8 +102,8 @@ public class UserService implements AccountService {
     }
 
 
-    public List<UserDTO> getAllUsers(Topic.TopicName topic, UserRole role) {
-        Specification<User> queryFilter = userSpecification.getUsers(topic, role);
+    public List<UserDTO> getAllUsers(Topic.TopicName topic, UserRole role, String partialSearch) {
+        Specification<User> queryFilter = userSpecification.getUsers(topic, role, partialSearch);
 
         return userRepository.findAll(queryFilter)
                 .stream()

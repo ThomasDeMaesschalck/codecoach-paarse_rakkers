@@ -6,13 +6,15 @@
       <h6>My Profile</h6>
       <div class="collection">
         <a  class="collection-item white-text active purple darken-2">Profile Information</a>
-        <a href="#!" class="collection-item grey-text text-darken-2">Coaching sessions</a>
-        <a href="#!" class="collection-item grey-text text-darken-2"
-           *ngIf="authenticationService.isCoachee()"
-           [routerLink]="['/become-a-coach', user.id]">Apply to become a coach</a>
-        <a href="#!" class="collection-item grey-text text-darken-2"
+
+        <a class="collection-item grey-text text-darken-2"
            *ngIf="authenticationService.isCoach()"
            [routerLink]="['/coach', user.id]">Coach profile</a>
+        <a href="#!" class="collection-item grey-text text-darken-2">Coaching sessions</a>
+
+        <a  class="collection-item grey-text text-darken-2"
+           *ngIf="authenticationService.isCoachee()"
+           [routerLink]="['/become-a-coach', user.id]">Apply to become a coach</a>
       </div>
     </div>
   </div>

@@ -48,7 +48,12 @@ export class LoginComponent implements OnInit {
         (_ => {
           this.success = true;
           this.initService.initDropdowns();
-          this.router.navigateByUrl('/user/' + this.authenticationService.getUserId());
+          if(this.authenticationService.isCoachee()) {
+            this.router.navigateByUrl('/user/' + this.authenticationService.getUserId());
+          }
+          else {
+            this.router.navigateByUrl('/coach/' + this.authenticationService.getUserId());
+          }
         }),
         (fault => {
           console.log('test');

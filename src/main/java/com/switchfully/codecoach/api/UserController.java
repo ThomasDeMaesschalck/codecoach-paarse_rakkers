@@ -38,10 +38,11 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     //@PreAuthorize("hasAnyRole()")
     public List<UserDTO> getAllUsers(@RequestParam(required = false) Topic.TopicName topic,
-                                     @RequestParam(required = false) UserRole role
+                                     @RequestParam(required = false) UserRole role,
+                                     @RequestParam(required = false) String partialSearch
                                      ) {
         logger.info("Getting all users");
-        return userService.getAllUsers(topic, role);
+        return userService.getAllUsers(topic, role, partialSearch);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
