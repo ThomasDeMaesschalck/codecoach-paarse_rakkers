@@ -22,38 +22,40 @@
           <div class="row">
             <div class="input-field col s6">
               <input id="first_name" type="text" name="firstName"
-                     [(ngModel)]="user.firstName" class="validate">
+                     formControlName="firstName" class="validate">
               <label for="first_name">First Name</label>
             </div>
             <div class="input-field col s6">
               <input id="last_name" type="text" name="lastName"
-                     [(ngModel)]="user.lastName" class="validate">
+                     formControlName="lastName" class="validate" >
               <label for="last_name" >Last Name</label>
             </div>
           </div>
           <div class="row" >
             <div class="input-field col s12">
               <label for="email" >Email</label>
-              <input id="email" type="email" name="email" [(ngModel)]="user.email" class="validate" >
+              <input id="email" type="email" name="email"  formControlName="email"
+                     class="validate" >
             </div>
           </div>
 
           <div class="row">
             <div class="input-field col s12">
-              <input id="pictureURL" type="text" name="pictureURL" [(ngModel)]="user.pictureURL" class="validate">
+              <input id="pictureURL" type="text" name="pictureURL" formControlName="pictureURL"
+                     class="validate">
               <label for="pictureURL" >Picture (URL)</label>
             </div>
           </div>
 
           <div class="row">
             <div class="input-field col s12">
-              <input id="companyTeam" type="text" name="companyTeam" [(ngModel)]="user.companyTeam"
+              <input id="companyTeam" type="text" name="companyTeam" formControlName="companyTeam"
                      class="validate">
               <label for="companyTeam" >Company/team</label>
             </div>
           </div>
 
-          <div class="row">
+          <div class="row" *ngIf="loggedInUserIsAdmin()">
             <div class="select-f col l6 m6 s12">
 
               <label>Role</label>
