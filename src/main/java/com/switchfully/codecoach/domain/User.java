@@ -45,7 +45,7 @@ public class User implements Account {
     @Column(name = "role")
     private UserRole userRole;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
     @JoinColumn(name = "coach_info_id")
     private CoachInfo coachInfo;
 

@@ -16,6 +16,7 @@ export class CoachOverviewComponent implements OnInit {
   partialSearch!: string;
   topics!: string[];
   searchForm!: FormGroup;
+  searchQuery!: any;
 
   constructor(private coachService: CoachService,
               private topicService: TopicService,
@@ -27,7 +28,8 @@ export class CoachOverviewComponent implements OnInit {
     this.partialSearch = '';
     this.getCoaches();
     this.searchForm = this.fb.group({
-      topics: [null]
+      topics: [''],
+      searchQuery: ['']
     });
 
     this.topicService.getTopics().subscribe(topics => this.topics = topics);
@@ -40,6 +42,7 @@ export class CoachOverviewComponent implements OnInit {
 
   submit() {
     this.topic = this.searchForm.value['topics'];
+    this.partialSearch = this.searchForm.value['searchQuery'];
     this.getCoaches();
   }
 
