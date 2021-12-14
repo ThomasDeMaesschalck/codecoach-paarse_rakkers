@@ -38,7 +38,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   isLoggedInUserProfile(): boolean {
-    return this.user.id === this.authenticationService.getUserId();
+    return this.user.id === this.authenticationService.getUserId() || this.authenticationService.isAdmin();
   }
 
   nobodyIsLoggedIn(): boolean {
