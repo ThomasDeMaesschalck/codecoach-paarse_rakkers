@@ -78,7 +78,7 @@ public class SessionService {
     public SessionDTO updateSession(String sessionId, SessionDTO dto, String authToken) {
         setSessionsStatusToAwaitingFeedbackOrDoneIfLocalDateTimeIsInPast();
         Session sessionToUpdate = getSession(sessionId);
-        var authorization = jwtGenerator.convertToken(authToken);
+        var authorization = jwtGenerator.convertToken(authToken.replace("Bearer ", ""));
         User caller = userRepository.findByEmail(authorization.getName()).get();
 
 
