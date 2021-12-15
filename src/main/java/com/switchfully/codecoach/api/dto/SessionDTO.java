@@ -36,7 +36,6 @@ public class SessionDTO {
     @NotBlank(message = "Remarks can not be blank") @NotNull(message = "Remarks can not be null.")
     private String remarks;
 
-
     private SessionStatus status;
 
     @Valid
