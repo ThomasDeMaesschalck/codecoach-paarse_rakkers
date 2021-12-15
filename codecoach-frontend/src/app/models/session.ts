@@ -5,6 +5,8 @@ export interface Session {
 
   id: string;
 
+  subject: string;
+
   coacheeId: string;
 
   coachId: string;
