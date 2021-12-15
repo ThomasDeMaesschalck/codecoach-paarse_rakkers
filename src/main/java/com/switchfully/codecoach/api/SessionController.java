@@ -1,6 +1,7 @@
 package com.switchfully.codecoach.api;
 
 import com.switchfully.codecoach.api.dto.SessionDTO;
+import com.switchfully.codecoach.api.dto.UpdateUserDTO;
 import com.switchfully.codecoach.api.dto.UserDTO;
 import com.switchfully.codecoach.domain.SessionStatus;
 import com.switchfully.codecoach.service.SessionService;

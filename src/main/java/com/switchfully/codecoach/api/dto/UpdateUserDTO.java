@@ -7,7 +7,6 @@ import lombok.Data;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
-import java.util.UUID;
 
 @Builder
 @Data
