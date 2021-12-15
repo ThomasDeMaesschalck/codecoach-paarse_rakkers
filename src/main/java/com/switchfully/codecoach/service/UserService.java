@@ -10,6 +10,7 @@ import com.switchfully.codecoach.domain.UserRole;
 import com.switchfully.codecoach.exception.EmailNotUniqueException;
 import com.switchfully.codecoach.exception.UnauthorizedUserException;
 import com.switchfully.codecoach.exception.UserNotFoundException;
+import com.switchfully.codecoach.repository.SessionRepository;
 import com.switchfully.codecoach.repository.UserRepository;
 import com.switchfully.codecoach.repository.specifications.UserSpecification;
 import com.switchfully.codecoach.security.authentication.jwt.JwtGenerator;
@@ -35,18 +36,22 @@ public class UserService implements AccountService {
 
     private final UserMapper userMapper;
     private final UserRepository userRepository;
+    private final SessionRepository sessionRepository;
     private final CoachInfoMapper coachInfoMapper;
     private final UserSpecification userSpecification;
     private final JwtGenerator jwtGenerator;
 
     private final Logger logger = LoggerFactory.getLogger(UserService.class);
 
+    private static final int EXPERIENCE_POINTS_MULTIPLIER = 10;
+
     @Autowired
     public UserService(UserMapper userMapper, UserRepository userRepository,
-                       CoachInfoMapper coachInfoMapper, UserSpecification userSpecification,
+                       SessionRepository sessionRepository, CoachInfoMapper coachInfoMapper, UserSpecification userSpecification,
                        JwtGenerator jwtGenerator) {
         this.userMapper = userMapper;
         this.userRepository = userRepository;
+        this.sessionRepository = sessionRepository;
         this.coachInfoMapper = coachInfoMapper;
         this.userSpecification = userSpecification;
         this.jwtGenerator = jwtGenerator;
@@ -124,6 +129,12 @@ public class UserService implements AccountService {
         if(!authorization.getAuthorities().contains(UserRole.ADMIN) && !doesAuthorizedUserMatchUserId(authorization, UUID.fromString(userId))) {
             throw new UnauthorizedUserException("Not authorized");
         }
+
+        UserDTO userDTO = userMapper.toDTO(getSpecificUserById(userId));
+        int xp = sessionRepository.countAllByCoachAndCoachFeedbackNotNullAndCoacheeFeedbackNotNull(getSpecificUserById(userId));
+        userDTO.getCoachInfo().setXp(xp * EXPERIENCE_POINTS_MULTIPLIER);
+        return userDTO;
+
         return userMapper.toDTO(getSpecificUserById(userId));
     }
 
