@@ -13,50 +13,55 @@
             <form [formGroup]="sessionForm" (ngSubmit)="save()" class="col s12">
               <div class="row">
                 <div class="input-field col s12">
-                  <textarea id="topic" class="materialize-textarea"></textarea>
+                  <textarea formControlName="topicName" id="topic" class="materialize-textarea"></textarea>
                   <label for="topic">On which topic/subject would you like to have a coaching session?</label>
                 </div>
               </div>
+
               <div class="row">
-                <div class="input-field col s6">
+                <div class=" col s12">
 
                   <mat-form-field>
-                    <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date"
+                    <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a moment"
                            [formControl]="dateControl"
                            [min]="minDate" [max]="maxDate" [disabled]="disabled">
                     <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
-                    <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [showSeconds]="showSeconds"
+                    <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [showSeconds]="false"
                                              [stepHour]="stepHour" [stepMinute]="stepMinute" [stepSecond]="stepSecond"
                                              [touchUi]="touchUi"
                                              [color]="color" [enableMeridian]="enableMeridian">
                     </ngx-mat-datetime-picker>
                   </mat-form-field>
-
-
                 </div>
+
               </div>
               <div class="row">
-                <div class="mat-radio-button">
-                  <input id="location" type="radio" checked value="true">
-                  <label for="location">Face to face</label>
+                <div>
+                  <label id="f2f">Face to face?</label>
+
+                  <mat-radio-group aria-labelledby="f2f" formControlName="faceToFace">
+                    <mat-radio-button value="true">Yes</mat-radio-button>
+                    <mat-radio-button value="false" checked="true">No</mat-radio-button>
+                  </mat-radio-group>
+
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <textarea id="remarks" class="materialize-textarea"></textarea>
+                  <textarea formControlName="remarks" id="remarks" class="materialize-textarea"></textarea>
                   <label for="remarks">Remarks for the coach?</label>
                 </div>
               </div>
 
               <div *ngIf="feedback" class="error-text">
-                <div *ngFor="let error of feedback">
-                  {{error}}
+                <div>
+                  {{feedback}}
                 </div>
               </div>
 
 
               <div class="row right-align">
-                <button type="submit" class="waves-effect waves-light purple darken-4 btn-large black-text">Update<i
+                <button type="submit" class="waves-effect waves-light purple darken-4 btn-large white-text">Submit<i
                   class="material-icons right">send</i></button>
               </div>
             </form>

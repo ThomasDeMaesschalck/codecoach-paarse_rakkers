@@ -1,9 +1,6 @@
 package com.switchfully.codecoach.api;
 
 import com.switchfully.codecoach.api.dto.SessionDTO;
-import com.switchfully.codecoach.api.dto.UpdateUserDTO;
-import com.switchfully.codecoach.api.dto.UserDTO;
-import com.switchfully.codecoach.domain.SessionStatus;
 import com.switchfully.codecoach.service.SessionService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.slf4j.Logger;
@@ -14,14 +11,11 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 //@CrossOrigin
 @RequestMapping("/sessions")
-@SecurityRequirement(name = "javainuseapi")
 public class SessionController {
 
 
@@ -43,8 +37,8 @@ public class SessionController {
         return sessionService.saveSession(sessionDTO);
     }
 
-
-    @GetMapping (produces = MediaType.APPLICATION_JSON_VALUE)
+    @SecurityRequirement(name = "javainuseapi")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     //@PreAuthorize("hasAnyRole()")
     public List<SessionDTO> getAllSessions(@RequestParam(required = false) String coachId) {
@@ -52,7 +46,8 @@ public class SessionController {
         return sessionService.getAllSessions(coachId);
     }
 
-    @GetMapping (produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
+    @SecurityRequirement(name = "javainuseapi")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     //@PreAuthorize("hasAnyRole()")
     public SessionDTO getSpecificSession(@PathVariable String id) {
@@ -65,7 +60,7 @@ public class SessionController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public SessionDTO updateSession(@Valid @RequestBody SessionDTO updateSessionDTO, @PathVariable String id,
-                              @RequestHeader (name="Authorization") String token) {
+                                    @RequestHeader(name = "Authorization") String token) {
         logger.info("Updating user with id " + id);
         return sessionService.updateSession(id, updateSessionDTO, token);
     }

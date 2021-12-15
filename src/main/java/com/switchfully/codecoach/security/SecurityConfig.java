@@ -6,6 +6,7 @@ import com.switchfully.codecoach.security.authentication.jwt.JwtAuthorizationFil
 import com.switchfully.codecoach.security.authentication.jwt.JwtGenerator;
 import com.switchfully.codecoach.security.authentication.user.SecuredUserService;
 import com.switchfully.codecoach.security.authentication.user.api.AccountService;
+import com.switchfully.codecoach.service.SessionService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
@@ -23,7 +24,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 @Profile({"production"})
-@EnableWebSecurity(debug=false)
+@EnableWebSecurity(debug=true)
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -35,7 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public SecurityConfig(SecuredUserService securedUserService,
                           PasswordEncoder passwordEncoder,
                           JwtGenerator jwtGenerator,
-                          AccountService accountService) {
+                          AccountService accountService
+                          ) {
 
         this.securedUserService = securedUserService;
         this.passwordEncoder = passwordEncoder;
@@ -46,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/security/**", "/users").permitAll()
+                .antMatchers(HttpMethod.POST, "/security/**", "/users", "/sessions").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JwtAuthenticationFilter(authenticationManager(), authenticationFailureHandler(), jwtGenerator, accountService))

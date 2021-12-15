@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {User} from "../models/user";
 import {Observable} from "rxjs";
 import {Session} from "../models/session";
 
@@ -13,7 +12,8 @@ export class SessionService {
   private _sessionsUrl: string;
 
   httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
+    headers: new HttpHeaders({'Content-Type': 'application/json'},
+      )
   };
 
   constructor(private http: HttpClient) {

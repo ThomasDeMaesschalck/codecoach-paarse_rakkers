@@ -6,6 +6,7 @@ import {Session} from "../../models/session";
 import {AuthenticationService} from "../../authentication/authentication.service";
 import * as moment from 'moment';
 import {ThemePalette} from "@angular/material/core";
+import {SessionStatus} from "../../models/sessionstatus";
 
 @Component({
   selector: 'app-request-session',
@@ -50,25 +51,33 @@ export class RequestSessionComponent implements OnInit {
 
     this.sessionForm = this.formBuilder.group({
       topicName: '',
-      time: '',
       faceToFace: false,
       remarks: ''
     })
   }
 
-
   save() {
-    this.session.coacheeId = this.coacheeId;
-    this.session.coachId = this.coachId;
 
-    this.dateControl.value;
+    this.date = this.dateControl.value;
+    console.log(this.date.toString());
+
+    this.session = <Session>{
+
+      subject: this.sessionForm.value['topicName'],
+      coacheeId: this.coacheeId,
+      coachId: this.coachId,
+      moment: this.date.toString(),
+      faceToFace: this.sessionForm.value['faceToFace'],
+      remarks: this.sessionForm.value['remarks'],
+      status: SessionStatus.REQUESTED
+    }
 
 
     this.sessionService.save(this.session).subscribe(
       (sessionFromBackend) => {
-        this.router.navigate(['user', this.session.id]);
+        this.router.navigate(['home']);
       }, (errors) => {
-        this.feedback = errors['error']['errors'];
+        this.feedback = JSON.stringify(errors);
       }
     );
   }

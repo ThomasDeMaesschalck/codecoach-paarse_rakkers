@@ -4,7 +4,7 @@ import {SessionStatus} from "./sessionstatus";
 
 export interface Session {
 
-  id: string;
+  id?: string;
 
   subject: string;
 
@@ -12,16 +12,16 @@ export interface Session {
 
   coachId: string;
 
-  moment: Date;
+  moment: string;
 
   faceToFace: boolean;
 
   remarks: string;
 
-  status: SessionStatus;
+  status?: SessionStatus;
 
-  coachFeedback: CoachFeedback;
+  coachFeedback?: CoachFeedback;
 
-  coacheeFeedback: CoacheeFeedback;
+  coacheeFeedback?: CoacheeFeedback;
 
 }

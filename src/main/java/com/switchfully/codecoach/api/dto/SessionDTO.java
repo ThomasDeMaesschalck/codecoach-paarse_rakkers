@@ -24,7 +24,7 @@ public class SessionDTO {
     @NotBlank(message = "Coach can not be blank") @NotNull(message = "Coach can not be null.")
     private String coachId;
 
-    @NotBlank(message = "Subject can't be blank") @NotNull(message = "Subject can't be null")
+    @NotBlank(message = "Subject can't be blznk") @NotNull(message = "Subject can't be null")
     private String subject;
 
     @Future(message = "Session can not be in the past")

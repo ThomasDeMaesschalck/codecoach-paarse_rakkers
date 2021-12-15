@@ -28,6 +28,13 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     private final Logger logger = LoggerFactory.getLogger(ControllerAdvisor.class);
 
     @ExceptionHandler
+    public void handleException(Exception exception, HttpServletResponse response)
+            throws IOException {
+        logger.error("Exception: " + exception.getMessage());
+        response.sendError(HttpStatus.BAD_REQUEST.value(), exception.getMessage());
+    }
+
+    @ExceptionHandler
     public void handleIllegalArgumentException(IllegalArgumentException exception, HttpServletResponse response)
             throws IOException {
         logger.error("Illegal Argument: " + exception.getMessage());

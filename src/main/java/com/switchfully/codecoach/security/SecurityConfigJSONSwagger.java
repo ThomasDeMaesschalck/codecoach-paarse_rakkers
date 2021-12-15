@@ -54,7 +54,7 @@ public class SecurityConfigJSONSwagger extends SecurityConfig {
                         "/swagger-ui.html",
                         "/swagger-ui/**",
                         "/webjars/**").permitAll()
-                        .antMatchers(HttpMethod.POST, "/security/**", "/users").permitAll();
+                        .antMatchers(HttpMethod.POST, "/security/**", "/users", "/sessions").permitAll();
 
         super.configure(http);
 

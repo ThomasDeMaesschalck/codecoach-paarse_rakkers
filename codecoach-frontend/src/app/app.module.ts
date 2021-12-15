@@ -29,6 +29,7 @@ import {NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModu
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatButtonModule} from "@angular/material/button";
 import {MatNativeDateModule} from "@angular/material/core";
+import {MatRadioModule} from "@angular/material/radio";
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import {MatNativeDateModule} from "@angular/material/core";
         deps: [HttpClient]
       }
     }),
-    MatSliderModule
+    MatSliderModule,
+    MatRadioModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true},
