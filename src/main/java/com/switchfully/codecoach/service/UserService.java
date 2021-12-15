@@ -125,14 +125,19 @@ public class UserService implements AccountService {
     }
 
     public UserDTO getUserDTO(String userId, String token) {
+
+        UserDTO userDTO = userMapper.toDTO(getSpecificUserById(userId));
+
         var authorization = jwtGenerator.convertToken(token.replace("Bearer ", ""));
-        if(!authorization.getAuthorities().contains(UserRole.ADMIN) && !doesAuthorizedUserMatchUserId(authorization, UUID.fromString(userId))) {
+        if(userDTO.getUserRole().equals(UserRole.COACHEE) && !authorization.getAuthorities().contains(UserRole.ADMIN) && !doesAuthorizedUserMatchUserId(authorization, UUID.fromString(userId))) {
             throw new UnauthorizedUserException("Not authorized");
         }
 
-        UserDTO userDTO = userMapper.toDTO(getSpecificUserById(userId));
-        int xp = sessionRepository.countAllByCoachAndCoachFeedbackNotNullAndCoacheeFeedbackNotNull(getSpecificUserById(userId));
-        userDTO.getCoachInfo().setXp(xp * EXPERIENCE_POINTS_MULTIPLIER);
+        if(userDTO.getCoachInfo() != null) {
+            int xp = sessionRepository.countAllByCoachAndCoachFeedbackNotNullAndCoacheeFeedbackNotNull(getSpecificUserById(userId));
+            userDTO.getCoachInfo().setXp(xp * EXPERIENCE_POINTS_MULTIPLIER);
+        }
+
         return userDTO;
 
     }
