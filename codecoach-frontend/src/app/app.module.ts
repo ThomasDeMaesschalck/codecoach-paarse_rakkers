@@ -23,6 +23,8 @@ import {MatSliderModule} from "@angular/material/slider";
 import {MatInputModule} from "@angular/material/input";
 import { EditCoachComponent } from './coach/edit-coach/edit-coach.component';
 import { RequestAChangeComponent } from './user/request-a-change/request-a-change.component';
+import { RequestSessionComponent } from './session/request-session/request-session.component';
+import { SessionsOverviewComponent } from './session/sessions-overview/sessions-overview.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { RequestAChangeComponent } from './user/request-a-change/request-a-chang
     CoachProfileComponent,
     CoachOverviewComponent,
     EditCoachComponent,
-    RequestAChangeComponent
+    RequestAChangeComponent,
+    RequestSessionComponent,
+    SessionsOverviewComponent
   ],
   imports: [
     BrowserModule,
