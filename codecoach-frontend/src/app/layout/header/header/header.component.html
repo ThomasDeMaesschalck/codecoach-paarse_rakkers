@@ -24,7 +24,7 @@
             <li><a class="waves-effect waves-light teal lighten-3 btn white-text" *ngIf="!authenticationService.isLoggedIn()" routerLink="/register">Register<i class="material-icons right">person_add</i></a></li>
 
             <li><a class="waves-effect waves-light purple btn white-text" *ngIf="authenticationService.isLoggedIn() && authenticationService.isCoachee()" routerLink="/user/{{authenticationService.getUserId()}}">User profile<i class="material-icons right">account_box</i></a></li>
-            <li><a class="waves-effect waves-light purple btn white-text" *ngIf="authenticationService.isLoggedIn() && !authenticationService.isCoachee()" routerLink="/coach/{{authenticationService.getUserId()}}">Coach profile<i class="material-icons right">account_box</i></a></li>
+            <li><a class="waves-effect waves-light purple btn white-text" *ngIf="authenticationService.isLoggedIn() && !authenticationService.isCoachee()" href="/coach/{{authenticationService.getUserId()}}">Coach profile<i class="material-icons right">account_box</i></a></li>
 
           </ul>
         </div>
@@ -39,7 +39,7 @@
           <li><a class="waves-light yellow darken-2 btn black-text" routerLink="/login" *ngIf="!authenticationService.isLoggedIn()" translate>menu.button.sign-in<i class="material-icons right">person</i></a></li>
           <li><a class="waves-effect waves-light teal lighten-3 btn white-text" *ngIf="!authenticationService.isLoggedIn()" routerLink="/register">Register<i class="material-icons right">person_add</i></a></li>
           <li><a class="waves-effect waves-light purple btn white-text" *ngIf="authenticationService.isLoggedIn() && authenticationService.isCoachee()" routerLink="/user/{{authenticationService.getUserId()}}">User profile<i class="material-icons right">account_box</i></a></li>
-          <li><a class="waves-effect waves-light purple btn white-text" *ngIf="authenticationService.isLoggedIn() && !authenticationService.isCoachee()" routerLink="/coach/{{authenticationService.getUserId()}}">Coach profile<i class="material-icons right">account_box</i></a></li>
+          <li><a class="waves-effect waves-light purple btn white-text" *ngIf="authenticationService.isLoggedIn() && !authenticationService.isCoachee()" href="/coach/{{authenticationService.getUserId()}}">Coach profile<i class="material-icons right">account_box</i></a></li>
         </ul>
       </div>
     </div>

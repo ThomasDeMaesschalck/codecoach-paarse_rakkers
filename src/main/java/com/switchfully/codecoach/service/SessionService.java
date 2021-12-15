@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -30,10 +31,28 @@ public class SessionService {
 
 
     @Autowired
-    public SessionService(SessionRepository sessionRepository, SessionMapper sessionMapper, UserService userService) {
+    public SessionService(SessionRepository sessionRepository,
+                          SessionMapper sessionMapper, UserService userService) {
         this.sessionRepository = sessionRepository;
         this.sessionMapper = sessionMapper;
         this.userService = userService;
+
+        setSessionsStatusToAwaitingFeedbackOrDoneIfLocalDateTimeIsInPast();
+    }
+
+
+    public void setSessionsStatusToAwaitingFeedbackOrDoneIfLocalDateTimeIsInPast() {
+        List<Session> expiredSessions = sessionRepository.findAllByStatusNotAndMomentIsBefore(SessionStatus.DONE, LocalDateTime.now());
+
+        expiredSessions.forEach(session -> {
+            if (session.getStatus().equals(SessionStatus.ACCEPTED)) {
+                session.setStatus(SessionStatus.DONE_WAITING_FEEDBACK);
+            } else if (session.getStatus().equals(SessionStatus.REQUESTED)){
+                session.setStatus(SessionStatus.DONE);
+            }
+        });
+
+        sessionRepository.saveAll(expiredSessions);
     }
 
 
@@ -51,9 +70,7 @@ public class SessionService {
             return sessionRepository.findAllByCoach(coach).stream()
                     .map(sessionMapper::toDTO)
                     .collect(Collectors.toList());
-        }
-
-        else
+        } else
             return sessionRepository.findAll().stream()
                     .map(sessionMapper::toDTO)
                     .collect(Collectors.toList());
