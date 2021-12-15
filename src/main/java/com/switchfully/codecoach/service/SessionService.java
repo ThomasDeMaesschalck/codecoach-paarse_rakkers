@@ -76,8 +76,8 @@ public class SessionService {
     }
 
     public SessionDTO updateSession(String sessionId, SessionDTO dto, String authToken) {
+        setSessionsStatusToAwaitingFeedbackOrDoneIfLocalDateTimeIsInPast();
         Session sessionToUpdate = getSession(sessionId);
-
         var authorization = jwtGenerator.convertToken(authToken);
         User caller = userRepository.findByEmail(authorization.getName()).get();
 
@@ -88,21 +88,25 @@ public class SessionService {
 
                 if (dto.getStatus() == SessionStatus.ACCEPTED && sessionToUpdate.getCoach().equals(caller)) {
                     sessionToUpdate.setStatus(SessionStatus.ACCEPTED);
-                }
-                if (dto.getStatus() == SessionStatus.DECLINED && sessionToUpdate.getCoach().equals(caller)) {
+
+                } else if (dto.getStatus() == SessionStatus.DECLINED && sessionToUpdate.getCoach().equals(caller)) {
                     sessionToUpdate.setStatus(SessionStatus.DECLINED);
-                }
-                if (dto.getStatus() == SessionStatus.CANCELED_BY_COACHEE && sessionToUpdate.getCoachee().equals(caller)) {
+
+                } else if (dto.getStatus() == SessionStatus.CANCELED_BY_COACHEE && sessionToUpdate.getCoachee().equals(caller)) {
                     sessionToUpdate.setStatus(SessionStatus.CANCELED_BY_COACHEE);
+
+                } else {
+                    throw new IllegalStateException("Session update not authorized: session may only be rejected or accepted by the correct user.");
                 }
+
                 break;
 
             case ACCEPTED:
 
                 if (dto.getStatus() == SessionStatus.CANCELED_BY_COACH && sessionToUpdate.getCoach().equals(caller)) {
                     sessionToUpdate.setStatus(SessionStatus.CANCELED_BY_COACH);
-                }
-                if (dto.getStatus() == SessionStatus.CANCELED_BY_COACHEE && sessionToUpdate.getCoachee().equals(caller)) {
+
+                } else if (dto.getStatus() == SessionStatus.CANCELED_BY_COACHEE && sessionToUpdate.getCoachee().equals(caller)) {
                     sessionToUpdate.setStatus(SessionStatus.CANCELED_BY_COACHEE);
                 }
                 break;
