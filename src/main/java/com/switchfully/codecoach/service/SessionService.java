@@ -10,6 +10,8 @@ import com.switchfully.codecoach.domain.User;
 import com.switchfully.codecoach.domain.UserRole;
 import com.switchfully.codecoach.exception.SessionNotFoundException;
 import com.switchfully.codecoach.repository.SessionRepository;
+import com.switchfully.codecoach.repository.UserRepository;
+import com.switchfully.codecoach.security.authentication.jwt.JwtGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,10 @@ public class SessionService {
     private final SessionRepository sessionRepository;
     private final SessionMapper sessionMapper;
     private final UserService userService;
+    private final JwtGenerator jwtGenerator;
+    private final UserRepository userRepository;
+    private final CoachFeedbackMapper coachFeedbackMapper;
+    private final CoacheeFeedbackMapper coacheeFeedbackMapper;
 
     private final Logger logger = LoggerFactory.getLogger(SessionService.class);
 
@@ -74,6 +80,7 @@ public class SessionService {
 
         var authorization = jwtGenerator.convertToken(authToken);
         User caller = userRepository.findByEmail(authorization.getName()).get();
+
 
         switch (sessionToUpdate.getStatus()) {
 

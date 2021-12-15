@@ -59,4 +59,14 @@ public class SessionController {
         logger.info("Getting session with id " + id);
         return sessionService.getSessionDTO(id);
     }
+
+    @SecurityRequirement(name = "javainuseapi")
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public SessionDTO updateSession(@Valid @RequestBody SessionDTO updateSessionDTO, @PathVariable String id,
+                              @RequestHeader (name="Authorization") String token) {
+        logger.info("Updating user with id " + id);
+        return sessionService.updateSession(id, updateSessionDTO, token);
+    }
 }
