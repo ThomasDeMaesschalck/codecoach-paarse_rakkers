@@ -1,5 +1,6 @@
 import {CoachFeedback} from "./coachfeedback";
 import {CoacheeFeedback} from "./coacheefeedback";
+import {SessionStatus} from "./sessionstatus";
 
 export interface Session {
 

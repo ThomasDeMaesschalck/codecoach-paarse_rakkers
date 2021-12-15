@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
+import {AuthenticationService} from "../../authentication/authentication.service";
+import {SessionService} from "../session.service";
 
 @Component({
   selector: 'app-sessions-overview',
@@ -7,7 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SessionsOverviewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router,
+              private sessionService: SessionService,
+              public authenticationService: AuthenticationService){ }
 
   ngOnInit(): void {
   }

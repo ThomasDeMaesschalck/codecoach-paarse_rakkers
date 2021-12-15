@@ -25,6 +25,11 @@ import { EditCoachComponent } from './coach/edit-coach/edit-coach.component';
 import { RequestAChangeComponent } from './user/request-a-change/request-a-change.component';
 import { RequestSessionComponent } from './session/request-session/request-session.component';
 import { SessionsOverviewComponent } from './session/sessions-overview/sessions-overview.component';
+import {NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule} from "@angular-material-components/datetime-picker";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatButtonModule} from "@angular/material/button";
+import {MatNativeDateModule} from "@angular/material/core";
+
 
 @NgModule({
   declarations: [
@@ -51,6 +56,13 @@ import { SessionsOverviewComponent } from './session/sessions-overview/sessions-
     ReactiveFormsModule,
     AppRoutingModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
+    NgxMatNativeDateModule,
+    NgxMatTimepickerModule,
+    MatButtonModule,
+    NgxMatDatetimePickerModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -58,11 +70,11 @@ import { SessionsOverviewComponent } from './session/sessions-overview/sessions-
         deps: [HttpClient]
       }
     }),
-    MatSliderModule,
-    MatInputModule
+    MatSliderModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true},
+    MatDatepickerModule
   ],
   bootstrap: [AppComponent]
 })

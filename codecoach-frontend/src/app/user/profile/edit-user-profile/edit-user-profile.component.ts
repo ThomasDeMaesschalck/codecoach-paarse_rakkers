@@ -29,8 +29,6 @@ export class EditUserProfileComponent implements OnInit {
   ngOnInit(): void {
     this.getUser();
     this.userRoles = Object.values(UserRole);
-    console.log(this.userRoles);
-
 
   }
 
