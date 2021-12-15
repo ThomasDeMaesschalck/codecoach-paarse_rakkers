@@ -14,7 +14,7 @@
 
       <ul *ngIf="user.coachInfo">
         <li>{{user.firstName}} {{user.lastName}}</li>
-        <li *ngFor="let topic of user.coachInfo.topics">{{topic.topicName}} : {{topic.experience}}</li>
+        <li *ngFor="let topic of user.coachInfo.topics">{{topic.topicName}} : {{topic.experience}}/10</li>
       </ul>
 
 
