@@ -27,8 +27,8 @@ public class SessionMapper {
                 .faceToFace(sessionDTO.isFaceToFace())
                 .remarks(sessionDTO.getRemarks())
                 .status(sessionDTO.getStatus())
-                .coachFeedback(coachFeedbackMapper.toEntity(sessionDTO.getCoachFeedback()))
-                .coacheeFeedback(coacheeFeedbackMapper.toEntity(sessionDTO.getCoacheeFeedback()))
+                .coachFeedback(sessionDTO.getCoachFeedback() == null ? null : coachFeedbackMapper.toEntity(sessionDTO.getCoachFeedback()))
+                .coacheeFeedback(sessionDTO.getCoacheeFeedback() == null ? null : coacheeFeedbackMapper.toEntity(sessionDTO.getCoacheeFeedback()))
             .build();
     }
 
@@ -41,8 +41,8 @@ public class SessionMapper {
                 .faceToFace(session.isFaceToFace())
                 .moment(session.getMoment())
                 .remarks(session.getRemarks())
-                .coacheeFeedback(coacheeFeedbackMapper.toDTO(session.getCoacheeFeedback()))
-                .coachFeedback(coachFeedbackMapper.toDTO(session.getCoachFeedback()))
+                .coachFeedback(session.getCoachFeedback() == null ? null : coachFeedbackMapper.toDTO(session.getCoachFeedback()))
+                .coacheeFeedback(session.getCoacheeFeedback() == null ? null : coacheeFeedbackMapper.toDTO(session.getCoacheeFeedback()))
                 .status(session.getStatus())
                 .build();
 
