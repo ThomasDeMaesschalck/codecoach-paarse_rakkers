@@ -135,7 +135,6 @@ public class UserService implements AccountService {
         userDTO.getCoachInfo().setXp(xp * EXPERIENCE_POINTS_MULTIPLIER);
         return userDTO;
 
-        return userMapper.toDTO(getSpecificUserById(userId));
     }
 
     public User getSpecificUserById(String userId) {
