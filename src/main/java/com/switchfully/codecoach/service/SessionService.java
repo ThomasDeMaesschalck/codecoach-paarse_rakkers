@@ -108,16 +108,19 @@ public class SessionService {
 
                 } else if (dto.getStatus() == SessionStatus.CANCELED_BY_COACHEE && sessionToUpdate.getCoachee().equals(caller)) {
                     sessionToUpdate.setStatus(SessionStatus.CANCELED_BY_COACHEE);
+
+                } else {
+                    throw new IllegalStateException("Session update not authorized: session may only be canceled  by the correct user.");
                 }
                 break;
 
             case DONE_WAITING_FEEDBACK:
-                if(dto.getCoachFeedback() != null && sessionToUpdate.getCoach().equals(caller)) {
+
+                if (dto.getCoachFeedback() != null && sessionToUpdate.getCoach().equals(caller)) {
                     sessionToUpdate.setCoachFeedback(coachFeedbackMapper.toEntity(dto.getCoachFeedback()));
                     closeSessionIfFeedbackIsGivenByBothParties(sessionToUpdate);
-                }
 
-                if(dto.getCoacheeFeedback() != null && sessionToUpdate.getCoachee().equals(caller)) {
+                } else if (dto.getCoacheeFeedback() != null && sessionToUpdate.getCoachee().equals(caller)) {
                     sessionToUpdate.setCoacheeFeedback(coacheeFeedbackMapper.toEntity(dto.getCoacheeFeedback()));
                     closeSessionIfFeedbackIsGivenByBothParties(sessionToUpdate);
 
@@ -166,8 +169,7 @@ public class SessionService {
     }
 
     public void closeSessionIfFeedbackIsGivenByBothParties(Session session) {
-        if (session.getCoachFeedback() != null && session.getCoacheeFeedback() != null )
-        {
+        if (session.getCoachFeedback() != null && session.getCoacheeFeedback() != null) {
             session.setStatus(SessionStatus.DONE);
         }
     }
