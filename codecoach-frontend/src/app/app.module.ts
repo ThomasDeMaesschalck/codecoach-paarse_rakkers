@@ -22,6 +22,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatSliderModule} from "@angular/material/slider";
 import {MatInputModule} from "@angular/material/input";
 import { EditCoachComponent } from './coach/edit-coach/edit-coach.component';
+import { RequestAChangeComponent } from './user/request-a-change/request-a-change.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { EditCoachComponent } from './coach/edit-coach/edit-coach.component';
     EditUserProfileComponent,
     CoachProfileComponent,
     CoachOverviewComponent,
-    EditCoachComponent
+    EditCoachComponent,
+    RequestAChangeComponent
   ],
   imports: [
     BrowserModule,

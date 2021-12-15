@@ -1,0 +1,29 @@
+<section class="card-panel grey lighten-5">
+  <h5>Request profile change</h5>
+  <div class="divider"></div>
+  <div class="row">
+    <div class="col l2 m2 s12">
+      <img src="assets/images/under_construction.png" class="responsive-img"
+           alt="Under Construction">
+    </div>
+    <div class="col l12 m12 s12">
+      <p class="grey-text text-darken-3">
+        This part of the application is currently still under
+        construction. In order to request a change to your profile please send an email to your administrator with
+        the following information: </p>
+
+      <ul *ngIf="user.coachInfo">
+        <li>{{user.firstName}} {{user.lastName}}</li>
+        <li *ngFor="let topic of user.coachInfo.topics">{{topic.topicName}}</li>
+      </ul>
+
+
+      <div class="row right-align">
+        <a class="waves-effect waves-light white-text active purple darken-4 btn-large black-text">Send Email <i
+          class="material-icons right">send</i></a>
+
+      </div>
+    </div>
+  </div>
+</section>
+

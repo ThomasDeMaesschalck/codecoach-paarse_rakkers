@@ -9,6 +9,7 @@ import {BecomeACoachComponent} from "./coach/become-a-coach/become-a-coach.compo
 import {CoachProfileComponent} from "./coach/coach-profile/coach-profile.component";
 import {CoachOverviewComponent} from "./coach/coach-overview/coach-overview.component";
 import {EditCoachComponent} from "./coach/edit-coach/edit-coach.component";
+import {RequestAChangeComponent} from "./user/request-a-change/request-a-change.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -20,7 +21,9 @@ const routes: Routes = [
   {path: 'edit/:userId', component: EditUserProfileComponent},
   {path: 'coach-edit/:coachId', component: EditCoachComponent},
   {path: 'become-a-coach/:id', component: BecomeACoachComponent},
-  {path: 'coach-overview', component: CoachOverviewComponent}
+  {path: 'coach-overview', component: CoachOverviewComponent},
+  {path: 'request-a-change/:id', component: RequestAChangeComponent}
+
 ];
 
 @NgModule({
