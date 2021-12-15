@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
+import {SessionService} from "../session.service";
+import {Session} from "../../models/session";
+import {AuthenticationService} from "../../authentication/authentication.service";
+import * as moment from 'moment';
+import {ThemePalette} from "@angular/material/core";
 
 @Component({
   selector: 'app-request-session',
@@ -38,6 +45,15 @@ export class RequestSessionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.coachId = String(this.route.snapshot.paramMap.get('coachId'));
+    this.coacheeId = this.authenticationService.getUserId();
+
+    this.sessionForm = this.formBuilder.group({
+      topicName: '',
+      time: '',
+      faceToFace: false,
+      remarks: ''
+    })
   }
 
 
