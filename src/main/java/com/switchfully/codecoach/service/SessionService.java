@@ -131,9 +131,8 @@ public class SessionService {
 
     }
 
-    public SessionDTO getSession(String sessionId) {
-        assertSessionExists(sessionId);
-        return sessionMapper.toDTO(sessionRepository.findById(UUID.fromString(sessionId)).get());
+    public SessionDTO getSessionDTO(String sessionId) {
+        return sessionMapper.toDTO(getSession(sessionId));
     }
 
     public Session getSession(String sessionId) {
@@ -145,6 +144,13 @@ public class SessionService {
         if (!sessionRepository.existsById(UUID.fromString(sessionId))) {
             logger.error("Session with id " + sessionId + "not found");
             throw new SessionNotFoundException(sessionId);
+        }
+    }
+
+    public void closeSessionIfFeedbackIsGivenByBothParties(Session session) {
+        if (session.getCoachFeedback() != null && session.getCoacheeFeedback() != null )
+        {
+            session.setStatus(SessionStatus.DONE);
         }
     }
 

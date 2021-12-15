@@ -57,6 +57,6 @@ public class SessionController {
     //@PreAuthorize("hasAnyRole()")
     public SessionDTO getSpecificSession(@PathVariable String id) {
         logger.info("Getting session with id " + id);
-        return sessionService.getSession(id);
+        return sessionService.getSessionDTO(id);
     }
 }
