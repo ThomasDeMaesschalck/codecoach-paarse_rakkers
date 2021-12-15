@@ -36,6 +36,9 @@ public class Session {
     @Column(name = "face_to_face")
     private boolean faceToFace;
 
+    @Column(name = "subject")
+    private String subject;
+
     @Column(name = "remarks")
     private String remarks;
 

@@ -35,6 +35,13 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler
+    public void handleIllegalStateException(IllegalStateException exception, HttpServletResponse response)
+            throws IOException {
+        logger.error("Illegal State: " + exception.getMessage());
+        response.sendError(HttpStatus.BAD_REQUEST.value(), exception.getMessage());
+    }
+
+    @ExceptionHandler
     public void handleDateTimeParseExceptionException(DateTimeParseException exception, HttpServletResponse response)
             throws IOException {
         logger.error("Invalid date entered " + exception.getMessage());

@@ -21,6 +21,7 @@ public class SessionMapper {
     public Session toEntity(SessionDTO sessionDTO, User coach, User coachee){
         return Session.builder()
                 .coach(coach)
+                .subject(sessionDTO.getSubject())
                 .coachee(coachee)
                 .moment(sessionDTO.getMoment())
                 .faceToFace(sessionDTO.isFaceToFace())
@@ -34,6 +35,7 @@ public class SessionMapper {
     public SessionDTO toDTO(Session session){
         return SessionDTO.builder()
                 .id(session.getId())
+                .subject(session.getSubject())
                 .coachId(session.getCoach().getId().toString())
                 .coacheeId(session.getCoachee().getId().toString())
                 .faceToFace(session.isFaceToFace())

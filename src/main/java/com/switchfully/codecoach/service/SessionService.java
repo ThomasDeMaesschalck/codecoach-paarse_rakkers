@@ -116,7 +116,14 @@ public class SessionService {
                 if(dto.getCoacheeFeedback() != null && sessionToUpdate.getCoachee().equals(caller)) {
                     sessionToUpdate.setCoacheeFeedback(coacheeFeedbackMapper.toEntity(dto.getCoacheeFeedback()));
                     closeSessionIfFeedbackIsGivenByBothParties(sessionToUpdate);
+
+                } else {
+                    throw new IllegalStateException("Session update not authorized: session feedback was not provided or provided by wrong user.");
                 }
+                break;
+
+            default:
+                throw new IllegalStateException("Session update not authorized: wrong status given");
         }
 
         return sessionMapper.toDTO(sessionToUpdate);
