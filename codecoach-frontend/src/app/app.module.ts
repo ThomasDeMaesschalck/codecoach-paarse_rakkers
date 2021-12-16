@@ -30,6 +30,8 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatButtonModule} from "@angular/material/button";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatRadioModule} from "@angular/material/radio";
+import { DatePipePipe } from './pipe/date-pipe.pipe';
+import { BooleanPipe } from './pipe/boolean.pipe';
 
 
 @NgModule({
@@ -47,7 +49,9 @@ import {MatRadioModule} from "@angular/material/radio";
     EditCoachComponent,
     RequestAChangeComponent,
     RequestSessionComponent,
-    SessionsOverviewComponent
+    SessionsOverviewComponent,
+    DatePipePipe,
+    BooleanPipe
   ],
   imports: [
     BrowserModule,

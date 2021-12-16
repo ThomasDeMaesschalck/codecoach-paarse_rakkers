@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 import {Session} from "../models/session";
+import {UserService} from "../user/user.service";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class SessionService {
       )
   };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private userService: UserService) {
     this._sessionsUrl = `${environment.backendUrl}/sessions`;
   }
 
@@ -34,5 +35,10 @@ export class SessionService {
   updateSession(session: Session): Observable<Session> {
     return this.http.put<Session>(`${this._sessionsUrl}/${session.id}`, session, this.httpOptions);
   }
+
+  getSessions(id: string) : Observable<Session[]>{
+    return this.http.get<Session[]>(this._sessionsUrl, {params: {"userId": id}});
+  }
+
 
 }

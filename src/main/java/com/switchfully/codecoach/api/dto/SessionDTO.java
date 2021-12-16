@@ -21,6 +21,9 @@ public class SessionDTO {
     @NotBlank(message = "Coachee can not be blank") @NotNull(message = "Coachee can not be null.")
     private String coacheeId;
 
+    private String coachName;
+    private String coacheeName;
+
     @NotBlank(message = "Coach can not be blank") @NotNull(message = "Coach can not be null.")
     private String coachId;
 
