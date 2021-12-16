@@ -17,6 +17,7 @@ export class CoachOverviewComponent implements OnInit {
   topics!: string[];
   searchForm!: FormGroup;
   searchQuery!: any;
+  defaultImg!: string;
 
   constructor(private coachService: CoachService,
               private topicService: TopicService,
@@ -31,7 +32,7 @@ export class CoachOverviewComponent implements OnInit {
       topics: [''],
       searchQuery: ['']
     });
-
+    this.defaultImg = "assets/images/default-profile-pic.png";
     this.topicService.getTopics().subscribe(topics => this.topics = topics);
   }
 
@@ -45,6 +46,7 @@ export class CoachOverviewComponent implements OnInit {
     this.partialSearch = this.searchForm.value['searchQuery'];
     this.getCoaches();
   }
+
 
 }
 
