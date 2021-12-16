@@ -4,7 +4,8 @@
     <div class="content-container">
       <h6>Edit Profile</h6>
       <div class="collection">
-        <a routerLink="/user/{{user.id}}" class="collection-item white-text active purple darken-2">Profile Information</a>
+        <a routerLink="/user/{{user.id}}" class="collection-item white-text active purple darken-2">Profile
+          Information</a>
         <a href="#!" class="collection-item grey-text text-darken-2">Coaching sessions</a>
         <a href="#!" class="collection-item grey-text text-darken-2">Apply to become a coach</a>
       </div>
@@ -27,15 +28,15 @@
             </div>
             <div class="input-field col s6">
               <input id="last_name" type="text" name="lastName"
-                     formControlName="lastName" class="validate" >
-              <label for="last_name" >Last Name</label>
+                     formControlName="lastName" class="validate">
+              <label for="last_name">Last Name</label>
             </div>
           </div>
-          <div class="row" >
+          <div class="row">
             <div class="input-field col s12">
-              <label for="email" >Email</label>
-              <input id="email" type="email" name="email"  formControlName="email"
-                     class="validate" >
+              <label for="email">Email</label>
+              <input id="email" type="email" name="email" formControlName="email"
+                     class="validate">
             </div>
           </div>
 
@@ -43,7 +44,7 @@
             <div class="input-field col s12">
               <input id="pictureURL" type="text" name="pictureURL" formControlName="pictureURL"
                      class="validate">
-              <label for="pictureURL" >Picture (URL)</label>
+              <label for="pictureURL">Picture (URL)</label>
             </div>
           </div>
 
@@ -51,7 +52,7 @@
             <div class="input-field col s12">
               <input id="companyTeam" type="text" name="companyTeam" formControlName="companyTeam"
                      class="validate">
-              <label for="companyTeam" >Company/team</label>
+              <label for="companyTeam">Company/team</label>
             </div>
           </div>
 
@@ -60,8 +61,8 @@
 
               <label>Role</label>
               <mat-form-field appearance="fill">
-                <select matNativeControl required formControlName="userRole" >
-                  <option *ngFor="let userRole of userRoles" ngValue="{{userRole}}" >{{userRole}}</option>
+                <select matNativeControl required formControlName="userRole">
+                  <option *ngFor="let userRole of userRoles" ngValue="{{userRole}}">{{userRole}}</option>
                 </select>
               </mat-form-field>
 

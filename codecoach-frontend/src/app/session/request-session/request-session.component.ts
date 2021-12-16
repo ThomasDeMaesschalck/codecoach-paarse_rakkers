@@ -46,6 +46,7 @@ export class RequestSessionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.feedback = '';
     this.coachId = String(this.route.snapshot.paramMap.get('coachId'));
     this.coacheeId = this.authenticationService.getUserId();
 
@@ -57,27 +58,29 @@ export class RequestSessionComponent implements OnInit {
   }
 
   save() {
-
     this.date = this.dateControl.value;
-    console.log(this.date.toString());
 
     this.session = <Session>{
 
       subject: this.sessionForm.value['topicName'],
       coacheeId: this.coacheeId,
       coachId: this.coachId,
-      moment: this.date.toString(),
+      moment: this.date.toISOString(),
       faceToFace: this.sessionForm.value['faceToFace'],
       remarks: this.sessionForm.value['remarks'],
       status: SessionStatus.REQUESTED
     }
 
-
     this.sessionService.save(this.session).subscribe(
       (sessionFromBackend) => {
-        this.router.navigate(['home']);
+        if (this.authenticationService.isCoachee()) {
+          this.router.navigate(['user', this.authenticationService.getUserId()]);
+        } else {
+          this.router.navigate(['coach', this.authenticationService.getUserId()]);
+        }
+
       }, (errors) => {
-        this.feedback = JSON.stringify(errors);
+        this.feedback = errors['error']['errors'];
       }
     );
   }
