@@ -41,9 +41,9 @@ public class SessionController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     //@PreAuthorize("hasAnyRole()")
-    public List<SessionDTO> getAllSessions(@RequestParam(required = false) String coachId) {
+    public List<SessionDTO> getAllSessions(@RequestParam(required = false) String userId) {
         logger.info("Getting all sessions");
-        return sessionService.getAllSessions(coachId);
+        return sessionService.getAllSessions(userId);
     }
 
     @SecurityRequirement(name = "javainuseapi")

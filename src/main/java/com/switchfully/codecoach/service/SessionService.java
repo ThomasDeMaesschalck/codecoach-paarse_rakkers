@@ -136,21 +136,28 @@ public class SessionService {
         return sessionMapper.toDTO(sessionToUpdate);
     }
 
-    public List<SessionDTO> getAllSessions(String coachId) {
+    public List<SessionDTO> getAllSessions(String userId) {
         setSessionsStatusToAwaitingFeedbackOrDoneIfLocalDateTimeIsInPast();
 
-        if (coachId != null) {
-            User coach = userService.getSpecificUserById(coachId);
-            userService.assertUserHasRoles(coach, UserRole.COACH, UserRole.ADMIN);
-            return sessionRepository.findAllByCoach(coach).stream()
+        if (userId != null) {
+            User user = userService.getSpecificUserById(userId);
+            if (user.getUserRole() == UserRole.COACH || user.getUserRole() == UserRole.ADMIN) {
+                return sessionRepository.findAllByCoachOrCoachee(user, user).stream()
+                        .map(sessionMapper::toDTO)
+                        .collect(Collectors.toList());
+            }
+            return sessionRepository.findAllByCoachee(user).stream()
                     .map(sessionMapper::toDTO)
                     .collect(Collectors.toList());
+
         } else
             return sessionRepository.findAll().stream()
                     .map(sessionMapper::toDTO)
                     .collect(Collectors.toList());
 
     }
+
+
 
     public SessionDTO getSessionDTO(String sessionId) {
         return sessionMapper.toDTO(getSession(sessionId));
