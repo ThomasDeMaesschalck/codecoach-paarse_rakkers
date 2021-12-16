@@ -3,6 +3,7 @@ package com.switchfully.codecoach.api.mappers;
 import com.switchfully.codecoach.api.dto.SessionDTO;
 import com.switchfully.codecoach.domain.Session;
 import com.switchfully.codecoach.domain.User;
+import com.switchfully.codecoach.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +19,7 @@ public class SessionMapper {
         this.coachFeedbackMapper = coachFeedbackMapper;
     }
 
-    public Session toEntity(SessionDTO sessionDTO, User coach, User coachee){
+    public Session toEntity(SessionDTO sessionDTO, User coach, User coachee) {
         return Session.builder()
                 .coach(coach)
                 .subject(sessionDTO.getSubject())
@@ -29,10 +30,10 @@ public class SessionMapper {
                 .status(sessionDTO.getStatus())
                 .coachFeedback(sessionDTO.getCoachFeedback() == null ? null : coachFeedbackMapper.toEntity(sessionDTO.getCoachFeedback()))
                 .coacheeFeedback(sessionDTO.getCoacheeFeedback() == null ? null : coacheeFeedbackMapper.toEntity(sessionDTO.getCoacheeFeedback()))
-            .build();
+                .build();
     }
 
-    public SessionDTO toDTO(Session session){
+    public SessionDTO toDTO(Session session) {
         return SessionDTO.builder()
                 .id(session.getId())
                 .subject(session.getSubject())
@@ -41,6 +42,8 @@ public class SessionMapper {
                 .faceToFace(session.isFaceToFace())
                 .moment(session.getMoment())
                 .remarks(session.getRemarks())
+                .coachName(session.getCoach().getFirstName() + " " + session.getCoach().getLastName())
+                .coacheeName(session.getCoachee().getFirstName() + " " + session.getCoachee().getLastName())
                 .coachFeedback(session.getCoachFeedback() == null ? null : coachFeedbackMapper.toDTO(session.getCoachFeedback()))
                 .coacheeFeedback(session.getCoacheeFeedback() == null ? null : coacheeFeedbackMapper.toDTO(session.getCoacheeFeedback()))
                 .status(session.getStatus())
