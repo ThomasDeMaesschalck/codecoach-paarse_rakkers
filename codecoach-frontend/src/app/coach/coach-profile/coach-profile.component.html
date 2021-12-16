@@ -32,6 +32,14 @@
         </div>
         <h5>Coach Profile Information</h5>
         <div class="divider"></div>
+
+        <div class="row right-align" *ngIf="authenticationService.getUserId()  != user.id">
+          <button type="submit" routerLink="/request-a-session/{{user.id}}"
+                  class="waves-effect waves-light purple darken-2 btn-large white-text">Request a Session<i
+            class="material-icons right">send</i></button>
+        </div>
+
+
         <div class="row">
           <div class="col l2 m2 s12">
             <img [src]="user.pictureURL" class="responsive-img circle"
