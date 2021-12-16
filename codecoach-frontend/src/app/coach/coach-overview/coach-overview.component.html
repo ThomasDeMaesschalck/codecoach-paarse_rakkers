@@ -35,8 +35,10 @@
           </header>
 
           <div class="row">
+            <div class="col l3 m4 s12" *ngIf="coaches.length === 0">No results</div>
 
             <div class="col l3 m4 s12" *ngFor="let coach of coaches">
+
               <h5 class="header">{{coach.firstName}} {{coach.lastName}}</h5>
               <div class="card horizontal">
                 <div class="card-image">
