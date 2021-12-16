@@ -22,8 +22,10 @@ export class SessionsOverviewComponent implements OnInit {
 
 
   constructor(private router: Router,
-              private sessionService: SessionService,
-              public authenticationService: AuthenticationService){ }
+              public sessionService: SessionService,
+              public authenticationService: AuthenticationService,
+              private userService: UserService) {
+  }
 
   ngOnInit(): void {
     this.userService.getById(this.authenticationService.getUserId()).subscribe(

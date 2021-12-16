@@ -10,7 +10,11 @@ export interface Session {
 
   coacheeId: string;
 
+  coacheeName: string
+
   coachId: string;
+
+  coachName: string
 
   moment: string;
 

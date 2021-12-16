@@ -8,6 +8,7 @@ import * as moment from 'moment';
 import {ThemePalette} from "@angular/material/core";
 import {SessionStatus} from "../../models/sessionstatus";
 
+
 @Component({
   selector: 'app-request-session',
   templateUrl: './request-session.component.html',
