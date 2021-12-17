@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../../authentication/authentication.service";
 import {SessionService} from "../session.service";
@@ -7,6 +7,7 @@ import {Session} from "../../models/session";
 
 import {UserService} from "../../user/user.service";
 import {SessionStatus} from "../../models/sessionstatus";
+import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-sessions-overview',
@@ -24,7 +25,8 @@ export class SessionsOverviewComponent implements OnInit {
   constructor(private router: Router,
               public sessionService: SessionService,
               public authenticationService: AuthenticationService,
-              private userService: UserService) {
+              private userService: UserService,
+              public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -95,6 +97,96 @@ export class SessionsOverviewComponent implements OnInit {
     this.sessionService.save(session).subscribe(
       (sessionFromBackend) => {
         this.ngOnInit();
+      }
+    );
+  }
+
+  openCoacheeFeedbackDialog(session: Session) {
+    this.dialog.open(CoacheeFeedbackDialog, {
+      minWidth: 500,
+      data: {
+        'id': session.id,
+        'subject': session.subject,
+        'coacheeId': session.coacheeId,
+        'coacheeName': session.coacheeName,
+        'coachId': session.coachId,
+        'coachName': session.coachName,
+        'moment': '',
+        'faceToFace': session.faceToFace,
+        'remarks': session.remarks,
+        'status': session.status,
+        'coachFeedback': session.coachFeedback,
+        'coacheeFeedback': session.coacheeFeedback
+      },
+    });
+  }
+
+  openCoachFeedbackDialog(session: Session) {
+    this.dialog.open(CoachFeedbackDialog, {
+      minWidth: 500,
+      data: {
+        'id': session.id,
+        'subject': session.subject,
+        'coacheeId': session.coacheeId,
+        'coacheeName': session.coacheeName,
+        'coachId': session.coachId,
+        'coachName': session.coachName,
+        'moment': '',
+        'faceToFace': session.faceToFace,
+        'remarks': session.remarks,
+        'status': session.status,
+        'coachFeedback': session.coachFeedback,
+        'coacheeFeedback': session.coacheeFeedback
+      },
+    });
+  }
+
+}
+
+
+
+@Component({
+  selector: 'dialog-data-example-dialog',
+  templateUrl: '../feedback/coachee_feedback.html',
+})
+export class CoacheeFeedbackDialog {
+  feedback?: any = {};
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Session, private sessionService: SessionService) {
+    data.coacheeFeedback = {};
+  }
+
+
+  save() {
+    this.sessionService.save(this.data).subscribe(
+      (sessionFromBackend) => {
+        window.location.reload();
+      }, (errors) => {
+        this.feedback = errors['error']['errors'];
+      }
+    );
+  }
+}
+
+
+@Component({
+  selector: 'dialog-data-example-dialog2',
+  templateUrl: '../feedback/coach_feedback.html',
+})
+export class CoachFeedbackDialog {
+  feedback?: any = {};
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Session, private sessionService: SessionService) {
+    data.coachFeedback = {};
+  }
+
+
+  save() {
+    this.sessionService.save(this.data).subscribe(
+      (sessionFromBackend) => {
+        window.location.reload();
+      }, (errors) => {
+        this.feedback = errors['error']['errors'];
       }
     );
   }

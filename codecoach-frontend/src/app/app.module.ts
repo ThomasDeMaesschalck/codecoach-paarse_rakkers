@@ -24,7 +24,10 @@ import {MatInputModule} from "@angular/material/input";
 import { EditCoachComponent } from './coach/edit-coach/edit-coach.component';
 import { RequestAChangeComponent } from './user/request-a-change/request-a-change.component';
 import { RequestSessionComponent } from './session/request-session/request-session.component';
-import { SessionsOverviewComponent } from './session/sessions-overview/sessions-overview.component';
+import {
+  CoacheeFeedbackDialog, CoachFeedbackDialog,
+  SessionsOverviewComponent
+} from './session/sessions-overview/sessions-overview.component';
 import {NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule} from "@angular-material-components/datetime-picker";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatButtonModule} from "@angular/material/button";
@@ -33,6 +36,7 @@ import {MatRadioModule} from "@angular/material/radio";
 import { DatePipePipe } from './pipe/date-pipe.pipe';
 import { BooleanPipe } from './pipe/boolean.pipe';
 import {BecomeACoachComponent} from "./coach/become-a-coach/become-a-coach.component";
+import { SessionstatusPipe } from './pipe/sessionstatus.pipe';
 
 
 @NgModule({
@@ -53,7 +57,10 @@ import {BecomeACoachComponent} from "./coach/become-a-coach/become-a-coach.compo
     RequestSessionComponent,
     SessionsOverviewComponent,
     DatePipePipe,
-    BooleanPipe
+    BooleanPipe,
+    SessionstatusPipe,
+    CoacheeFeedbackDialog,
+    CoachFeedbackDialog
   ],
   imports: [
     BrowserModule,

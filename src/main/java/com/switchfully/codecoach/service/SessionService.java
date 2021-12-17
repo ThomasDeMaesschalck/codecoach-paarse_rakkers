@@ -115,12 +115,12 @@ public class SessionService {
 
             case DONE_WAITING_FEEDBACK:
 
-                if (dto.getCoachFeedback() != null && sessionToUpdate.getCoach().equals(caller)) {
-                    sessionToUpdate.setCoachFeedback(coachFeedbackMapper.toEntity(dto.getCoachFeedback()));
+                if (dto.getCoacheeFeedback() != null && sessionToUpdate.getCoach().equals(caller)) {
+                    sessionToUpdate.setCoacheeFeedback(coacheeFeedbackMapper.toEntity(dto.getCoacheeFeedback()));
                     closeSessionIfFeedbackIsGivenByBothParties(sessionToUpdate);
 
-                } else if (dto.getCoacheeFeedback() != null && sessionToUpdate.getCoachee().equals(caller)) {
-                    sessionToUpdate.setCoacheeFeedback(coacheeFeedbackMapper.toEntity(dto.getCoacheeFeedback()));
+                } else if (dto.getCoachFeedback() != null && sessionToUpdate.getCoachee().equals(caller)) {
+                    sessionToUpdate.setCoachFeedback(coachFeedbackMapper.toEntity(dto.getCoachFeedback()));
                     closeSessionIfFeedbackIsGivenByBothParties(sessionToUpdate);
 
                 } else {

@@ -4,8 +4,10 @@
     <div class="content-container">
       <h6>Coach Profile</h6>
       <div class="collection">
-        <a class="collection-item grey-text text-darken-2" *ngIf="this.authenticationService.isCoachee()" [routerLink]="['/user', user.id]">Profile Information</a>
-        <a class="collection-item grey-text text-darken-2" *ngIf="!this.authenticationService.isCoachee()" [routerLink]="['/coach', user.id]">Profile Information</a>
+        <a class="collection-item grey-text text-darken-2" *ngIf="this.authenticationService.isCoachee()"
+           [routerLink]="['/user', user.id]">Profile Information</a>
+        <a class="collection-item grey-text text-darken-2" *ngIf="!this.authenticationService.isCoachee()"
+           [routerLink]="['/coach', user.id]">Profile Information</a>
 
         <a class="collection-item grey-text text-darken-4"
            *ngIf="authenticationService.isCoachee()"
@@ -49,20 +51,24 @@
                 <td>{{session.subject}}</td>
                 <td>{{session.moment | datePipe}}</td>
                 <td>{{session.faceToFace | boolean}}</td>
-                <td>{{session.status}}</td>
+                <td>{{session.status! | sessionstatus}}</td>
 
                 <td>
-                  <a *ngIf="isUserCoacheeOfSession(session)" (click)="coacheeCancels(session)" class="waves-effect waves-light  grey lighten-2 btn black-text">Cancel<i
-                  class="material-icons right">cancel</i></a>
-
-
-                  <a *ngIf="isUserCoachOfSession(session) && session.status!.toString() === 'REQUESTED'" (click)="coachDeclines(session)" class="waves-effect waves-light  grey lighten-2 btn black-text">Decline<i
+                  <a *ngIf="isUserCoacheeOfSession(session)" (click)="coacheeCancels(session)"
+                     class="waves-effect waves-light  grey lighten-2 btn black-text">Cancel<i
                     class="material-icons right">cancel</i></a>
 
-                  <a *ngIf="isUserCoachOfSession(session) && session.status!.toString() === 'ACCEPTED'" (click)="coachCancels(session)" class="waves-effect waves-light  grey lighten-2 btn black-text">Cancel<i
+
+                  <a *ngIf="isUserCoachOfSession(session) && session.status!.toString() === 'REQUESTED'"
+                     (click)="coachDeclines(session)" class="waves-effect waves-light  grey lighten-2 btn black-text">Decline<i
                     class="material-icons right">cancel</i></a>
 
-                  <a *ngIf="isUserCoachOfSession(session) && session.status!.toString() === 'REQUESTED'" (click)="coachAccepts(session)" class="waves-effect waves-light  purple lighten-2 btn black-text">Accept<i
+                  <a *ngIf="isUserCoachOfSession(session) && session.status!.toString() === 'ACCEPTED'"
+                     (click)="coachCancels(session)" class="waves-effect waves-light  grey lighten-2 btn black-text">Cancel<i
+                    class="material-icons right">cancel</i></a>
+
+                  <a *ngIf="isUserCoachOfSession(session) && session.status!.toString() === 'REQUESTED'"
+                     (click)="coachAccepts(session)" class="waves-effect waves-light  purple lighten-2 btn black-text">Accept<i
                     class="material-icons right">check</i></a>
                 </td>
               </tr>
@@ -98,10 +104,15 @@
                 <td>{{session.subject}}</td>
                 <td>{{session.moment | datePipe}}</td>
                 <td>{{session.faceToFace | boolean}}</td>
-                <td>{{session.status}}</td>
+                <td>{{session.status!  | sessionstatus}}</td>
 
-                <td><a class="waves-effect waves-light  grey lighten-2 btn black-text">Give feedback<i
-                  class="material-icons right">feedback</i></a></td>
+                <td>
+                  <a *ngIf="isUserCoachOfSession(session) && !session.coacheeFeedback" (click)="openCoacheeFeedbackDialog(session)" class="waves-effect waves-light  grey lighten-2 btn black-text">Give coachee feedback<i
+                    class="material-icons right">feedback</i></a>
+
+                  <a *ngIf="isUserCoacheeOfSession(session) && !session.coachFeedback" mat-button (click)="openCoachFeedbackDialog(session)" class="waves-effect waves-light  grey lighten-2 btn black-text">Give coach feedback<i
+                    class="material-icons right">feedback</i></a>
+                </td>
               </tr>
 
               </tbody>
@@ -135,7 +146,7 @@
                 <td>{{session.subject}}</td>
                 <td>{{session.moment | datePipe}}</td>
                 <td>{{session.faceToFace | boolean}}</td>
-                <td>{{session.status}}</td>
+                <td>{{session.status!  | sessionstatus}}</td>
               </tr>
 
               </tbody>

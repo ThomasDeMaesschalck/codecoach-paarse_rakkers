@@ -1,0 +1,51 @@
+<form *ngIf="data" #coacheeFeedbackForm="ngForm" (ngSubmit)="save()" class="col s12">
+<h5>Give coachee feedback:</h5>
+
+  <div class="row">
+    <div class="input-field col-12">
+      <textarea id="positives" type="text" name="positives"
+             [(ngModel)]="data.coacheeFeedback!.positives" class="validate" >
+      </textarea>
+      <label for="positives">What was positive about the session?</label>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="input-field col-12">
+      <textarea id="workingPoints" type="text" name="workingPoints"
+             [(ngModel)]="data.coacheeFeedback!.workingPoints" class="validate" >
+         </textarea>
+      <label for="workingPoints">Working points for the coachee?</label>
+    </div>
+  </div>
+
+
+  <div class="row">
+  <div class="input-field col-12">
+      <input id="preparedness" type="number" name="preparedness"
+                [(ngModel)]="data.coacheeFeedback!.preparedness" class="validate" />
+    <label for="preparedness">How well was the coachee prepared? (0-10)</label>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="input-field col-12">
+    <input id="willingness" type="number" name="willingness"
+           [(ngModel)]="data.coacheeFeedback!.willingness" class="validate" />
+    <label for="willingness">How willing was the coachee to learn? (0-10)</label>
+  </div>
+  </div>
+
+  <div class="row">
+  <div *ngIf="feedback" class="error-text">
+    <div *ngFor="let error of feedback">
+      {{error}}
+    </div>
+  </div>
+  </div>
+
+  <div class="row right-align">
+    <button type="submit" class="waves-effect waves-light purple darken-4 btn-large white-text">Submit<i
+      class="material-icons right">send</i></button>
+  </div>
+</form>
