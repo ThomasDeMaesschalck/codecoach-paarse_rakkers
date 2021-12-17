@@ -24,7 +24,7 @@ export class RequestSessionComponent implements OnInit {
 
   @ViewChild('picker') picker: any;
 
-  public date!: moment.Moment;
+  public date!: Date;
   public disabled = false;
   public showSpinners = true;
   public showSeconds = false;
