@@ -44,7 +44,8 @@ export class SessionsOverviewComponent implements OnInit {
         this.requestedSessions = response.filter(session => (session.status!.toString() === 'REQUESTED' || session.status!.toString() === 'ACCEPTED'));
 
         this.awaitingFeedbackSessions = response.filter(session => session.status!.toString() === 'DONE_WAITING_FEEDBACK');
-        this.archivedSessions = response.filter(session => session.status!.toString() === 'DONE' || session.status!.toString() === 'CANCELED_BY_COACH' || session.status!.toString() === 'CANCELED_BY_COACHEE');
+        this.archivedSessions = response.filter(session => session.status!.toString() === 'DONE' || session.status!.toString() === 'CANCELED_BY_COACH' ||
+          session.status!.toString() === 'CANCELED_BY_COACHEE' || session.status!.toString() === 'DECLINED');
 
       }
     )
