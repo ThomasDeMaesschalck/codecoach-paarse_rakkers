@@ -50,6 +50,13 @@ export class SessionsOverviewComponent implements OnInit {
     )
   }
 
+  isUserCoacheeOfSession(session: Session): boolean {
+    return this.authenticationService.getUserId() === session.coacheeId;
+  }
+
+  isUserCoachOfSession(session: Session): boolean {
+    return this.authenticationService.getUserId() === session.coachId;
+  }
 
   isLoggedInUserProfile(): boolean {
     return this.user.id === this.authenticationService.getUserId();
