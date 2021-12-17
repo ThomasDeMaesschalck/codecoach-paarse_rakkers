@@ -43,12 +43,7 @@ export class RegisterComponent implements OnInit {
         this.authenticationService.login(this.login).subscribe(value =>
           this.router.navigate(['user', this.user.id])
         );
-/*
-        setTimeout(() => {
-          this.feedback = "Saving...";
 
-        }, 500);
-*/
 
       },(errors) => {
         this.feedback = errors['error']['errors'];

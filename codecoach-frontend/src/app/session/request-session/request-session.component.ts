@@ -60,6 +60,7 @@ export class RequestSessionComponent implements OnInit {
 
   save() {
     this.date = this.dateControl.value;
+    this.date.setHours(this.date.getHours() + 1);
 
     this.session = <Session>{
 
@@ -72,13 +73,15 @@ export class RequestSessionComponent implements OnInit {
       status: SessionStatus.REQUESTED
     }
 
-    this.sessionService.save(this.session).subscribe(
+      this.sessionService.save(this.session).subscribe(
       (sessionFromBackend) => {
-          this.router.navigate(['sessions-overview']);
+
+        this.router.navigate(['sessions-overview']);
       }, (errors) => {
         this.feedback = errors['error']['errors'];
       }
-    );
+
+  );
   }
 
   closePicker() {
