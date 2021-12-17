@@ -44,7 +44,7 @@ export class SessionsOverviewComponent implements OnInit {
         this.requestedSessions = response.filter(session => (session.status!.toString() === 'REQUESTED' || session.status!.toString() === 'ACCEPTED'));
 
         this.awaitingFeedbackSessions = response.filter(session => session.status!.toString() === 'DONE_WAITING_FEEDBACK');
-        this.archivedSessions = response.filter(session => session.status!.toString() === 'DONE' || session.status!.toString() === 'CANCELED_BY_COACH' || session.status!.toString() === 'CANCELED_BY_COACHEE' );
+        this.archivedSessions = response.filter(session => session.status!.toString() === 'DONE' || session.status!.toString() === 'CANCELED_BY_COACH' || session.status!.toString() === 'CANCELED_BY_COACHEE');
 
       }
     )
@@ -55,4 +55,39 @@ export class SessionsOverviewComponent implements OnInit {
     return this.user.id === this.authenticationService.getUserId();
   }
 
+  coacheeCancels(session: Session): void {
+    session.status = SessionStatus.CANCELED_BY_COACHEE;
+    this.sessionService.save(session).subscribe(
+      (sessionFromBackend) => {
+        this.ngOnInit();
+      }
+    );
+  }
+
+  coachDeclines(session: Session): void {
+    session.status = SessionStatus.DECLINED;
+    this.sessionService.save(session).subscribe(
+      (sessionFromBackend) => {
+        this.ngOnInit();
+      }
+    );
+  }
+
+  coachCancels(session: Session): void {
+    session.status = SessionStatus.CANCELED_BY_COACH;
+    this.sessionService.save(session).subscribe(
+      (sessionFromBackend) => {
+        this.ngOnInit();
+      }
+    );
+  }
+
+  coachAccepts(session: Session): void {
+    session.status = SessionStatus.ACCEPTED;
+    this.sessionService.save(session).subscribe(
+      (sessionFromBackend) => {
+        this.ngOnInit();
+      }
+    );
+  }
 }

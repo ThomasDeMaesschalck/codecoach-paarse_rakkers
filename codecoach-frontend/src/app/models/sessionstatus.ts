@@ -4,5 +4,6 @@ export enum SessionStatus {
   CANCELED_BY_COACHEE,
   DONE_WAITING_FEEDBACK,
   DONE,
-  ACCEPTED
+  ACCEPTED,
+  DECLINED
 }

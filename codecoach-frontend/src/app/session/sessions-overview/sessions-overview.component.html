@@ -51,8 +51,20 @@
                 <td>{{session.faceToFace | boolean}}</td>
                 <td>{{session.status}}</td>
 
-                <td><a class="waves-effect waves-light  grey lighten-2 btn black-text">Cancel<i
-                  class="material-icons right">cancel</i></a></td>
+                <td>
+                  <a *ngIf="isUserCoacheeOfSession(session)" (click)="coacheeCancels(session)" class="waves-effect waves-light  grey lighten-2 btn black-text">Cancel<i
+                  class="material-icons right">cancel</i></a>
+
+
+                  <a *ngIf="isUserCoachOfSession(session) && session.status!.toString() === 'REQUESTED'" (click)="coachDeclines(session)" class="waves-effect waves-light  grey lighten-2 btn black-text">Decline<i
+                    class="material-icons right">cancel</i></a>
+
+                  <a *ngIf="isUserCoachOfSession(session) && session.status!.toString() === 'ACCEPTED'" (click)="coachCancels(session)" class="waves-effect waves-light  grey lighten-2 btn black-text">Cancel<i
+                    class="material-icons right">cancel</i></a>
+
+                  <a *ngIf="isUserCoachOfSession(session) && session.status!.toString() === 'REQUESTED'" (click)="coachAccepts(session)" class="waves-effect waves-light  purple lighten-2 btn black-text">Accept<i
+                    class="material-icons right">check</i></a>
+                </td>
               </tr>
 
               </tbody>

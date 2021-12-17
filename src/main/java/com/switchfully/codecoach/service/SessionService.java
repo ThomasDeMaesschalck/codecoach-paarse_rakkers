@@ -81,11 +81,10 @@ public class SessionService {
         var authorization = jwtGenerator.convertToken(authToken.replace("Bearer ", ""));
         User caller = userRepository.findByEmail(authorization.getName()).get();
 
-
         switch (sessionToUpdate.getStatus()) {
 
             case REQUESTED:
-
+            System.out.println(dto.getStatus() + "" + caller.getId()  + "" + caller.getUserRole().toString());
                 if (dto.getStatus() == SessionStatus.ACCEPTED && sessionToUpdate.getCoach().equals(caller)) {
                     sessionToUpdate.setStatus(SessionStatus.ACCEPTED);
 
