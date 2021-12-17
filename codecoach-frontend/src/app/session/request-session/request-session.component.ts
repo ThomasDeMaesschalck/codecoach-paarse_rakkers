@@ -74,12 +74,7 @@ export class RequestSessionComponent implements OnInit {
 
     this.sessionService.save(this.session).subscribe(
       (sessionFromBackend) => {
-        if (this.authenticationService.isCoachee()) {
-          this.router.navigate(['user', this.authenticationService.getUserId()]);
-        } else {
-          this.router.navigate(['coach', this.authenticationService.getUserId()]);
-        }
-
+          this.router.navigate(['sessions-overview']);
       }, (errors) => {
         this.feedback = errors['error']['errors'];
       }

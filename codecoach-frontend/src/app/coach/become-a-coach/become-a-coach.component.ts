@@ -17,15 +17,12 @@ export class BecomeACoachComponent implements OnInit {
 
   constructor(private userService: UserService,
               private location: Location,
+              private router: Router,
               private route: ActivatedRoute,) {
    this.coacheeId = this.route.snapshot.paramMap.get('id')!;
   }
 
   ngOnInit(): void {
-  }
-
-  back(): void {
-    this.location.back();
   }
 
 
@@ -38,7 +35,7 @@ export class BecomeACoachComponent implements OnInit {
 
        this.userService.save(this.user).subscribe(
          (user) => {
-           this.back();
+           this.router.navigate(['coach', this.user.id])
          }
        );
      }

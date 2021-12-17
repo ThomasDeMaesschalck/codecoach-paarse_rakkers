@@ -32,6 +32,7 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {MatRadioModule} from "@angular/material/radio";
 import { DatePipePipe } from './pipe/date-pipe.pipe';
 import { BooleanPipe } from './pipe/boolean.pipe';
+import {BecomeACoachComponent} from "./coach/become-a-coach/become-a-coach.component";
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { BooleanPipe } from './pipe/boolean.pipe';
     HeaderComponent,
     UserProfileComponent,
     RegisterComponent,
+    BecomeACoachComponent,
     EditUserProfileComponent,
     CoachProfileComponent,
     CoachOverviewComponent,
