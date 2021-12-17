@@ -46,6 +46,8 @@ export class RegisterComponent implements OnInit {
         setTimeout(() => {
           this.router.navigate(['user', this.user.id]);
         }, 500);
+*/
+
       },(errors) => {
         this.feedback = errors['error']['errors'];
       }

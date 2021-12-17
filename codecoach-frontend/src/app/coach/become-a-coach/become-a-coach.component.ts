@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../user/user.service";
 import {Location} from '@angular/common'
 import {User} from "../../models/user";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UserRole} from "../../models/userrole";
 
 @Component({
@@ -45,5 +45,9 @@ export class BecomeACoachComponent implements OnInit {
    );
 
 
+  }
+
+  back() {
+    this.location.back();
   }
 }
