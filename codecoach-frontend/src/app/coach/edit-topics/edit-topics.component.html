@@ -70,7 +70,9 @@
 
             </form>
 
-            <div class="row">
+            <div class="row" *ngIf="coachTopicItems.length < 2">
+              <h5>Coach Information - Add coaching topics</h5>
+
               <form [formGroup]="saveNewTopic">
 
                 <div class="col s3">
@@ -78,6 +80,7 @@
                     <select matNativeControl required class="form-control" formControlName="topicName">
                       <option [ngValue]="null" [disabled]="true">Select Topic</option>
                       <option *ngFor="let topicname of topics"
+                              [disabled]="coachTopicItems[0] && coachTopicItems[0].topicName === topicname"
                               [ngValue]="topicname">{{topicname}}</option>
                     </select>
                   </mat-form-field>
@@ -96,10 +99,9 @@
                           (click)="addItem()">Add <i class="material-icons right">add</i></button>
                 </div>
               </form>
-
-
-
-
+            </div>
+            <div class="row" *ngIf="coachTopicItems.length === 2">
+              <p>Maximum amount of topics reached.</p>
             </div>
 
 
