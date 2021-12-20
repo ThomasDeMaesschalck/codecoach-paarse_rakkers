@@ -1,0 +1,36 @@
+<h5>Feedback for {{data.coachName}}</h5>
+<div class="row">
+  <div class="input-field col-12">
+      <textarea disabled="true" id="positives"
+                value="{{data.coachFeedback!.positives}}" >
+      </textarea>
+    <label class="active" for="positives">What was positive about the session?</label>
+  </div>
+</div>
+
+<div class="row">
+  <div class="input-field col-12">
+      <textarea disabled="true"  id="workingPoints" type="text" name="workingPoints"
+                value="{{data.coachFeedback!.workingPoints}}" class="validate" >
+         </textarea>
+    <label class="active" for="workingPoints">Working points for the coachee?</label>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="input-field col-12">
+    <input id="preparedness" type="number" name="preparedness" disabled="true"
+           value="{{data.coachFeedback!.usefulness}}" class="validate" />
+    <label class="active" for="preparedness">How usefull was the coach? (0-10)</label>
+  </div>
+</div>
+
+<div class="row">
+  <div class="input-field col-12">
+    <input id="willingness" type="number" name="willingness" disabled="true"
+           value="{{data.coachFeedback!.clarity}}" class="validate" />
+    <label class="active" for="willingness">Clarity of the coach? (0-10)</label>
+  </div>
+</div>
+

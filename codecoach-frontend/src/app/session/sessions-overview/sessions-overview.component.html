@@ -139,6 +139,8 @@
                 <th>Date</th>
                 <th>Face to face</th>
                 <th>Status</th>
+                <th>Actions</th>
+
               </tr>
               </thead>
               <tbody>
@@ -149,7 +151,16 @@
                 <td>{{session.subject}}</td>
                 <td>{{session.moment | datePipe}}</td>
                 <td>{{session.faceToFace | boolean}}</td>
-                <td>{{session.status!  | sessionstatus}}</td>
+                <td>{{session.status!  | sessionstatus}}
+
+                  <td>
+                <a *ngIf="isUserCoacheeOfSession(session) && session.coacheeFeedback" mat-button (click)="openMyCoacheeFeedbackDialog(session)" class="waves-effect waves-light  grey lighten-2 btn black-text">Show Feedback<i
+                    class="material-icons right">comment</i></a>
+
+                <a *ngIf="isUserCoachOfSession(session) && session.coachFeedback" mat-button (click)="openMyCoachFeedbackDialog(session)" class="waves-effect waves-light  grey lighten-2 btn black-text">Show Feedback<i
+                  class="material-icons right">comment</i></a>
+
+              </td>
               </tr>
 
               </tbody>

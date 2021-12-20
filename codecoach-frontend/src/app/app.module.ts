@@ -25,7 +25,7 @@ import { EditCoachComponent } from './coach/edit-coach/edit-coach.component';
 import { RequestAChangeComponent } from './user/request-a-change/request-a-change.component';
 import { RequestSessionComponent } from './session/request-session/request-session.component';
 import {
-  CoacheeFeedbackDialog, CoachFeedbackDialog,
+  CoacheeFeedbackDialog, CoachFeedbackDialog, MyCoacheeFeedbackDialog, MyCoachFeedbackDialog,
   SessionsOverviewComponent
 } from './session/sessions-overview/sessions-overview.component';
 import {NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule} from "@angular-material-components/datetime-picker";
@@ -62,7 +62,9 @@ import { EditTopicsComponent } from './coach/edit-topics/edit-topics.component';
     SessionstatusPipe,
     CoacheeFeedbackDialog,
     CoachFeedbackDialog,
-    EditTopicsComponent
+    EditTopicsComponent,
+    MyCoacheeFeedbackDialog,
+    MyCoachFeedbackDialog
   ],
   imports: [
     BrowserModule,
