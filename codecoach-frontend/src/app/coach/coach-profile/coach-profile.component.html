@@ -82,7 +82,7 @@
       <section class="card-panel grey lighten-5" *ngIf="user.coachInfo">
         <div class="right">
           <a class="waves-effect waves-light btn-large btn-floating purple darken-4"
-             *ngIf="isLoggedInUserProfile()" routerLink="/coach-edit/{{user.id}}">
+             *ngIf="isLoggedInUserProfile() ||  this.authenticationService.isAdmin()" routerLink="/coach-edit/{{user.id}}">
             <i class="material-icons left">edit</i>Edit</a>
         </div>
         <h5>Coach Information</h5>

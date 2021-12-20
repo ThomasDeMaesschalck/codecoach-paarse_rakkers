@@ -48,6 +48,8 @@ export class EditTopicsComponent implements OnInit {
     this.getUser();
     this.coachTopicItems = [];
     this.topicService.getTopics().subscribe(topics => this.topics = topics);
+
+
   }
 
   getUser() {
@@ -71,8 +73,9 @@ export class EditTopicsComponent implements OnInit {
     this.userService.save(this.user).subscribe(
       (userFromBackend) => {
         this.user = userFromBackend;
+        this.ngOnInit();
       }, (errors) => {
-        this.feedback = errors['error']['errors'];
+        this.feedback = errors;
       }
     );
   }
