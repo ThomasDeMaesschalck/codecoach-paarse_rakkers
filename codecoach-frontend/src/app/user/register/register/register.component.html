@@ -51,6 +51,14 @@
                   </div>
                 </div>
 
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="phoneNumber" type="text" name="phoneNumber" [(ngModel)]="user.phoneNumber"
+                           class="validate">
+                    <label for="phoneNumber">Phone number</label>
+                  </div>
+                </div>
+
                 <div *ngIf="feedback" class="error-text">
                   <div *ngFor="let error of feedback">
                     {{error}}
