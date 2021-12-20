@@ -1,18 +1,27 @@
 :host ::ng-deep .mat-radio-container{
-  height: 10px;
-  width: 10px;
+  height: 0px !important;
+  width: 0px !important;
 }
 :host ::ng-deep .mat-radio-outer-circle{
-  height: 10px;
-  width: 10px;
+  height: 0px !important;
+  width: 0px !important;
 }
 :host ::ng-deep .mat-radio-inner-circle{
-  height: 10px;
-  width: 10px;
+  height: 0px !important;
+  width: 0px !important;
 }
 :host ::ng-deep .mat-radio-button .mat-radio-ripple{
-  height: 20px; /*double of your required circle radius*/
-  width: 20px;  /*double of your required circle radius*/
-  left: calc(50% - 10px); /*'10px'-same as your required circle radius*/
-  top: calc(50% - 10px); /*'10px'-same as your required circle radius*/
+  height: 20px !important; /*double of your required circle radius*/
+  width: 20px !important;  /*double of your required circle radius*/
+  left: calc(50% - 10px) !important; /*'10px'-same as your required circle radius*/
+  top: calc(50% - 10px) !important; /*'10px'-same as your required circle radius*/
+}
+
+:host ::ng-deep .mat-radio-button {
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+}
+
+.radioSelection {
+  margin-left: 3px;
 }
