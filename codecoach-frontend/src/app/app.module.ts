@@ -37,6 +37,7 @@ import { DatePipePipe } from './pipe/date-pipe.pipe';
 import { BooleanPipe } from './pipe/boolean.pipe';
 import {BecomeACoachComponent} from "./coach/become-a-coach/become-a-coach.component";
 import { SessionstatusPipe } from './pipe/sessionstatus.pipe';
+import { EditTopicsComponent } from './coach/edit-topics/edit-topics.component';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { SessionstatusPipe } from './pipe/sessionstatus.pipe';
     BooleanPipe,
     SessionstatusPipe,
     CoacheeFeedbackDialog,
-    CoachFeedbackDialog
+    CoachFeedbackDialog,
+    EditTopicsComponent
   ],
   imports: [
     BrowserModule,
