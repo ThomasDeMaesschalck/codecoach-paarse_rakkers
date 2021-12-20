@@ -25,7 +25,6 @@ export class EditUserProfileComponent implements OnInit {
               private router: Router) {
   }
 
-
   ngOnInit(): void {
     this.getUser();
     this.userRoles = Object.values(UserRole);
@@ -45,7 +44,9 @@ export class EditUserProfileComponent implements OnInit {
             lastName: user.lastName,
             email: user.email,
             pictureURL: user.pictureURL,
-            companyTeam: user.companyTeam});
+            companyTeam: user.companyTeam,
+            phoneNumber: user.phoneNumber,
+          });
         });
     }
   }
@@ -58,6 +59,7 @@ export class EditUserProfileComponent implements OnInit {
     this.user.email = this.editUserForm.value['email'];
     this.user.pictureURL = this.editUserForm.value['pictureURL'];
     this.user.companyTeam = this.editUserForm.value['companyTeam'];
+    this.user.phoneNumber = this.editUserForm.value['phoneNumber'];
 
     this.setUserRole();
 
@@ -81,7 +83,12 @@ export class EditUserProfileComponent implements OnInit {
         this.user = userFromBackend;
         console.log('message::::', userFromBackend);
         setTimeout(() => {
-          this.router.navigate(['user', this.user.id]);
+          if(this.authenticationService.isCoachee()) {
+            this.router.navigate(['user', this.user.id]);
+          }
+          else {
+            this.router.navigate(['coach', this.user.id]);
+          }
         }, 500);
 
       }, (errors) => {

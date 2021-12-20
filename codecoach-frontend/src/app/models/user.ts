@@ -10,6 +10,7 @@ export interface User {
   password: string;
   pictureURL: string;
   companyTeam: string;
+  phoneNumber: string;
   userRole?: UserRole;
   coachInfo?: CoachInfo;
 }

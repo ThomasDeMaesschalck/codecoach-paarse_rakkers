@@ -41,6 +41,9 @@ public class User implements Account {
     @Column(name = "company_team")
     private String companyTeam;
 
+    @Column(name = "phoneNumber")
+    private String phoneNumber;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private UserRole userRole;

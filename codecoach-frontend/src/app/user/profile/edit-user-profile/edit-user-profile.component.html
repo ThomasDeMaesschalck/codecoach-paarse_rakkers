@@ -56,6 +56,14 @@
             </div>
           </div>
 
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="phoneNumber" type="text" name="phoneNumber" formControlName="phoneNumber"
+                     class="validate">
+              <label for="phoneNumber">Phone number</label>
+            </div>
+          </div>
+
           <div class="row" *ngIf="loggedInUserIsAdmin()">
             <div class="select-f col l6 m6 s12">
 

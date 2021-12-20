@@ -20,7 +20,7 @@ public class UserDTO {
     private String lastName;
     @Email(message ="Email has to be valid")
     private String email;
-    @NotBlank(message = "Password name cannot be blank") @NotNull(message = "Password name cannot be null")
+    @NotBlank(message = "Password cannot be blank") @NotNull(message = "Password cannot be null")
     @Size(min = 8, message="Password has to be longer than 8 characters")
     @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$",
             message = "Password must have 8 characters, and contain at least one uppercase letter, one lowercase letter and one number.")
@@ -28,6 +28,9 @@ public class UserDTO {
 
     private String pictureURL;
     private String companyTeam;
+    @NotBlank(message = "Phone number cannot be blank") @NotNull(message = "Phone number name cannot be null")
+    private String phoneNumber;
+
     private UserRole userRole;
     @Valid
     private CoachInfoDTO coachInfo;

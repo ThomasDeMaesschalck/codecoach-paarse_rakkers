@@ -30,7 +30,8 @@ export class RegisterComponent implements OnInit {
       password: '',
       address: '',
       pictureURL: '',
-      companyTeam: ''
+      companyTeam: '',
+      phoneNumber: ''
     };
   }
 

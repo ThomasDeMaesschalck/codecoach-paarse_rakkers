@@ -86,14 +86,16 @@ public class UserService implements AccountService {
         if (dto.getUserRole() == UserRole.COACH) {
             if (dto.getCoachInfo() != null) {
                 userFromDB.setCoachInfo(coachInfoMapper.toEntity(dto.getCoachInfo()));
-            }
-            if(dto.getCoachInfo().getTopics() != null && dto.getCoachInfo().getTopics().size() == 2)
-            {
-                if(dto.getCoachInfo().getTopics().get(0).getTopicName().equals(dto.getCoachInfo().getTopics().get(1).getTopicName()))
+
+                if(dto.getCoachInfo().getTopics() != null && dto.getCoachInfo().getTopics().size() == 2)
                 {
-                    throw new IllegalArgumentException("Can't have two identical topics");
+                    if(dto.getCoachInfo().getTopics().get(0).getTopicName().equals(dto.getCoachInfo().getTopics().get(1).getTopicName()))
+                    {
+                        throw new IllegalArgumentException("Can't have two identical topics");
+                    }
                 }
             }
+
             userFromDB.setUserRole(UserRole.COACH);
         }
 
