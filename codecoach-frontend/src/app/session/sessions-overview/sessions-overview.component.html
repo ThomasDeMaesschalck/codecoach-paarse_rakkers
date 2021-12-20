@@ -45,6 +45,7 @@
               </tr>
               </thead>
               <tbody>
+              <tr *ngIf="requestedSessions.length === 0">No requested sessions.</tr>
               <tr *ngFor="let session of requestedSessions">
                 <td>{{session.coachName}} </td>
                 <td>{{session.coacheeName}}</td>
@@ -98,6 +99,7 @@
               </tr>
               </thead>
               <tbody>
+              <tr *ngIf="awaitingFeedbackSessions.length === 0">No sessions that require feedback.</tr>
               <tr *ngFor="let session of awaitingFeedbackSessions">
                 <td>{{session.coachName}} </td>
                 <td>{{session.coacheeName}}</td>
@@ -140,8 +142,9 @@
               </tr>
               </thead>
               <tbody>
+              <tr *ngIf="archivedSessions.length === 0">No archived sessions found.</tr>
               <tr *ngFor="let session of archivedSessions">
-                <td>{{session.coachName}} </td>
+              <td>{{session.coachName}} </td>
                 <td>{{session.coacheeName}}</td>
                 <td>{{session.subject}}</td>
                 <td>{{session.moment | datePipe}}</td>
