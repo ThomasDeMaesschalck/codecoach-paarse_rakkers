@@ -82,6 +82,7 @@ public class UserService implements AccountService {
         userFromDB.setLastName(dto.getLastName());
         userFromDB.setCompanyTeam(dto.getCompanyTeam());
         userFromDB.setPictureURL(dto.getPictureURL());
+        userFromDB.setPhoneNumber(dto.getPhoneNumber());
 
         if (dto.getUserRole() == UserRole.COACH) {
             if (dto.getCoachInfo() != null) {

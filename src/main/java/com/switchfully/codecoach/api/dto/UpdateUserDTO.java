@@ -20,6 +20,7 @@ public class UpdateUserDTO {
     private String pictureURL;
     private String companyTeam;
     private UserRole userRole;
+    private String phoneNumber;
     @Valid
     private CoachInfoDTO coachInfo;
 
