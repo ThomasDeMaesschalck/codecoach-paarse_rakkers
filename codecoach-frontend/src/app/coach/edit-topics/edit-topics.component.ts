@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "../../models/user";
 import {UserService} from "../../user/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -6,7 +6,7 @@ import {Location} from "@angular/common";
 import {AuthenticationService} from "../../authentication/authentication.service";
 import {TopicService} from "../topic.service";
 import {Topic} from "../../models/topic";
-import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
+import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-edit-topics',
@@ -25,7 +25,14 @@ export class EditTopicsComponent implements OnInit {
     experience: number;
   }[];
 
-  constructor(private userService : UserService,
+  topics!: string[];
+
+  saveNewTopic = this._formBuilder.group({
+    topicName: ['', Validators.required],
+    experienceLevel: '',
+  });
+
+  constructor(private userService: UserService,
               private route: ActivatedRoute,
               private router: Router,
               private location: Location,
@@ -33,18 +40,20 @@ export class EditTopicsComponent implements OnInit {
               private topicService: TopicService,
               private _formBuilder: FormBuilder) {
     this.topicForm = this._formBuilder.group({
-    topicArray: this._formBuilder.array([])
-  });}
+      topicArray: this._formBuilder.array([])
+    });
+  }
 
   ngOnInit(): void {
     this.getUser();
     this.coachTopicItems = [];
+    this.topicService.getTopics().subscribe(topics => this.topics = topics);
   }
 
   getUser() {
     const id = String(this.route.snapshot.paramMap.get('coachId'));
     this.userService.getById(id)
-      .subscribe(user =>{
+      .subscribe(user => {
         this.user = user;
         this.coachTopicItems = this.user.coachInfo!.topics;
       });
@@ -59,14 +68,10 @@ export class EditTopicsComponent implements OnInit {
   }
 
   save() {
-
     this.userService.save(this.user).subscribe(
       (userFromBackend) => {
         this.user = userFromBackend;
-        setTimeout(() => {
-          this.router.navigate(['coach', this.user.id]);
-        }, 500);
-      },(errors) => {
+      }, (errors) => {
         this.feedback = errors['error']['errors'];
       }
     );
@@ -79,12 +84,23 @@ export class EditTopicsComponent implements OnInit {
   get coachTopicItemsArray() {
     return this.topicForm.get('topicForm') as FormArray;
   }
-  addItem(item: Topic) {
+
+  addItem() {
+    let item = <Topic>{
+      'topicName': this.saveNewTopic.value['topicName'],
+      'experience': this.saveNewTopic.value['experienceLevel']
+    };
+
     this.coachTopicItems.push(item);
-    this.coachTopicItemsArray.push(this._formBuilder.control(false));
+    this.save();
   }
+
   removeItem() {
     this.coachTopicItems.pop();
-    this.coachTopicItemsArray.removeAt(this.coachTopicItemsArray.length - 1);
+    this.save();
+  }
+
+  counter(i: number) {
+    return new Array(i);
   }
 }

@@ -27,15 +27,18 @@
 
       <section class="card-panel grey lighten-5" *ngIf="user.coachInfo">
 
-        <h5>Coach Information - edit your coaching topics</h5>
         <div class="divider"></div>
         <div class="row">
+
           <div class="col l12 m12 s12">
+
+            <h5>Coach Information - Delete coaching topics</h5>
+
 
             <form *ngIf="user" (ngSubmit)="save()" class="col s12">
 
               <form [formGroup]="topicForm">
-                <div formArrayName="coachTopicItemsArray"
+                <div
                      *ngFor="let coachTopicItem of coachTopicItems; let i=index">
 
 
@@ -66,6 +69,11 @@
                     </div>
                   </div>
                 </div>
+
+                <div class="divider"></div>
+
+                <h5>Coach Information - Add coaching topics</h5>
+
               </form>
 
               <div *ngIf="feedback" class="error-text">
@@ -74,16 +82,46 @@
                 </div>
               </div>
 
-
-              <div class="row right-align">
-                <button class="waves-effect waves-light red darken-2 btn-large black-text"
-                        (click)="cancel()">Cancel<i
-                  class="material-icons right">close</i></button>
-
-                <button type="submit" class="waves-effect waves-light yellow darken-2 btn-large black-text">Update<i
-                  class="material-icons right">send</i></button>
-              </div>
             </form>
+
+            <div class="row">
+              <form [formGroup]="saveNewTopic">
+
+                <div class="col s3">
+                  <mat-form-field appearance="fill">
+                    <select matNativeControl required class="form-control" formControlName="topicName">
+                      <option [ngValue]="null" [disabled]="true">Select Topic</option>
+                      <option *ngFor="let topicname of topics"
+                              [ngValue]="topicname">{{topicname}}</option>
+                    </select>
+                  </mat-form-field>
+                </div>
+                <div class="col s3">
+                  <mat-form-field appearance="fill">
+                    <select matNativeControl required  class="form-control" formControlName="experienceLevel">
+                      <option [ngValue]="null" disabled>Select experience level</option>
+                      <option  *ngFor='let experienceLevel of counter(11) ;let i = index'>{{i}}</option>
+                    </select>
+                  </mat-form-field>
+                </div>
+
+                <div class="col s3">
+                  <button class="waves-effect waves-light green darken-2 btn black-text"
+                          (click)="addItem()">Add <i class="material-icons right">add</i></button>
+                </div>
+              </form>
+
+
+
+
+            </div>
+
+
+            <div class="row right-align">
+              <button class="waves-effect waves-light red darken-2 btn-large black-text"
+                      (click)="cancel()">Back<i
+                class="material-icons right">close</i></button>
+            </div>
           </div>
         </div>
       </section>
