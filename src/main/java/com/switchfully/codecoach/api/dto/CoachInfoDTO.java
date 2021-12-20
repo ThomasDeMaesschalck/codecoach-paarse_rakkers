@@ -17,6 +17,7 @@ public class CoachInfoDTO {
     @NotNull(message="Availability cannot be null")
     private String availability;
     @Valid
+    @Size(max=2, message = "Max two topics per coach")
     private List<TopicDTO> topics;
     private int xp;
 }

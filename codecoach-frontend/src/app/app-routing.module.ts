@@ -12,6 +12,7 @@ import {EditCoachComponent} from "./coach/edit-coach/edit-coach.component";
 import {RequestAChangeComponent} from "./user/request-a-change/request-a-change.component";
 import {RequestSessionComponent} from "./session/request-session/request-session.component";
 import {SessionsOverviewComponent} from "./session/sessions-overview/sessions-overview.component";
+import {EditTopicsComponent} from "./coach/edit-topics/edit-topics.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -26,7 +27,8 @@ const routes: Routes = [
   {path: 'coach-overview', component: CoachOverviewComponent},
   {path: 'request-a-change/:id', component: RequestAChangeComponent},
   {path: 'request-a-session/:coachId', component: RequestSessionComponent},
-  {path: 'sessions-overview', component: SessionsOverviewComponent}
+  {path: 'sessions-overview', component: SessionsOverviewComponent},
+  {path: 'coach-topics-edit/:coachId', component: EditTopicsComponent}
 
 
 ];
