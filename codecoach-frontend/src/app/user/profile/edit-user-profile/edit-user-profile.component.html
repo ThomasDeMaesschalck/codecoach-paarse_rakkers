@@ -67,9 +67,9 @@
           <div class="row" *ngIf="loggedInUserIsAdmin()">
             <div class="select-f col l6 m6 s12">
 
-              <label>Role</label>
               <mat-form-field appearance="fill">
-                <select matNativeControl required formControlName="userRole">
+                <label for="roleSelect">Role</label>
+                <select id="roleSelect" matNativeControl required formControlName="userRole">
                   <option *ngFor="let userRole of userRoles" ngValue="{{userRole}}">{{userRole}}</option>
                 </select>
               </mat-form-field>
