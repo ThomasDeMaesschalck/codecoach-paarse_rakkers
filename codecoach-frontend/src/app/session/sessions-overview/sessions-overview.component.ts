@@ -140,6 +140,29 @@ export class SessionsOverviewComponent implements OnInit {
       },
     });
   }
+  openMyCoacheeFeedbackDialog(session: Session) {
+    this.dialog.open(MyCoacheeFeedbackDialog, {
+      minWidth: 500,
+      data: {
+        'subject': session.subject,
+        'coacheeName': session.coacheeName,
+        'coachName': session.coachName,
+        'coacheeFeedback': session.coacheeFeedback
+      },
+    });
+  }
+
+  openMyCoachFeedbackDialog(session: Session) {
+    this.dialog.open(MyCoachFeedbackDialog, {
+      minWidth: 500,
+      data: {
+        'subject': session.subject,
+        'coacheeName': session.coacheeName,
+        'coachName': session.coachName,
+        'coachFeedback': session.coachFeedback
+      },
+    });
+  }
 
 }
 
@@ -168,7 +191,6 @@ export class CoacheeFeedbackDialog {
   }
 }
 
-
 @Component({
   selector: 'dialog-data-example-dialog2',
   templateUrl: '../feedback/coach_feedback.html',
@@ -190,4 +212,27 @@ export class CoachFeedbackDialog {
       }
     );
   }
+}
+
+@Component({
+  selector: 'mycoacheefeedbackdialog',
+  templateUrl: '../feedback/view_coachee_feedback.html',
+})
+export class MyCoacheeFeedbackDialog {
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Session) {
+  }
+
+}
+
+
+@Component({
+  selector: 'mycoachfeedbackdialog',
+  templateUrl: '../feedback/view_coach_feedback.html',
+})
+export class MyCoachFeedbackDialog {
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Session) {
+  }
+
 }
