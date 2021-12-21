@@ -33,7 +33,7 @@ export class SessionstatusPipe implements PipeTransform {
       case "REQUESTED": {
         return "Requested";
       }
-      default: return "Error";
+      default: return "Waiting...";
     }
   }
 

@@ -41,8 +41,8 @@
 
               <h5 class="header">{{coach.firstName}} {{coach.lastName}}</h5>
               <div class="card horizontal">
-                <div class="card-image circle responsive-img">
-                  <img [src]="coach.pictureURL" (error)="coach.pictureURL = defaultImg" class="responsive-img">
+                <div class="card-image circle ">
+                  <img [src]="coach.pictureURL" (error)="coach.pictureURL = defaultImg" class="responsive-img card-image">
                 </div>
                 <div class="card-stacked">
                   <div class="card-content">
