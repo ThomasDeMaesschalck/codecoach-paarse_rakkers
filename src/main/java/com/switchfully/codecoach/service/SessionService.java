@@ -34,6 +34,7 @@ public class SessionService {
     private final UserRepository userRepository;
     private final CoachFeedbackMapper coachFeedbackMapper;
     private final CoacheeFeedbackMapper coacheeFeedbackMapper;
+    private final RabbitService rabbitService;
 
     private final Logger logger = LoggerFactory.getLogger(SessionService.class);
 
@@ -43,7 +44,10 @@ public class SessionService {
                           SessionMapper sessionMapper,
                           UserService userService,
                           JwtGenerator jwtGenerator,
-                          UserRepository userRepository, CoachFeedbackMapper coachFeedbackMapper, CoacheeFeedbackMapper coacheeFeedbackMapper) {
+                          UserRepository userRepository,
+                          CoachFeedbackMapper coachFeedbackMapper,
+                          CoacheeFeedbackMapper coacheeFeedbackMapper,
+                          RabbitService rabbitService) {
         this.sessionRepository = sessionRepository;
         this.sessionMapper = sessionMapper;
         this.userService = userService;
@@ -51,6 +55,7 @@ public class SessionService {
         this.userRepository = userRepository;
         this.coachFeedbackMapper = coachFeedbackMapper;
         this.coacheeFeedbackMapper = coacheeFeedbackMapper;
+        this.rabbitService = rabbitService;
     }
 
 
@@ -72,7 +77,10 @@ public class SessionService {
     public SessionDTO saveSession(SessionDTO dto) {
         User coach = userService.getSpecificUserById(dto.getCoachId());
         User coachee = userService.getSpecificUserById(dto.getCoacheeId());
-        return sessionMapper.toDTO(sessionRepository.save(sessionMapper.toEntity(dto, coach, coachee)));
+        Session session = sessionRepository.save(sessionMapper.toEntity(dto, coach, coachee));
+        String rabbitMessage = rabbitService.createRequestSessionMessage(session);
+        rabbitService.sendMessageToTopic(rabbitMessage, "sessionRequest");
+        return sessionMapper.toDTO(session);
     }
 
     public SessionDTO updateSession(String sessionId, SessionDTO dto, String authToken) {
