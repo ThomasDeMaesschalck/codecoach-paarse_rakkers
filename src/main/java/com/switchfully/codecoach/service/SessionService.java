@@ -97,6 +97,8 @@ public class SessionService {
                     sessionToUpdate.setStatus(SessionStatus.ACCEPTED);
 
                 } else if (dto.getStatus() == SessionStatus.DECLINED && sessionToUpdate.getCoach().equals(caller)) {
+                    String rabbitMessage = rabbitService.createCancelSessionMessage(sessionToUpdate);
+                    rabbitService.sendMessageToTopic(rabbitMessage, "sessionCancelation");
                     sessionToUpdate.setStatus(SessionStatus.DECLINED);
 
                 } else if (dto.getStatus() == SessionStatus.CANCELED_BY_COACHEE && sessionToUpdate.getCoachee().equals(caller)) {
@@ -111,6 +113,8 @@ public class SessionService {
             case ACCEPTED:
 
                 if (dto.getStatus() == SessionStatus.CANCELED_BY_COACH && sessionToUpdate.getCoach().equals(caller)) {
+                    String rabbitMessage = rabbitService.createCancelSessionMessage(sessionToUpdate);
+                    rabbitService.sendMessageToTopic(rabbitMessage, "sessionCancelation");
                     sessionToUpdate.setStatus(SessionStatus.CANCELED_BY_COACH);
 
                 } else if (dto.getStatus() == SessionStatus.CANCELED_BY_COACHEE && sessionToUpdate.getCoachee().equals(caller)) {

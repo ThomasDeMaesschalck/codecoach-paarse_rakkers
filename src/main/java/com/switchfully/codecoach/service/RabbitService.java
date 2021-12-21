@@ -8,6 +8,8 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 public class RabbitService {
     public final static String EXCHANGE_NAME = "codecoach";
@@ -28,4 +30,10 @@ public class RabbitService {
         return String.format("Session requested by %s %s on %s", session.getCoachee().getFirstName(), 
                 session.getCoachee().getLastName(), session.getMoment());
     }
+
+    public String createCancelSessionMessage(Session session) {
+        return String.format("sendTo:%s Session cancelled by %s %s on %s", session.getCoachee().getPhoneNumber(),
+                session.getCoach().getFirstName(), session.getCoach().getLastName(), LocalDate.now());
+    }
+
 }
