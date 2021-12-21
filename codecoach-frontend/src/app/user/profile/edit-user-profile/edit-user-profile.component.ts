@@ -19,7 +19,7 @@ export class EditUserProfileComponent implements OnInit {
   userRoles: UserRole[] = [];
   editUserForm!: FormGroup;
 
-  constructor(private authenticationService: AuthenticationService,
+  constructor(public authenticationService: AuthenticationService,
               private userService: UserService,
               private route: ActivatedRoute, private formBuilder: FormBuilder,
               private router: Router) {

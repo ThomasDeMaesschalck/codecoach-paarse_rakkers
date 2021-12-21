@@ -4,10 +4,12 @@
     <div class="content-container">
       <h6>Edit Profile</h6>
       <div class="collection">
-        <a routerLink="/user/{{user.id}}" class="collection-item white-text active purple darken-2">Profile
+        <a *ngIf="this.authenticationService.isCoachee()" routerLink="/user/{{user.id}}" class="collection-item white-text active purple darken-2">Profile
           Information</a>
-        <a href="#!" class="collection-item grey-text text-darken-2">Coaching sessions</a>
-        <a href="#!" class="collection-item grey-text text-darken-2">Apply to become a coach</a>
+        <a *ngIf="!this.authenticationService.isCoachee()" routerLink="/coach/{{user.id}}" class="collection-item white-text active purple darken-2">Profile
+          Information</a>
+        <a [routerLink]="['/sessions-overview']" class="collection-item grey-text text-darken-2">Coaching sessions</a>
+        <a [routerLink]="['/become-a-coach', user.id]" *ngIf="this.authenticationService.isCoachee()" class="collection-item grey-text text-darken-2">Apply to become a coach</a>
       </div>
     </div>
   </div>
