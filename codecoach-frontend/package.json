@@ -1,7 +1,7 @@
 {
   "name": "codecoach-frontend",
   "version": "0.0.0",
-  "homepage": "./",
+  "homepage": "codecoach-frontend/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
