@@ -27,8 +27,8 @@ public class RabbitService {
     }
 
     public String createRequestSessionMessage(Session session) {
-        return String.format("Session requested by %s %s on %s", session.getCoachee().getFirstName(), 
-                session.getCoachee().getLastName(), session.getMoment());
+        return String.format("sendTo:%s Session requested by %s %s on %s", session.getCoach().getPhoneNumber(),
+                session.getCoachee().getFirstName(), session.getCoachee().getLastName(), session.getMoment());
     }
 
     public String createCancelSessionMessage(Session session) {
