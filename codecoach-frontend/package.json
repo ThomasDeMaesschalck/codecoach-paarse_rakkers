@@ -1,7 +1,6 @@
 {
   "name": "codecoach-frontend",
   "version": "0.0.0",
-  "homepage": "https://priceless-mccarthy-3d9773.netlify.app/codecoach-frontend/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
