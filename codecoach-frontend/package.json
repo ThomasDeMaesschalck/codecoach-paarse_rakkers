@@ -35,6 +35,7 @@
     "ngx-custom-validators": "^9.1.0",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
+    "youcoach-i18n": "github:switchfully/youcoach-i18n",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
