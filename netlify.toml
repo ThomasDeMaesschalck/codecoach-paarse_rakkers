@@ -1,3 +1,3 @@
 [build]
    base = "codecoach-frontend//"
-   publish = "/"   
+   publish = "./"   
