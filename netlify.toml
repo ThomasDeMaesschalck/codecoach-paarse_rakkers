@@ -1,8 +1,0 @@
-[build]
-base = "codecoach-frontend/"
-
-[[redirects]]
- from = "/"
- to = "/codecoach-frontend/:splat"
-status = 200
-#  force = true
