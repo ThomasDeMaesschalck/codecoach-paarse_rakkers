@@ -1,0 +1,6 @@
+[build]
+base = "codecoach-frontend/"
+
+[[redirects]]
+  from = "/"
+  to = "/codecoach-frontend/"
