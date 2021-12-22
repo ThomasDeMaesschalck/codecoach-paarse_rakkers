@@ -1,13 +1,13 @@
 username: testuser@angular.com
-password: str9999LLingst
+password: w8woordT
 ROLE: COACH
 
-username : karel@blabla.com
-password: hallo1Ablabla
+username : karel@switchfully.com
+password: w8woordT
 ROLE : COACHEE
 
 username: admin@codecoach.com
-password: AdminW8woord
+password: w8woordT
 ROLE : ADMIN
 
 
