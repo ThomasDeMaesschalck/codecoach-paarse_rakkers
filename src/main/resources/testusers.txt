@@ -12,3 +12,7 @@ ROLE : ADMIN
 
 
 
+testuser to become coach:
+username: coachee.test@user.com
+password: w8woordT
+ROLE : COACHEE
