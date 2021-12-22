@@ -17,7 +17,7 @@
            [routerLink]="['/become-a-coach', user.id]">Apply to become a coach</a>
         <a class="collection-item white-text active purple darken-4"
            *ngIf="authenticationService.isCoach()">Coach profile</a>
-        <a class="collection-item white-text grey-text text-darken-4" *ngIf="isLoggedInUserProfile()"
+        <a class="collection-item white-text grey-text text-darken-4" *ngIf="isLoggedInUserProfile() && authenticationService.isCoach()"
            routerLink="/request-a-change/{{user.id}}">Request a change</a>
       </div>
     </div>
