@@ -12,7 +12,7 @@
         <a class="collection-item grey-text text-darken-4"
            *ngIf="authenticationService.isCoachee()"
            [routerLink]="['/sessions-overview']">Coaching sessions</a>
-        <a href="#!" class="collection-item grey-text text-darken-4"
+        <a class="collection-item grey-text text-darken-4"
            *ngIf="authenticationService.isCoachee()"
            [routerLink]="['/become-a-coach', user.id]">Apply to become a coach</a>
         <a class="collection-item white-text active purple darken-4"
