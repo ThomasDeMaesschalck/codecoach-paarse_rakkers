@@ -93,10 +93,8 @@ public class UserService implements AccountService {
                     }
                 }
             }
-
-            userFromDB.setUserRole(UserRole.COACH);
+            userFromDB.setUserRole(dto.getUserRole());
         }
-
         return userMapper.toDTO(userFromDB);
     }
 
