@@ -107,7 +107,6 @@ public class SessionService {
                 } else {
                     throw new IllegalStateException("Session update not authorized: session may only be rejected or accepted by the correct user.");
                 }
-
                 break;
 
             case ACCEPTED:

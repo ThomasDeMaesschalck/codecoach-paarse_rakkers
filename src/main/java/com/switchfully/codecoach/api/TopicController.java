@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-//@CrossOrigin
 @RequestMapping("/topics")
 @SecurityRequirement(name = "javainuseapi")
 public class TopicController {
@@ -27,7 +26,6 @@ public class TopicController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    //@PreAuthorize("hasAnyRole()")
     public List<String> getAllTopics() {
         logger.info("Getting all topics");
         return topicService.getTopicNames();
