@@ -20,7 +20,7 @@
 
             <li><a class="waves-light purple darken-2 btn white-text" href="/coach-overview" *ngIf="authenticationService.isLoggedIn()">Find coach <i class="material-icons right">search</i></a></li>
 
-            <li><a class="waves-light purple darken-2 btn white-text" href="/login" *ngIf="!authenticationService.isLoggedIn()" translate>menu.button.sign-in<i class="material-icons right">person</i></a></li>
+            <li><a class="waves-light purple darken-2 btn white-text" routerLink="/login" *ngIf="!authenticationService.isLoggedIn()" translate>menu.button.sign-in<i class="material-icons right">person</i></a></li>
             <li><a class="waves-effect waves-light purple btn white-text" *ngIf="!authenticationService.isLoggedIn()" routerLink="/register">Register<i class="material-icons right">person_add</i></a></li>
 
             <li><a class="waves-effect waves-light purple btn white-text" *ngIf="authenticationService.isLoggedIn() && authenticationService.isCoachee()" routerLink="/user/{{authenticationService.getUserId()}}">User profile<i class="material-icons right">account_box</i></a></li>
