@@ -3,7 +3,7 @@
     <div class="nav-wrapper">
       <div class="row">
         <div class="col s1 m0 l1">
-          <a href="#" data-target="nav-mobile" class="sidenav-trigger teal-text"><i class="material-icons">menu</i></a>
+          <a routerLink="#" data-target="nav-mobile" class="sidenav-trigger teal-text"><i class="material-icons">menu</i></a>
         </div>
         <div class="col s11 m3 l2">
           <a id="logo-container" routerLink="/home" class="brand-logo">Code-Coach</a>
@@ -12,7 +12,7 @@
         <div class="col s0 m9 l9">
           <ul class="right hide-on-med-and-down valign-wrapper">
             <li *ngIf="authenticationService.isLoggedIn()">
-              <a class='dropdown-trigger btn purple darken-2 white-text' data-target='dropdown-profile-1' href="#" translate [translateParams]="{username: username}">menu.label.logged-in<i class="material-icons left">face</i></a>
+              <a class='dropdown-trigger btn purple darken-2 white-text' data-target='dropdown-profile-1' routerLink="#" translate [translateParams]="{username: username}">menu.label.logged-in<i class="material-icons left">face</i></a>
               <ul id="dropdown-profile-1" class='dropdown-content'>
                 <li><a class="waves-light red lighten-2 white-text" routerLink="/home" *ngIf="authenticationService.isLoggedIn()" (click)="logout()" translate>menu.button.log-out<i class="material-icons">power_settings_new</i></a></li>
               </ul>
@@ -30,16 +30,16 @@
         </div>
 
         <ul id="nav-mobile" class="left sidenav">
-          <li *ngIf="authenticationService.isLoggedIn()"><a class='dropdown-trigger waves-light yellow darken-2 btn black-text' data-target='dropdown-profile' href="#" translate [translateParams]="{username: username}">menu.label.logged-in</a>
+          <li *ngIf="authenticationService.isLoggedIn()"><a class='dropdown-trigger waves-light yellow darken-2 btn black-text' data-target='dropdown-profile' routerLink="#" translate [translateParams]="{username: username}">menu.label.logged-in</a>
             <ul id="dropdown-profile" class='dropdown-content'>
               <li><a class="waves-light red lighten-2 white-text" routerLink="/home" *ngIf="authenticationService.isLoggedIn()" (click)="logout()" translate>menu.button.log-out<i class="material-icons white-text left">power_settings_new</i></a></li>
             </ul>
           </li>
-          <li><a class="waves-light purple darken-2 btn white-text" href="/coach-overview" *ngIf="authenticationService.isLoggedIn()">Find coach <i class="material-icons right">search</i></a></li>
+          <li><a class="waves-light purple darken-2 btn white-text" routerLink="/coach-overview" *ngIf="authenticationService.isLoggedIn()">Find coach <i class="material-icons right">search</i></a></li>
           <li><a class="waves-light yellow darken-2 btn black-text" routerLink="/login" *ngIf="!authenticationService.isLoggedIn()" translate>menu.button.sign-in<i class="material-icons right">person</i></a></li>
           <li><a class="waves-effect waves-light teal lighten-3 btn white-text" *ngIf="!authenticationService.isLoggedIn()" routerLink="/register">Register<i class="material-icons right">person_add</i></a></li>
           <li><a class="waves-effect waves-light purple btn white-text" *ngIf="authenticationService.isLoggedIn() && authenticationService.isCoachee()" routerLink="/user/{{authenticationService.getUserId()}}">User profile<i class="material-icons right">account_box</i></a></li>
-          <li><a class="waves-effect waves-light purple btn white-text" *ngIf="authenticationService.isLoggedIn() && !authenticationService.isCoachee()" href="/coach/{{authenticationService.getUserId()}}">Coach profile<i class="material-icons right">account_box</i></a></li>
+          <li><a class="waves-effect waves-light purple btn white-text" *ngIf="authenticationService.isLoggedIn() && !authenticationService.isCoachee()" routerLink="/coach/{{authenticationService.getUserId()}}">Coach profile<i class="material-icons right">account_box</i></a></li>
         </ul>
       </div>
     </div>
