@@ -60,7 +60,7 @@ export class RequestSessionComponent implements OnInit {
 
   save() {
     this.date = this.dateControl.value;
-    this.date.setHours(this.date.getHours() + 1);
+    this.date.setHours(this.date.getHours());
 
     this.session = <Session>{
 
