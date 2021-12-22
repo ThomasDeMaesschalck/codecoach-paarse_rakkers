@@ -86,14 +86,14 @@
                   <mat-form-field appearance="fill">
                     <select matNativeControl required  class="form-control" formControlName="experienceLevel">
                       <option [ngValue]="null" disabled>Select experience level</option>
-                      <option  *ngFor='let experienceLevel of counter(11) ;let i = index'>{{i}}</option>
+                      <option  *ngFor='let experienceLevel of counter(10) ;let i = index' [ngValue]="i + 1">{{i+1}}</option>
                     </select>
                   </mat-form-field>
                 </div>
 
                 <div class="col s3">
                   <button class="waves-effect waves-light green darken-2 btn black-text"
-                          (click)="addItem()">Add <i class="material-icons right">add</i></button>
+                          (click)="addItem()" [disabled]="!saveNewTopic.valid">Add <i class="material-icons right">add</i></button>
                 </div>
               </form>
             </div>
