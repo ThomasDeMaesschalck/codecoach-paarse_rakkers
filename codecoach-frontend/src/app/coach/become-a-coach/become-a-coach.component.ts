@@ -38,7 +38,6 @@ export class BecomeACoachComponent implements OnInit {
          (user) => {
            this.authenticationService.logout();
            this.router.navigate(["login"]);
-           window.location.reload();
          }
        );
      }
