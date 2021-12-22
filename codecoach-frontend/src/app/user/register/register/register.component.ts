@@ -43,7 +43,6 @@ export class RegisterComponent implements OnInit {
         this.user = userFromBackend;
         this.authenticationService.login(this.login).subscribe(value => {
           this.router.navigate(['user', this.user.id]);
-          window.location.reload();
         }
       );
 
