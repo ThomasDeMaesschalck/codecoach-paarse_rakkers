@@ -4,6 +4,7 @@ import {Location} from '@angular/common'
 import {User} from "../../models/user";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserRole} from "../../models/userrole";
+import {AuthenticationService} from "../../authentication/authentication.service";
 
 @Component({
   selector: 'app-become-a-coach',
@@ -18,7 +19,8 @@ export class BecomeACoachComponent implements OnInit {
   constructor(private userService: UserService,
               private location: Location,
               private router: Router,
-              private route: ActivatedRoute,) {
+              private route: ActivatedRoute,
+              private authenticationService: AuthenticationService) {
    this.coacheeId = this.route.snapshot.paramMap.get('id')!;
   }
 
@@ -35,13 +37,11 @@ export class BecomeACoachComponent implements OnInit {
 
        this.userService.save(this.user).subscribe(
          (user) => {
-           this.router.navigate(['coach', this.user.id])
+           this.authenticationService.logout();
          }
        );
      }
    );
-
-
   }
 
   back() {
