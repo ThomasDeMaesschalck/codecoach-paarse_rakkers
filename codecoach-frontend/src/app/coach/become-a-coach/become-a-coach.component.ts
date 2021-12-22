@@ -27,7 +27,6 @@ export class BecomeACoachComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   save(): void{
    this.userService.getById(this.coacheeId).subscribe(
      (userFromDB) => {
@@ -38,6 +37,7 @@ export class BecomeACoachComponent implements OnInit {
        this.userService.save(this.user).subscribe(
          (user) => {
            this.authenticationService.logout();
+           this.router.navigate(["login"]);
          }
        );
      }
