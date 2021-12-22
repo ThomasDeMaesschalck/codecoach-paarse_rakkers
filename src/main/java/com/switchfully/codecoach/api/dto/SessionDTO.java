@@ -1,6 +1,5 @@
 package com.switchfully.codecoach.api.dto;
 
-
 import com.switchfully.codecoach.domain.SessionStatus;
 import lombok.Builder;
 import lombok.Data;
@@ -18,16 +17,19 @@ public class SessionDTO {
 
     private UUID id;
 
-    @NotBlank(message = "Coachee can not be blank") @NotNull(message = "Coachee can not be null.")
+    @NotBlank(message = "Coachee can not be blank")
+    @NotNull(message = "Coachee can not be null.")
     private String coacheeId;
 
     private String coachName;
     private String coacheeName;
 
-    @NotBlank(message = "Coach can not be blank") @NotNull(message = "Coach can not be null.")
+    @NotBlank(message = "Coach can not be blank")
+    @NotNull(message = "Coach can not be null.")
     private String coachId;
 
-    @NotBlank(message = "Subject can't be blank") @NotNull(message = "Subject can't be null")
+    @NotBlank(message = "Subject can't be blank")
+    @NotNull(message = "Subject can't be null")
     private String subject;
 
     @Future(message = "Session can not be in the past")
@@ -36,7 +38,8 @@ public class SessionDTO {
     @NotNull(message = "Face-to-face can not be null.")
     private boolean faceToFace;
 
-    @NotBlank(message = "Remarks can not be blank") @NotNull(message = "Remarks can not be null.")
+    @NotBlank(message = "Remarks can not be blank")
+    @NotNull(message = "Remarks can not be null.")
     private String remarks;
 
     private SessionStatus status;

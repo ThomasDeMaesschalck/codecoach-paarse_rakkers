@@ -92,7 +92,7 @@ public class SessionService {
         switch (sessionToUpdate.getStatus()) {
 
             case REQUESTED:
-            System.out.println(dto.getStatus() + "" + caller.getId()  + "" + caller.getUserRole().toString());
+                System.out.println(dto.getStatus() + "" + caller.getId() + "" + caller.getUserRole().toString());
                 if (dto.getStatus() == SessionStatus.ACCEPTED && sessionToUpdate.getCoach().equals(caller)) {
                     sessionToUpdate.setStatus(SessionStatus.ACCEPTED);
 
@@ -167,7 +167,6 @@ public class SessionService {
                     .collect(Collectors.toList());
 
     }
-
 
 
     public SessionDTO getSessionDTO(String sessionId) {

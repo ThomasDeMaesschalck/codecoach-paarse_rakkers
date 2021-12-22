@@ -1,12 +1,9 @@
 package com.switchfully.codecoach.api.mappers;
 
-import com.switchfully.codecoach.api.dto.CoachInfoDTO;
 import com.switchfully.codecoach.api.dto.CoacheeFeedbackDTO;
-import com.switchfully.codecoach.domain.CoachInfo;
 import com.switchfully.codecoach.domain.CoacheeFeedback;
 import org.springframework.stereotype.Component;
 
-import java.util.stream.Collectors;
 @Component
 public class CoacheeFeedbackMapper {
 

@@ -4,6 +4,4 @@ import java.util.Optional;
 
 public interface AccountService {
     Optional<? extends Account> findByEmail(String userName);
-
-    boolean existsByEmail(String email);
 }

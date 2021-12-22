@@ -13,11 +13,11 @@ public class CoachInfoMapper {
     private final TopicMapper topicMapper;
 
     @Autowired
-    public CoachInfoMapper(TopicMapper topicMapper){
+    public CoachInfoMapper(TopicMapper topicMapper) {
         this.topicMapper = topicMapper;
     }
 
-    public CoachInfo toEntity(CoachInfoDTO coachInfoDTO){
+    public CoachInfo toEntity(CoachInfoDTO coachInfoDTO) {
         return CoachInfo.builder()
                 .availability(coachInfoDTO.getAvailability())
                 .introduction(coachInfoDTO.getIntroduction())
@@ -26,7 +26,7 @@ public class CoachInfoMapper {
 
     }
 
-    public CoachInfoDTO toDTO(CoachInfo coachInfo){
+    public CoachInfoDTO toDTO(CoachInfo coachInfo) {
         return CoachInfoDTO.builder()
                 .introduction(coachInfo.getIntroduction())
                 .availability(coachInfo.getAvailability())

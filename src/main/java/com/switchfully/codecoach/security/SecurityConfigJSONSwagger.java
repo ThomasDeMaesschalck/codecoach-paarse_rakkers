@@ -12,7 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Profile("development")
-@EnableWebSecurity(debug=true)
+@EnableWebSecurity(debug = true)
 public class SecurityConfigJSONSwagger extends SecurityConfig {
     private final SecuredUserService securedUserService;
     private final PasswordEncoder passwordEncoder;
@@ -54,7 +54,7 @@ public class SecurityConfigJSONSwagger extends SecurityConfig {
                         "/swagger-ui.html",
                         "/swagger-ui/**",
                         "/webjars/**").permitAll()
-                        .antMatchers(HttpMethod.POST, "/security/**", "/users", "/sessions").permitAll();
+                .antMatchers(HttpMethod.POST, "/security/**", "/users", "/sessions").permitAll();
 
         super.configure(http);
 

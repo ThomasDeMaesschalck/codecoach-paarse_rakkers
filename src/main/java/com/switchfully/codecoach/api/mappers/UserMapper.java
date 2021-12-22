@@ -3,7 +3,6 @@ package com.switchfully.codecoach.api.mappers;
 import com.switchfully.codecoach.api.dto.UserDTO;
 import com.switchfully.codecoach.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +18,7 @@ public class UserMapper {
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
-    public User toEntity(UserDTO userDTO){
+    public User toEntity(UserDTO userDTO) {
         return User.builder()
                 .firstName(userDTO.getFirstName())
                 .lastName(userDTO.getLastName())
@@ -33,7 +32,7 @@ public class UserMapper {
                 .build();
     }
 
-    public UserDTO toDTO(User user){
+    public UserDTO toDTO(User user) {
         return UserDTO.builder()
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())

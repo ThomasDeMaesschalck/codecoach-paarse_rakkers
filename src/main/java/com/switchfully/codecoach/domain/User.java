@@ -23,7 +23,7 @@ public class User implements Account {
     @Column(name = "id")
     private UUID id;
 
-    @Column(name="firstname")
+    @Column(name = "firstname")
     private String firstName;
 
     @Column(name = "lastname")

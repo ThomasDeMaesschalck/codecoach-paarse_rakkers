@@ -6,12 +6,10 @@ import lombok.Data;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import java.util.UUID;
 
 @Builder
 @Data
 public class TopicDTO {
-
 
     private Topic.TopicName topicName;
 

@@ -14,7 +14,6 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-//@CrossOrigin
 @RequestMapping("/sessions")
 public class SessionController {
 
@@ -31,7 +30,6 @@ public class SessionController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    //@PreAuthorize("hasAnyRole()")
     public SessionDTO saveSession(@Valid @RequestBody SessionDTO sessionDTO) {
         logger.info("Saving a new session");
         return sessionService.saveSession(sessionDTO);
@@ -40,7 +38,6 @@ public class SessionController {
     @SecurityRequirement(name = "javainuseapi")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    //@PreAuthorize("hasAnyRole()")
     public List<SessionDTO> getAllSessions(@RequestParam(required = false) String userId) {
         logger.info("Getting all sessions");
         return sessionService.getAllSessions(userId);
@@ -49,7 +46,6 @@ public class SessionController {
     @SecurityRequirement(name = "javainuseapi")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
-    //@PreAuthorize("hasAnyRole()")
     public SessionDTO getSpecificSession(@PathVariable String id) {
         logger.info("Getting session with id " + id);
         return sessionService.getSessionDTO(id);

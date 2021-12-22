@@ -2,18 +2,15 @@ package com.switchfully.codecoach.api;
 
 import com.switchfully.codecoach.api.dto.UpdateUserDTO;
 import com.switchfully.codecoach.api.dto.UserDTO;
+import com.switchfully.codecoach.domain.Topic;
 import com.switchfully.codecoach.domain.UserRole;
 import com.switchfully.codecoach.service.UserService;
-import com.switchfully.codecoach.domain.Topic;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-
-
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -21,7 +18,6 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-//@CrossOrigin
 @RequestMapping("/users")
 public class UserController {
 
@@ -34,13 +30,12 @@ public class UserController {
     }
 
     @SecurityRequirement(name = "javainuseapi")
-    @GetMapping (produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    //@PreAuthorize("hasAnyRole()")
     public List<UserDTO> getAllUsers(@RequestParam(required = false) Topic.TopicName topic,
                                      @RequestParam(required = false) UserRole role,
                                      @RequestParam(required = false) String partialSearch
-                                     ) {
+    ) {
         logger.info("Getting all users");
         return userService.getAllUsers(topic, role, partialSearch);
     }
@@ -58,16 +53,15 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public UserDTO updateUser(@Valid @RequestBody UpdateUserDTO updateUserDTO, @PathVariable String id,
-                              @RequestHeader (name="Authorization") String token) {
+                              @RequestHeader(name = "Authorization") String token) {
         logger.info("Updating user with id " + id);
         return userService.updateUser(UUID.fromString(id), updateUserDTO, token);
     }
 
     @SecurityRequirement(name = "javainuseapi")
-    @GetMapping (produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
-    //@PreAuthorize("hasAnyRole()")
-    public UserDTO getSpecificUser(@PathVariable String id,  @RequestHeader (name="Authorization") String token) {
+    public UserDTO getSpecificUser(@PathVariable String id, @RequestHeader(name = "Authorization") String token) {
 
         logger.info("Getting user with id " + id);
         return userService.getUserDTO(id, token);

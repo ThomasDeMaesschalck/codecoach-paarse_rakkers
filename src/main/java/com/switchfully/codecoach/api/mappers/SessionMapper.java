@@ -3,7 +3,6 @@ package com.switchfully.codecoach.api.mappers;
 import com.switchfully.codecoach.api.dto.SessionDTO;
 import com.switchfully.codecoach.domain.Session;
 import com.switchfully.codecoach.domain.User;
-import com.switchfully.codecoach.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

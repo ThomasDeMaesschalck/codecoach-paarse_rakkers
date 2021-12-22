@@ -24,7 +24,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -88,10 +87,8 @@ public class UserService implements AccountService {
             if (dto.getCoachInfo() != null) {
                 userFromDB.setCoachInfo(coachInfoMapper.toEntity(dto.getCoachInfo()));
 
-                if(dto.getCoachInfo().getTopics() != null && dto.getCoachInfo().getTopics().size() == 2)
-                {
-                    if(dto.getCoachInfo().getTopics().get(0).getTopicName().equals(dto.getCoachInfo().getTopics().get(1).getTopicName()))
-                    {
+                if (dto.getCoachInfo().getTopics() != null && dto.getCoachInfo().getTopics().size() == 2) {
+                    if (dto.getCoachInfo().getTopics().get(0).getTopicName().equals(dto.getCoachInfo().getTopics().get(1).getTopicName())) {
                         throw new IllegalArgumentException("Can't have two identical topics");
                     }
                 }
@@ -137,11 +134,11 @@ public class UserService implements AccountService {
         UserDTO userDTO = userMapper.toDTO(getSpecificUserById(userId));
 
         var authorization = jwtGenerator.convertToken(token.replace("Bearer ", ""));
-        if(userDTO.getUserRole().equals(UserRole.COACHEE) && !authorization.getAuthorities().contains(UserRole.ADMIN) && !doesAuthorizedUserMatchUserId(authorization, UUID.fromString(userId))) {
+        if (userDTO.getUserRole().equals(UserRole.COACHEE) && !authorization.getAuthorities().contains(UserRole.ADMIN) && !doesAuthorizedUserMatchUserId(authorization, UUID.fromString(userId))) {
             throw new UnauthorizedUserException("Not authorized");
         }
 
-        if(userDTO.getCoachInfo() != null) {
+        if (userDTO.getCoachInfo() != null) {
             int xp = sessionRepository.countAllByCoachAndCoachFeedbackNotNullAndCoacheeFeedbackNotNull(getSpecificUserById(userId));
             userDTO.getCoachInfo().setXp(xp * EXPERIENCE_POINTS_MULTIPLIER);
         }
@@ -162,22 +159,9 @@ public class UserService implements AccountService {
         }
     }
 
-    public void assertUserHasRoles(User user, UserRole... userRole) {
-        List<UserRole> roles = Arrays.asList(userRole);
-
-        if (!roles.contains(user.getUserRole())) {
-            logger.error("User with id " + user.getId() + "does not have role: " + userRole);
-            throw new UnauthorizedUserException(userRole);
-        }
-    }
-
     @Override
     public Optional<? extends Account> findByEmail(String userName) {
         return userRepository.findByEmail(userName);
     }
 
-    @Override
-    public boolean existsByEmail(String email) {
-        return userRepository.existsByEmail(email);
-    }
 }
