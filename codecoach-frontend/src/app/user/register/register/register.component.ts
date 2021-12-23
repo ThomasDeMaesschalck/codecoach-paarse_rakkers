@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {User} from 'src/app/models/user';
 import {AuthenticationService} from "../../../authentication/authentication.service";
 import {error} from "jquery";
+import {InitService} from "../../../layout/materialize/materialize.service";
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(private router: Router,
               private userService: UserService,
-              public authenticationService: AuthenticationService) {
+              public authenticationService: AuthenticationService,
+              private initService: InitService) {
   }
 
   ngOnInit(): void {
@@ -42,6 +44,7 @@ export class RegisterComponent implements OnInit {
         this.login.password = this.user.password;
         this.user = userFromBackend;
         this.authenticationService.login(this.login).subscribe(value => {
+          this.initService.initDropdowns();
           this.router.navigateByUrl('/user/' + this.user.id);
         }
       );
