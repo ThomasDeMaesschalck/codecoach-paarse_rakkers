@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../../../models/user";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {UserRole} from "../../../models/userrole";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-edit-user-profile',
@@ -22,7 +23,7 @@ export class EditUserProfileComponent implements OnInit {
   constructor(public authenticationService: AuthenticationService,
               private userService: UserService,
               private route: ActivatedRoute, private formBuilder: FormBuilder,
-              private router: Router) {
+              private router: Router, private location: Location) {
   }
 
   ngOnInit(): void {
@@ -109,4 +110,7 @@ export class EditUserProfileComponent implements OnInit {
     this.authenticationService.logout();
   }
 
+  cancel(): void {
+    this.location.back();
+  }
 }
